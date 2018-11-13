@@ -16,7 +16,7 @@
       }
     ],
     "quote-props": ["error", "as-needed"],
-    "operator-linebreak": ["error", "before"],
+    "operator-linebreak": ["error", "after"],
     "node/no-unpublished-require": "warn",
     "react/jsx-indent": ["error", 2],
     "react/sort-comp": "off"

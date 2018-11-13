@@ -40,10 +40,10 @@ class ClickAwayListener extends Component {
       const el = findDOMNode(this);
 
       if (
-        event.target instanceof HTMLElement
-        && document.documentElement
-        && document.documentElement.contains(event.target)
-        && !isDescendant(el, event.target)
+        event.target instanceof HTMLElement &&
+        document.documentElement &&
+        document.documentElement.contains(event.target) &&
+        !isDescendant(el, event.target)
       ) {
         this.props.onClickAway(event);
       }

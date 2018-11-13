@@ -67,8 +67,11 @@ describe('Image Snapshots', () => {
   }
 
   viewports.forEach((viewport) => {
-    Object.keys(stories).forEach((section) =>
-      stories[section].forEach((story) => buildTest(viewport, section, story))
-    );
+    Object.keys(stories).forEach((section) => {
+      // eslint-disable-next-line max-nested-callbacks
+      stories[section].forEach((story) => {
+        buildTest(viewport, section, story);
+      });
+    });
   });
 });
