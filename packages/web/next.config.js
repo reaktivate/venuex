@@ -1,6 +1,11 @@
 require('dotenv').config();
 
-module.exports = {
+const withPlugins = require('next-compose-plugins');
+const withImages = require('next-images');
+const withOptimizedImages = require('next-optimized-images');
+const withFonts = require('next-fonts');
+
+module.exports = withPlugins([withOptimizedImages, withImages, withFonts], {
   distDir: process.env.NEXT_DIST_DIR || `../.next`,
 
   useFileSystemPublicRoutes: false,
@@ -10,7 +15,6 @@ module.exports = {
 
   // Will be available on both server and client
   publicRuntimeConfig: {
-    staticFolder: '/static',
     something: process.env.SOMETHING
   },
 
@@ -23,4 +27,4 @@ module.exports = {
 
     return config;
   }
-};
+});
