@@ -1,0 +1,51 @@
+{
+  "name": "@venuex/root",
+  "private": true,
+  "license": "UNLICENSED",
+  "workspaces": {
+    "packages": [
+      "packages/library/*",
+      "packages/backend",
+      "packages/web",
+      "packages/mobile"
+    ]
+  },
+  "scripts": {
+    "build": "lerna run build --stream",
+    "clean": "lerna run clean --stream",
+    "test": "lerna run test --stream",
+    "lint": "eslint --cache .",
+    "lint:fix": "eslint --fix .",
+    "lint:prettify": "prettier-eslint --write --list-different",
+    "release": "lerna publish --conventional-commits --skip-npm --force-publish=* --message 'chore(release): Release %s :tada:'"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.1.2",
+    "@babel/core": "^7.1.2",
+    "@babel/node": "^7.0.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/register": "^7.0.0",
+    "@commitlint/cli": "^7.2.1",
+    "babel-core": "^7.0.0-bridge",
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "^23.6.0",
+    "eslint": "^5.8.0",
+    "eslint-config-prettier": "^3.3.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jest": "^22.0.0",
+    "eslint-plugin-json": "^1.2.1",
+    "eslint-plugin-node": "^8.0.0",
+    "eslint-plugin-prettier": "^3.0.0",
+    "eslint-plugin-promise": "^4.0.1",
+    "husky": "^1.1.2",
+    "jest": "^23.6.0",
+    "lerna": "^3.4.3",
+    "lint-staged": "^8.0.3",
+    "prettier": "^1.14.3",
+    "prettier-eslint-cli": "^4.7.1"
+  },
+  "engines": {
+    "node": ">=10.x",
+    "yarn": ">=1.10.x"
+  }
+}
