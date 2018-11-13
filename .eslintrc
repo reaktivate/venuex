@@ -1,0 +1,34 @@
+{
+  "root": true,
+  "parser": "babel-eslint",
+  "plugins": ["node", "json", "jest", "promise", "import", "prettier"],
+  "extends": [
+    "plugin:node/recommended",
+    "plugin:jest/recommended",
+    "plugin:import/warnings",
+    "prettier"
+  ],
+  "env": {
+    "es6": true,
+    "node": true,
+    "jest": true
+  },
+  "rules": {
+    "indent": ["error", 2, { "SwitchCase": 1 }],
+    "no-unused-vars": ["error", { "vars": "all", "args": "none" }],
+    "no-underscore-dangle": "off",
+    "arrow-parens": ["error", "always"],
+    "quote-props": ["error", "as-needed"],
+    "operator-linebreak": ["error", "before"],
+    "consistent-return": "off",
+    "no-process-exit": "off",
+    "no-console": "error",
+    "no-multiple-empty-lines": ["error", { "max": 1, "maxEOF": 0 }],
+    "eol-last": ["error", "always"],
+    "node/no-unsupported-features": "off",
+    "node/no-unsupported-features/es-syntax": "off",
+    "import/no-extraneous-dependencies": "off",
+    "import/no-named-as-default-member": "off",
+    "prettier/prettier": "error"
+  }
+}

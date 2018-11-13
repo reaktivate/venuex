@@ -1,0 +1,13 @@
+{
+  "name": "@venuex/mobile",
+  "description": "",
+  "version": "0.0.1",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+
+  },
+  "engines": {
+    "node": ">=10.x"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "plugins": ["react", "jsx-a11y"],
+  "extends": ["react", "prettier/react"],
+  "env": {
+    "browser": true
+  },
+  "rules": {
+    "indent": ["error", 2],
+    "arrow-parens": ["error", "always"],
+    "space-before-function-paren": [
+      "error",
+      {
+        "named": "never",
+        "anonymous": "always",
+        "asyncArrow": "always"
+      }
+    ],
+    "quote-props": ["error", "as-needed"],
+    "operator-linebreak": ["error", "before"],
+    "node/no-unpublished-require": "warn",
+    "react/jsx-indent": ["error", 2],
+    "react/sort-comp": "off"
+  }
+}
