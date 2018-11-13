@@ -8,7 +8,9 @@ function toMatchImageSnapshotDecorated(...args) {
     const message = result.message();
 
     // Get diff image path from error message
-    const filepath = message.substr(message.lastIndexOf(':') + 1)
+    const filepath = message
+      .substr(message.lastIndexOf(':') + 1)
+      // eslint-disable-next-line no-control-regex
       .replace(/\u001b\[.*?m/g, '') // Remove ANSII chars
       .trim();
 

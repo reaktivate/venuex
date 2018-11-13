@@ -3,7 +3,9 @@ import NextDocument, { Head, Main, NextScript } from 'next/document';
 import getConfig from 'next/config';
 import { ServerStyleSheet } from 'styled-components';
 
-const { publicRuntimeConfig: { staticFolder } } = getConfig();
+const {
+  publicRuntimeConfig: { staticFolder }
+} = getConfig();
 
 class Document extends NextDocument {
   static getInitialProps({ renderPage }) {

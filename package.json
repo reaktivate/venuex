@@ -16,7 +16,6 @@
     "test": "lerna run test --stream",
     "lint": "eslint --cache .",
     "lint:fix": "eslint --fix .",
-    "lint:prettify": "prettier-eslint --write --list-different",
     "release": "lerna publish --conventional-commits --skip-npm --force-publish=* --message 'chore(release): Release %s :tada:'"
   },
   "devDependencies": {
@@ -37,7 +36,7 @@
     "eslint-plugin-node": "^8.0.0",
     "eslint-plugin-prettier": "^3.0.0",
     "eslint-plugin-promise": "^4.0.1",
-    "husky": "^1.1.2",
+    "husky": "^1.1.4",
     "jest": "^23.6.0",
     "lerna": "^3.4.3",
     "lint-staged": "^8.0.3",
