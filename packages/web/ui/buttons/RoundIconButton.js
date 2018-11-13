@@ -31,11 +31,8 @@ const Button = styled.div`
   }
 `;
 
-export default ({
-  onClick,
-  children
-}) => (
-  <Button onClick={onClick}>
+export default ({ children }) => (
+  <Button>
     {children}
   </Button>
 );
