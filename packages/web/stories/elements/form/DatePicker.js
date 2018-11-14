@@ -7,13 +7,13 @@ import { action } from '@storybook/addon-actions';
 
 storiesOf('elements/form/DatePicker', module)
   .add('default', () => (
-    <DatePicker label="some label" value={moment()} onChange={action('onChange')} />
+    <DatePicker label="some label" value={moment().toString()} onChange={action('onChange')} />
   ))
   .add('error', () => (
     <DatePicker
       label="some label"
       meta={{ error: 'some error', touched: true }}
-      value={moment()}
+      value={moment().toString()}
       onChange={action('onChange')}
     />
   ));
