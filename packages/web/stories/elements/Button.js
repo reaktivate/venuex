@@ -10,16 +10,11 @@ import {
   WhiteButton
 } from '../../ui/elements/Button';
 
-storiesOf('elements/Button', module).add('Button', () => <Button>Button</Button>);
-storiesOf('elements/Button', module).add('SuccessButton', () => (
-  <SuccessButton>Button</SuccessButton>
-));
-storiesOf('elements/Button', module).add('PrimaryButton', () => (
-  <PrimaryButton>Button</PrimaryButton>
-));
-storiesOf('elements/Button', module).add('SmallButton', () => <SmallButton>Button</SmallButton>);
-storiesOf('elements/Button', module).add('DangerButton', () => <DangerButton>Button</DangerButton>);
-storiesOf('elements/Button', module).add('WhiteBgButton', () => (
-  <WhiteBgButton>Button</WhiteBgButton>
-));
-storiesOf('elements/Button', module).add('WhiteButton', () => <WhiteButton>Button</WhiteButton>);
+storiesOf('elements/Button', module)
+  .add('Button', () => <Button>Button</Button>)
+  .add('Success', () => <SuccessButton>Button</SuccessButton>)
+  .add('Primary', () => <PrimaryButton>Button</PrimaryButton>)
+  .add('Small', () => <SmallButton>Button</SmallButton>)
+  .add('Danger', () => <DangerButton>Button</DangerButton>)
+  .add('WhiteBg', () => <WhiteBgButton>Button</WhiteBgButton>)
+  .add('White', () => <WhiteButton>Button</WhiteButton>);
