@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import rightArrowIcon, { default as leftArrowIcon } from '*.svg';
+import IconRight from 'ui/icons/CaretRight.js';
+import IconLeft from 'ui/icons/CaretLeft.js';
 
 const MonthPicker = styled.div`
   display: flex;
@@ -9,13 +10,6 @@ const MonthPicker = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-`;
-
-const ArrowIcon = styled.img`
-  height: 17px;
-  object-fit: contain;
-  margin: 0px 20px;
-  cursor: pointer;
 `;
 
 const CalTitle = styled.div`
@@ -27,9 +21,9 @@ const CalTitle = styled.div`
 
 const MonthPickerRender = ({ onPreviousMonth, onNextMonth, date }) => (
   <MonthPicker>
-    <ArrowIcon src={leftArrowIcon} onClick={onPreviousMonth} />
+    <IconLeft color="black" onClick={onPreviousMonth} />
     <CalTitle>{date.format('MMMM YYYY')}</CalTitle>
-    <ArrowIcon src={rightArrowIcon} onClick={onNextMonth} />
+    <IconRight color="black" onClick={onNextMonth} />
   </MonthPicker>
 );
 
