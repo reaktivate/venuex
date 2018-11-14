@@ -1,16 +1,13 @@
 import React from 'react';
 import NextDocument, { Head, Main, NextScript } from 'next/document';
-import getConfig from 'next/config';
 import { ServerStyleSheet } from 'styled-components';
-
-const {
-  publicRuntimeConfig: { staticFolder }
-} = getConfig();
+import favicon from '@venuex/web/ui/assets/favicon.ico';
 
 class Document extends NextDocument {
   static getInitialProps({ renderPage }) {
     const sheet = new ServerStyleSheet();
-    const page = renderPage((App) => (props) => sheet.collectStyles(<App {...props} />));
+    const collectStyles = (App) => (props) => sheet.collectStyles(<App {...props} />);
+    const page = renderPage(collectStyles);
     const stylesheet = sheet.getStyleElement();
 
     return { ...page, stylesheet };
@@ -22,7 +19,9 @@ class Document extends NextDocument {
     return (
       <html>
         <Head>
-          <link rel="icon" href={`${staticFolder}/favicon.ico`} />
+          <meta charSet="utf-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+          <link rel="icon" href={favicon} />
           {stylesheet}
         </Head>
         <body>

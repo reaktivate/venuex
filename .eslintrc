@@ -14,7 +14,7 @@
     "jest": true
   },
   "rules": {
-    "indent": ["error", 2, { "SwitchCase": 1 }],
+    "indent": "off",
     "no-unused-vars": ["error", { "vars": "all", "args": "none" }],
     "no-underscore-dangle": "off",
     "arrow-parens": ["error", "always"],
