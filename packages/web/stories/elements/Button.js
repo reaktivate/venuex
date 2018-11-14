@@ -1,20 +1,12 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import {
-  Button,
-  SuccessButton,
-  PrimaryButton,
-  SmallButton,
-  DangerButton,
-  WhiteBgButton,
-  WhiteButton
-} from '../../ui/elements/Button';
+import Button from '../../ui/elements/Button';
 
 storiesOf('elements/Button', module)
   .add('Button', () => <Button>Button</Button>)
-  .add('Success', () => <SuccessButton>Button</SuccessButton>)
-  .add('Primary', () => <PrimaryButton>Button</PrimaryButton>)
-  .add('Small', () => <SmallButton>Button</SmallButton>)
-  .add('Danger', () => <DangerButton>Button</DangerButton>)
-  .add('WhiteBg', () => <WhiteBgButton>Button</WhiteBgButton>)
-  .add('White', () => <WhiteButton>Button</WhiteButton>);
+  .add('Success', () => <Button mode="success">Button</Button>)
+  .add('Primary', () => <Button mode="primary">Button</Button>)
+  .add('Small', () => <Button mode="small">Button</Button>)
+  .add('Danger', () => <Button mode="danger">Button</Button>)
+  .add('WhiteBg', () => <Button mode="whiteBg">Button</Button>)
+  .add('White', () => <Button mode="white">Button</Button>);
