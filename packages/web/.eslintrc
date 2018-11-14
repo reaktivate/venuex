@@ -5,7 +5,7 @@
     "browser": true
   },
   "rules": {
-    "indent": ["error", 2],
+    "indent": "off",
     "arrow-parens": ["error", "always"],
     "space-before-function-paren": [
       "error",

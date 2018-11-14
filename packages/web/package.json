@@ -29,6 +29,7 @@
     "polished": "^2.3.0",
     "prop-types": "^15.6.2",
     "react": "^16.6.1",
+    "react-datepicker": "^1.8.0",
     "react-dom": "^16.6.1",
     "react-event-listener": "^0.6.4",
     "styled-components": "^4.1.0"
