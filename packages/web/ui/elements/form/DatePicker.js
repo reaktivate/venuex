@@ -147,7 +147,7 @@ const DatePickerRender = (props) => {
 
   return (
     <BaseInput {...props}>
-      <DatePickerElement {...props} selected={value || ''} onChange={onChange} placeholder="Date" />
+      <DatePickerElement {...props} onChange={onChange} placeholder="Date" />
     </BaseInput>
   );
 };
