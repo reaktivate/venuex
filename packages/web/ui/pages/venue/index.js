@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from '@venuex/web/ui/elements/Link';
-import Layout from '@venuex/web/ui/components/Layout';
+import Layout from '@venuex/web/ui/layouts/VenueLayout';
 import Head from 'next/head';
 import styled from 'styled-components';
 

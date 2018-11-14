@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import NormalizeStyles from '@venuex/web/ui/styles/normalize';
 import GlobalStyles from '@venuex/web/ui/styles/global';
 
-const Layout = ({ children }) => (
+const VenueLayout = ({ children }) => (
   <Fragment>
     <NormalizeStyles />
     <GlobalStyles />
@@ -10,4 +10,4 @@ const Layout = ({ children }) => (
   </Fragment>
 );
 
-export default Layout;
+export default VenueLayout;

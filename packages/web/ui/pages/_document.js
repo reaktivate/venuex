@@ -4,7 +4,7 @@ import { ServerStyleSheet } from 'styled-components';
 import favicon from '@venuex/web/ui/assets/favicon.ico';
 
 class Document extends NextDocument {
-  static getInitialProps({ renderPage }) {
+  static async getInitialProps({ renderPage }) {
     const sheet = new ServerStyleSheet();
     const collectStyles = (App) => (props) => sheet.collectStyles(<App {...props} />);
     const page = renderPage(collectStyles);
