@@ -1,6 +1,8 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
+import PropTypes from 'prop-types';
+
 const Container = styled.div`
   display: flex;
   font-weight: 500;
@@ -31,7 +33,7 @@ const LabelWrapper = styled.div`
   paddingright: 20;
 `;
 
-export default ({ label, children, alignItems, ...props }) => (
+const BaseInput = ({ label, children, alignItems, ...props }) => (
   <Container alignItems={alignItems}>
     <LabelWrapper>{label}</LabelWrapper>
     <Right>
@@ -42,3 +44,9 @@ export default ({ label, children, alignItems, ...props }) => (
     </Right>
   </Container>
 );
+
+BaseInput.propTypes = {
+  label: PropTypes.string
+};
+
+export default BaseInput;

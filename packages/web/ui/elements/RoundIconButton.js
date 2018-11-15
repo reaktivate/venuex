@@ -11,7 +11,8 @@ const Button = styled.div`
   justify-content: center;
   outline: none;
   border: 0;
-  &:focus, &:active{
+  &:focus,
+  &:active {
     outline: none;
     border: 0;
   }
@@ -19,19 +20,16 @@ const Button = styled.div`
   background-color: #c0b69b;
   box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
   transition-timing-function: ease-in;
-  transition: .2s box-shadow;
-  &:hover{
-    box-shadow: 0 0 10px 0 rgba(151,134,89,.5);
+  transition: 0.2s box-shadow;
+  &:hover {
+    box-shadow: 0 0 10px 0 rgba(151, 134, 89, 0.5);
   }
-  img, svg{
+  img,
+  svg {
     max-width: 90%;
     min-width: 40%;
     height: auto;
   }
 `;
 
-export default ({ children }) => (
-  <Button>
-    {children}
-  </Button>
-);
+export default Button;
