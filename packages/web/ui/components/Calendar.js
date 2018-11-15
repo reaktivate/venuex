@@ -3,6 +3,8 @@ import moment from 'moment';
 import BigCalendar from 'react-big-calendar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 
+import PropTypes from 'prop-types';
+
 class Calendar extends PureComponent {
   onDrillDown = (date) => this.props.onCellClick(date);
 
@@ -45,5 +47,12 @@ class Calendar extends PureComponent {
     );
   }
 }
+
+Calendar.propTypes = {
+  events: PropTypes.array,
+  date: PropTypes.string,
+  onEventClick: PropTypes.func.isRequired,
+  onCellClick: PropTypes.func.isRequired
+};
 
 export default Calendar;

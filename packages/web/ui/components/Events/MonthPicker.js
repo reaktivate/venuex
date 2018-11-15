@@ -3,6 +3,9 @@ import styled from 'styled-components';
 import IconRight from 'ui/icons/CaretRight.js';
 import IconLeft from 'ui/icons/CaretLeft.js';
 
+import PropTypes from 'prop-types';
+import moment from 'moment';
+
 const MonthPicker = styled.div`
   display: flex;
   font-size: 20px;
@@ -26,5 +29,11 @@ const MonthPickerRender = ({ onPreviousMonth, onNextMonth, date }) => (
     <IconRight color="black" onClick={onNextMonth} />
   </MonthPicker>
 );
+
+MonthPickerRender.propTypes = {
+  onPreviousMonth: PropTypes.func.isRequired,
+  onNextMonth: PropTypes.func.isRequired,
+  date: PropTypes.instanceOf(moment)
+};
 
 export default MonthPickerRender;

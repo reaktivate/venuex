@@ -24,7 +24,6 @@ const StyledTextarea = styled.textarea`
 
 const Textarea = (props) => {
   const { input } = props;
-  console.log('----------------', props);
   return (
     <BaseInput {...props} alignItems="flex-start">
       <StyledTextarea {...props} {...input} rows={6} />
