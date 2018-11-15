@@ -14,6 +14,8 @@ const StyledSelect = styled.select`
   width: 100%;
   padding: 5px;
   cursor: pointer;
+  color: #7d7d7d;
+  font-size: 15px;
   &:focus {
     outline: 0;
   }

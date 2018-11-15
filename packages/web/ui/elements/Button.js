@@ -20,7 +20,7 @@ const Button = styled.button(
     white-space: nowrap;
   `,
   (props) => {
-    const primaryColor = (props.theme.colors && props.theme.colors.primary) || 'blue';
+    const primaryColor = (props.theme.colors && props.theme.colors.primary) || 'white';
 
     switch (props.mode) {
       case 'success':
