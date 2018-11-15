@@ -1,3 +1,4 @@
+import './elements/AddButton.js';
 import './elements/RoundIconButton.js';
 import './elements/Summary.js';
 import './elements/RadioButtonText.js';
