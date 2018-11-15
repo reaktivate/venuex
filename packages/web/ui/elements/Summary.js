@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import PropTypes from 'prop-types';
 
 const colors = {
   'light_gray': '#b0b0b0',
@@ -15,31 +16,6 @@ const Summary = styled.div`
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  span:first-child{
-    font-family: 'Montserrat', sans-serif;
-    text-align: center;
-    margin-bottom: 11px;
-    font-size: 15px;
-    font-weight: 300;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: -0.3px;
-    color: #b0b0b0;
-  }
-  span:last-child{
-    font-family: 'Lora';
-    font-size: 46px;
-    font-weight: 400;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1;
-    letter-spacing: -0.9px;
-    color: #181818;
-  }
-  span:first-child{
-    color: ${props => colors[props.color]};
-  }
   ${props => props.mode === 'two-dots' && css`
     position: relative;
     &:after, &:before{
@@ -68,10 +44,40 @@ const Summary = styled.div`
   margin-bottom: 10px;
 }
 `;
-
-export default ({ name, count, color, mode }) => (
-  <Summary color={color} mode={mode}>
-    <span>{name}</span>
-    <span>{count}</span>
+const Name = styled.span`
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  margin-bottom: 11px;
+  font-size: 15px;
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: -0.3px;
+  color: #b0b0b0;
+  color: ${props => colors[props.color]};
+`;
+const Count = styled.span`
+  font-family: 'Lora';
+  font-size: 46px;
+  font-weight: 400;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1;
+  letter-spacing: -0.9px;
+  color: #181818;
+`;
+const SummaryRender = ({ name, count, color, mode }) => (
+  <Summary mode={mode}>
+    <Name color={color}>{name}</Name>
+    <Count>{count}</Count>
   </Summary>
 );
+SummaryRender.PropTypes = {
+  name: PropTypes.string.isRequired,
+  count: PropTypes.string.isRequired,
+  color: PropTypes.string.isRequired,
+  mode: PropTypes.string,
+};
+
+export default SummaryRender;

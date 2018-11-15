@@ -1,8 +1,8 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import Button from '../../ui/elements/Button';
+import Button from '../../../ui/elements/buttons/Button.js';
 
-storiesOf('elements/Button', module)
+storiesOf('elements/buttons/Button', module)
   .add('Button', () => <Button>Button</Button>)
   .add('Success', () => <Button mode="success">Button</Button>)
   .add('Primary', () => <Button mode="primary">Button</Button>)

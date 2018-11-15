@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
-import CheckmarkImg from '../icons/Checkmark.js';
+import PropTypes from 'prop-types';
+import CheckmarkImg from '../../icons/Checkmark.js';
 
 const colors = {
   'gray': 'rgba(176,176,176, 1)',
@@ -9,6 +10,7 @@ const colors = {
   'gold': 'rgba(192,182,155, 1)',
   'white': 'rgba(255,255,255, 1)'
 };
+
 const Button = styled.button`
 	outline: none;
 	border: 0;
@@ -32,19 +34,6 @@ const Button = styled.button`
 		border: 0;
 		outline: none;
 	}
-	span{
-		text-transform: uppercase;
-		font-size: 12px;
-		font-weight: bold;
-		font-style: normal;
-		font-stretch: normal;
-		line-height: normal;
-		letter-spacing: normal;
-		text-align: center;
-		color: ${props => colors[props.textColor]?colors[props.textColor]:'#ffffff'};
-		transition-timing-function: ease-in;
-		transition: .2s opacity;
-	}
 	${props => props.ready && css`
 		cursor: pointer;
 		opacity: 1;
@@ -57,9 +46,36 @@ const Button = styled.button`
 		border: 1px solid ${props => colors[props.textColor]?colors[props.textColor]:'#ffffff'};
 	`}
 `;
-export default ({ ready, children, text, buttonColor, textColor, mode }) => (
-	<Button ready={ready} textColor={textColor} buttonColor={buttonColor} mode={mode}>
+
+const Name = styled.span`
+	text-transform: uppercase;
+	font-size: 12px;
+	font-weight: bold;
+	font-style: normal;
+	font-stretch: normal;
+	line-height: normal;
+	letter-spacing: normal;
+	text-align: center;
+	transition-timing-function: ease-in;
+	transition: .2s opacity;
+	color: ${props => colors[props.textColor]?colors[props.textColor]:'#ffffff'};
+`;
+
+const ButtonRender = ({ ready, children, text, buttonColor, textColor, mode,  handleClick}) => (
+	<Button ready={ready} buttonColor={buttonColor} mode={mode} onClick={handleClick}>
 		{children}
-		<span>{text}</span>
+		<Name textColor={textColor}>{text}</Name>
 	</Button>
 );
+
+ButtonRender.PropTypes = {
+	handleClick: PropTypes.func.isRequired,
+	text: PropTypes.string.isRequired,
+	children: PropTypes.element.isRequired, 
+	ready: PropTypes.bool,
+	buttonColor: PropTypes.string,
+	textColor: PropTypes.string,
+	mode: PropTypes.string,
+};
+
+export default ButtonRender;

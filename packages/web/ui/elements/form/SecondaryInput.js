@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import SearchIcon from '../../icons/Search.js';
 
 const SearchBox = styled.div`
@@ -79,10 +80,14 @@ const SearchBox = styled.div`
     width: 100%;
   }
 `;
-
-export default ({ children }) => (
+const SearchBoxRender = ({ children }) => (
   <SearchBox>
     {children}
     <SearchIcon color="#b0b0b0" />
   </SearchBox>
 );
+SearchBoxRender.PropTypes = {
+  children: PropTypes.element.isRequired
+};
+
+export default SearchBoxRender;
