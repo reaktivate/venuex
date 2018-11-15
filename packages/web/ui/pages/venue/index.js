@@ -24,6 +24,10 @@ const VenueIndexPage = () => (
     <Title>Welcome to /venue!</Title>
     <SubTitle>Subtitle text</SubTitle>
 
+    <Link to="home">
+      <a>go back</a>
+    </Link>
+    <br />
     <Link to="venue.events">
       <a>event calendar</a>
     </Link>

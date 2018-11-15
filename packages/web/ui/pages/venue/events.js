@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import router from '@venuex/web/router';
+import Modal from '../../elements/Modal';
+import Link from '../../elements/Link';
 
 export default class extends Component {
   static getInitialProps({ asPath, query }) {
@@ -20,9 +22,27 @@ export default class extends Component {
   render() {
     return (
       <div>
+        <Link to="venue.events">
+          <a>event calendar</a>
+        </Link>
+        <br />
+        <Link to="venue.events.add">
+          <a>add event</a>
+        </Link>
+        <br />
+        <Link to="venue.events.view" params={{ id: 1 }}>
+          <a>view event</a>
+        </Link>
+        <br />
         action: {this.props.action}
         <br />
         id: {this.props.id}
+        <br />
+        Calendar will be here
+        <br />
+        <Modal open={~['add', 'view'].indexOf(this.props.action)}>
+          {() => <div>I am content in modal: {this.props.id}</div>}
+        </Modal>
       </div>
     );
   }
