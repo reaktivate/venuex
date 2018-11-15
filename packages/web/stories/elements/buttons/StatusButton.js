@@ -3,7 +3,7 @@ import StatusButton from '../../../ui/elements/buttons/StatusButton.js';
 import { action } from '@storybook/addon-actions';
 
 storiesOf('elements/buttons/StatusButton', module)
-  .add('Green', () => <StatusButton color='green' handleClick={action('Click')}>Yes</StatusButton>)
-  .add('Red', () => <StatusButton color='red' handleClick={action('Click')}>No</StatusButton>)
-  .add('Yellow', () => <StatusButton color='yellow' handleClick={action('Click')}>Maybe</StatusButton>)
-  .add('Gray', () => <StatusButton color='gray' handleClick={action('Click')}>Awaiting</StatusButton>);
+  .add('Green', () => <StatusButton text="Yes" color='green' handleClick={action('Click')} />)
+  .add('Red', () => <StatusButton text="No" color='red' handleClick={action('Click')} />)
+  .add('Yellow', () => <StatusButton text="Maybe" color='yellow' handleClick={action('Click')} />)
+  .add('Gray', () => <StatusButton text="Awaiting" color='gray' handleClick={action('Click')} />);

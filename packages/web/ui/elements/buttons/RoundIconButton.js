@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
+import propTypes from 'prop-types';
 
 const Button = styled.div`
   cursor: pointer;
@@ -36,9 +36,9 @@ const ButtonRender = ({ children, handleClick }) => (
   </Button>
 )
 
-ButtonRender.PropTypes = {
-  handleClick: PropTypes.func.isRequired,
-  children: PropTypes.element.isRequired,
+ButtonRender.propTypes = {
+  handleClick: propTypes.func.isRequired,
+  children: propTypes.element.isRequired,
 };
 
 export default ButtonRender;

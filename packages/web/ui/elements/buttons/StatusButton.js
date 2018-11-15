@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
+import propTypes from 'prop-types';
 
 const colors = {
   'gray': 'rgba(176,176,176, 1)',
@@ -33,15 +33,15 @@ const Button = styled.button`
     box-shadow: 0px 0px 10px 0 ${props => colors[props.color]};
   }
 `;
-const ButtonRender = ({ children, handleClick, color }) => (
+const ButtonRender = ({ children, handleClick, color, text }) => (
   <Button onClick={handleClick} color={color}>
-    {children}
+    {text}
   </Button>
 )
-ButtonRender.PropTypes = {
-  handleClick: PropTypes.func.isRequired,
-  color: PropTypes.string.isRequired,
-  children: PropTypes.element.isRequired,
+ButtonRender.propTypes = {
+  handleClick: propTypes.func.isRequired,
+  color: propTypes.string.isRequired,
+  text: propTypes.string.isRequired,
 };
 
 export default ButtonRender;

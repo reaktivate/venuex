@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import PropTypes from 'prop-types';
+import propTypes from 'prop-types';
 import CheckmarkImg from '../../icons/Checkmark.js';
 
 const colors = {
@@ -68,14 +68,14 @@ const ButtonRender = ({ ready, children, text, buttonColor, textColor, mode,  ha
 	</Button>
 );
 
-ButtonRender.PropTypes = {
-	handleClick: PropTypes.func.isRequired,
-	text: PropTypes.string.isRequired,
-	children: PropTypes.element.isRequired, 
-	ready: PropTypes.bool,
-	buttonColor: PropTypes.string,
-	textColor: PropTypes.string,
-	mode: PropTypes.string,
+ButtonRender.propTypes = {
+	handleClick: propTypes.func.isRequired,
+	text: propTypes.string.isRequired,
+	children: propTypes.element.isRequired, 
+	ready: propTypes.bool,
+	buttonColor: propTypes.string,
+	textColor: propTypes.string,
+	mode: propTypes.oneOf(['border']),
 };
 
 export default ButtonRender;

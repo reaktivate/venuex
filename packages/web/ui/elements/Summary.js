@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import PropTypes from 'prop-types';
+import propTypes from 'prop-types';
 
 const colors = {
   'light_gray': '#b0b0b0',
@@ -19,7 +19,6 @@ const Summary = styled.div`
   ${props => props.mode === 'two-dots' && css`
     position: relative;
     &:after, &:before{
-
       content: '';
       right: 4px;
       position: absolute;
@@ -73,11 +72,11 @@ const SummaryRender = ({ name, count, color, mode }) => (
     <Count>{count}</Count>
   </Summary>
 );
-SummaryRender.PropTypes = {
-  name: PropTypes.string.isRequired,
-  count: PropTypes.string.isRequired,
-  color: PropTypes.string.isRequired,
-  mode: PropTypes.string,
+SummaryRender.propTypes = {
+  name: propTypes.string.isRequired,
+  count: propTypes.string.isRequired,
+  color: propTypes.string,
+  mode: propTypes.oneOf(['line-before', 'two-dots']),
 };
 
 export default SummaryRender;

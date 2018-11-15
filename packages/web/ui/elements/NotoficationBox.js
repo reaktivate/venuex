@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import PropTypes from 'prop-types';
+import propTypes from 'prop-types';
 
 const colors = {
   'gray': 'rgba(176,176,176, 1)',
@@ -47,12 +47,12 @@ const NotificationBox = styled.div`
 	}
 `;
 
-const NotificationBoxRender = ({ color, children }) => (
-	<NotificationBox color={color}>{children}</NotificationBox>
+const NotificationBoxRender = ({ color, text }) => (
+	<NotificationBox color={color}>{text}</NotificationBox>
 )
-NotificationBoxRender.PropTypes = {
-  children: PropTypes.element.isRequired,
-  color: PropTypes.string,
+NotificationBoxRender.propTypes = {
+  text: propTypes.string.isRequired,
+  color: propTypes.string,
 };
 
 export default NotificationBoxRender;

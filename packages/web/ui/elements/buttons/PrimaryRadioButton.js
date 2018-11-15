@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import PropTypes from 'prop-types';
+import propTypes from 'prop-types';
 import CheckmarkImg from '../../icons/Checkmark.js';
 
 const RadioButton = styled.button`
@@ -27,9 +27,9 @@ const RadioButtonRender = ({ active, handleClick }) => (
 		<CheckmarkImg color="#ffffff" />
 	</RadioButton>
 )
-RadioButtonRender.PropTypes = {
-	handleClick: PropTypes.func.isRequired,
-	active: PropTypes.bool
+RadioButtonRender.propTypes = {
+	handleClick: propTypes.func.isRequired,
+	active: propTypes.bool
 };
 
 export default RadioButtonRender;
