@@ -15,18 +15,30 @@ const MonthPicker = styled.div`
   width: 100%;
 `;
 
+const StyledIconLeft = styled(IconLeft)`
+  width: 10px;
+  height: 17px;
+`;
+
+const StyledIconRight = styled(IconRight)`
+  width: 10px;
+  height: 17px;
+`;
+
 const CalTitle = styled.div`
   font-family: Lora;
   font-size: 20px;
   width: 150px;
   text-align: center;
+  margin-left: 25px;
+  margin-right: 25px;
 `;
 
 const MonthPickerRender = ({ onPreviousMonth, onNextMonth, date }) => (
   <MonthPicker>
-    <IconLeft color="black" onClick={onPreviousMonth} />
+    <StyledIconLeft color="#7d7d7d" onClick={onPreviousMonth} />
     <CalTitle>{date.format('MMMM YYYY')}</CalTitle>
-    <IconRight color="black" onClick={onNextMonth} />
+    <StyledIconRight color="#7d7d7d" onClick={onNextMonth} />
   </MonthPicker>
 );
 

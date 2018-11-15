@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 const Container = styled.div`
   display: flex;
-  font-weight: 500;
+  font-weight: normal;
   align-items: center;
   padding: 15px 0px;
 
@@ -30,7 +30,14 @@ const ErrorText = styled.div`
 const LabelWrapper = styled.div`
   whitespace: 'nowrap';
   color: '#7d7d7d';
-  paddingright: 20;
+  padding-right: 20px;
+  font-size: 15px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: -0.3px;
+  color: #7d7d7d;
 `;
 
 const BaseInput = ({ label, children, alignItems, ...props }) => (

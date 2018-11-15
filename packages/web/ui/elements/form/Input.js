@@ -9,6 +9,8 @@ const StyledTextField = styled.input`
   width: 100%;
   padding: 5px;
   transition-duration: 0.3s;
+  color: #7d7d7d;
+  font-size: 15px;
 
   &:focus {
     outline: none;
