@@ -2,7 +2,7 @@ import React from 'react';
 import { withTheme } from 'styled-components';
 
 const Plus = (props) => {
-  const themeColor = props.theme && props.theme.colors ? props.theme.colors.primary : '#CCC';
+  const themeColor = props.theme && props.theme.colors ? props.theme.colors.primary : '#FFF';
 
   return (
     <svg width={props.size} height={props.size} {...props} viewBox="0 0 16 16">

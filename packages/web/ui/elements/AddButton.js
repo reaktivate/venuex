@@ -1,5 +1,6 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
+import RoundButton from 'ui/elements/RoundIconButton';
 import PlusIcon from 'ui/icons/Plus';
 
 const AddIcon = styled(PlusIcon)`
@@ -7,23 +8,8 @@ const AddIcon = styled(PlusIcon)`
   width: 17px;
 `;
 
-const AddButton = styled.div(
-  css`
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 2px 2px 0 rgba(125, 125, 125, 0.2);
-    cursor: pointer;
-    background-color: ${(props) =>
-      (props.theme && props.theme.colors && props.theme.colors.primary) || '#FFF'};
-  `
-);
-
 export default (props) => (
-  <AddButton {...props}>
+  <RoundButton {...props}>
     <AddIcon />
-  </AddButton>
+  </RoundButton>
 );
