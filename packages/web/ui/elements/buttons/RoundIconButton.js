@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import propTypes from 'prop-types';
 
 const Button = styled.div`
   cursor: pointer;
@@ -27,9 +28,19 @@ const Button = styled.div`
   img,
   svg {
     max-width: 90%;
-    min-width: 40%;
     height: auto;
   }
 `;
 
-export default Button;
+const ButtonRender = ({ children, handleClick }) => (
+  <Button onClick={handleClick}>
+    {children}
+  </Button>
+)
+
+ButtonRender.propTypes = {
+  handleClick: propTypes.func.isRequired,
+  children: propTypes.element.isRequired,
+};
+
+export default ButtonRender;
