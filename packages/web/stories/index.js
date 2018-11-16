@@ -1,5 +1,5 @@
 import './components/Calendar';
-import './elements/buttons/RoundIconButton.js';
+import './elements/buttons/RoundButton.js';
 import './elements/buttons/RadioButtonText.js';
 import './elements/buttons/PrimaryRadioButton.js';
 import './elements/buttons/Button';
@@ -20,3 +20,4 @@ import './elements/YNStatus.js';
 import './icons/Icons.js';
 import './components/Events/MonthPicker';
 import './components/Events/LegendItem';
+import './components/Popup.js';
