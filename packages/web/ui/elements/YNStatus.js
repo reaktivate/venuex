@@ -20,7 +20,7 @@ const TextElement = styled.span`
   color: #888888;
 `;
 const YesElement = styled(TextElement)`
-  color: ${props => props.status==="yes"?"#2cb070":'#888888'};
+  color: ${props => (props.status)?"#2cb070":'#888888'};
   margin-right: 7px;
   position: relative;
   &:after{
@@ -37,7 +37,7 @@ const YesElement = styled(TextElement)`
   }
 `;
 const NoElement = styled(TextElement)`
-  color: ${props => props.status==="no"?"#c02026":'#888888'};
+  color: ${props => (!props.status)?"#c02026":'#888888'};
   margin-left: 7px;
 `;
 const StatusRender = ({ status }) => (
@@ -47,7 +47,7 @@ const StatusRender = ({ status }) => (
   </Status>
 )
 StatusRender.propTypes = {
-  status: propTypes.oneOf(['yes', 'no']).isRequired,
+  status: propTypes.bool.isRequired,
 };
 
 export default StatusRender;

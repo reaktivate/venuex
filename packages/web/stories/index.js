@@ -15,7 +15,7 @@ import './elements/form/Textarea';
 import './elements/form/DatePicker';
 import './elements/form/SecondaryInput.js';
 import './elements/Summary.js';
-import './elements/NotoficationBox.js';
+import './elements/NotificationBox.js';
 import './elements/Switcher.js';
 import './elements/YNStatus.js';
 import './icons/Icons.js';
