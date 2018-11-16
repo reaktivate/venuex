@@ -22,6 +22,7 @@
     "@firebase/database": "^0.3.6",
     "@firebase/firestore": "^0.8.7",
     "@firebase/polyfill": "^0.3.3",
+    "@venuex/domain": "*",
     "dotenv": "^6.1.0",
     "dotenv-expand": "^4.2.0",
     "express": "^4.16.4",
