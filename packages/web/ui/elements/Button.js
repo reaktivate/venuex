@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import PropTypes from 'prop-types';
 
 const Button = styled.button(
   css`
@@ -19,7 +20,7 @@ const Button = styled.button(
     white-space: nowrap;
   `,
   (props) => {
-    const primaryColor = (props.theme.colors && props.theme.colors.primary) || 'blue';
+    const primaryColor = (props.theme.colors && props.theme.colors.primary) || 'white';
 
     switch (props.mode) {
       case 'success':
@@ -54,4 +55,10 @@ const Button = styled.button(
     }
   }
 );
+
+Button.propTypes = {
+  mode: PropTypes.string,
+  onClick: PropTypes.func.isRequired
+};
+
 export default Button;

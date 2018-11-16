@@ -3,6 +3,8 @@ import styled, { css } from 'styled-components';
 import BaseInput from 'ui/elements/form/BaseInput';
 //import dropdownCaretDown from 'ui/icons/raw/caret-down-custom.svg';
 
+import PropTypes from 'prop-types';
+
 const StyledSelect = styled.select`
   border: none;
   -webkit-appearance: none;
@@ -12,6 +14,8 @@ const StyledSelect = styled.select`
   width: 100%;
   padding: 5px;
   cursor: pointer;
+  color: #7d7d7d;
+  font-size: 15px;
   &:focus {
     outline: 0;
   }
@@ -55,6 +59,10 @@ const Select = (props) => {
       </Container>
     </BaseInput>
   );
+};
+
+Select.propTypes = {
+  options: PropTypes.array.isRequired
 };
 
 export default Select;

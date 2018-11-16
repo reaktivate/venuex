@@ -9,20 +9,27 @@ const StyledTextField = styled.input`
   width: 100%;
   padding: 5px;
   transition-duration: 0.3s;
+  color: #7d7d7d;
+  font-size: 15px;
 
   &:focus {
     outline: none;
-    border-bottom: solid 1px ${props => props.theme.colors && props.theme.colors.primary};
+    border-bottom: solid 1px ${(props) => props.theme.colors && props.theme.colors.primary};
   }
 
-  ${props => props.meta && props.meta.error && props.meta.touched && css`
-    border-bottom: solid 1px #c02026;
-  `}
-
+  ${(props) =>
+    props.meta &&
+    props.meta.error &&
+    props.meta.touched &&
+    css`
+      border-bottom: solid 1px #c02026;
+    `}
 `;
 
 const Input = (props) => (
-    <BaseInput {...props}><StyledTextField {...props} /></BaseInput>
+  <BaseInput {...props} label={props.test}>
+    <StyledTextField {...props} />
+  </BaseInput>
 );
 
 export default Input;

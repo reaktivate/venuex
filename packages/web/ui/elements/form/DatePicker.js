@@ -4,6 +4,8 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import BaseInput from 'ui/elements/form/BaseInput';
 
+import PropTypes from 'prop-types';
+
 const DatePickerWrapper = styled.div`
   .react-datepicker {
     border: none;
@@ -13,7 +15,7 @@ const DatePickerWrapper = styled.div`
     font-family: inherit;
 
     ${(props) =>
-    props.showTimeSelect &&
+      props.showTimeSelect &&
       css`
         padding: 0px;
       `}
@@ -74,7 +76,7 @@ const DatePickerWrapper = styled.div`
       border-bottom: solid 1px #d8d8d8;
 
       ${(props) =>
-    props.meta &&
+        props.meta &&
         props.meta.error &&
         props.meta.touched &&
         css`
@@ -115,7 +117,7 @@ const DatePickerWrapper = styled.div`
 
     &:hover {
       background-color: ${(props) =>
-    (props.theme.colors && props.theme.colors.primary) || '3333'}33;
+        (props.theme.colors && props.theme.colors.primary) || '3333'}33;
     }
   }
 
@@ -143,13 +145,18 @@ const DatePickerElement = (props) => (
 );
 
 const DatePickerRender = (props) => {
-  const { value, onChange } = props;
+  const { onChange } = props;
 
   return (
     <BaseInput {...props}>
       <DatePickerElement {...props} onChange={onChange} placeholder="Date" />
     </BaseInput>
   );
+};
+
+DatePickerRender.propTypes = {
+  value: PropTypes.string,
+  onChange: PropTypes.func
 };
 
 export default DatePickerRender;
