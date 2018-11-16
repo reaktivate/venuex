@@ -47,7 +47,7 @@ const StatusRender = ({ status }) => (
   </Status>
 )
 StatusRender.propTypes = {
-  status: propTypes.string.isRequired,
+  status: propTypes.oneOf(['yes', 'no']).isRequired,
 };
 
 export default StatusRender;
