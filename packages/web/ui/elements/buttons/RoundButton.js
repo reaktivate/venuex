@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 import propTypes from 'prop-types';
 
 const Button = styled.div`
@@ -6,12 +6,12 @@ const Button = styled.div`
   height: 50px;
   width: 50px;
   border-radius: 50%;
-  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   outline: none;
   border: 0;
+  position: relative;
   &:focus,
   &:active {
     outline: none;
@@ -30,7 +30,32 @@ const Button = styled.div`
     max-width: 90%;
     height: auto;
   }
+  ${props => props.noti && css`
+    box-shadow: 0 0 2px 0 rgba(125, 125, 125, 0.2);
+    background-color: #ffffff;
+    &:after{
+      content: '';
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      top: 16px;
+      right: 14px;
+      background-color: #c02026;
+    }
+  `}
 `;
+
+export const NotificationButton = ({ children, handleClick, noti }) => (
+  <Button noti={noti} onClick={handleClick}>
+    {children}
+  </Button>
+)
+NotificationButton.propTypes = {
+  handleClick: propTypes.func.isRequired,
+  children: propTypes.element.isRequired,
+  noti: propTypes.bool.isRequired,
+};
 
 const ButtonRender = ({ children, handleClick }) => (
   <Button onClick={handleClick}>

@@ -1,5 +1,5 @@
 import './components/Calendar';
-import './elements/buttons/RoundIconButton.js';
+import './elements/buttons/RoundButton.js';
 import './elements/buttons/RadioButtonText.js';
 import './elements/buttons/PrimaryRadioButton.js';
 import './elements/buttons/Button';
