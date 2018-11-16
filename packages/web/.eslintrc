@@ -1,6 +1,6 @@
 {
   "plugins": ["react", "jsx-a11y"],
-  "extends": ["react", "prettier/react"],
+  "extends": ["plugin:react/recommended", "prettier/react"],
   "env": {
     "browser": true
   },
@@ -19,6 +19,7 @@
     "operator-linebreak": ["error", "after"],
     "node/no-unpublished-require": "warn",
     "react/jsx-indent": ["error", 2],
-    "react/sort-comp": "off"
+    "react/sort-comp": "off",
+    "react/no-find-dom-node": "off"
   }
 }
