@@ -2,6 +2,7 @@ import styled, {css} from 'styled-components';
 import propTypes from 'prop-types';
 
 const Button = styled.div`
+  user-select: none;
   cursor: pointer;
   height: 50px;
   width: 50px;
@@ -17,7 +18,6 @@ const Button = styled.div`
     outline: none;
     border: 0;
   }
-  margin-right: 18px;
   background-color: #c0b69b;
   box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
   transition-timing-function: ease-in;
@@ -30,6 +30,10 @@ const Button = styled.div`
     max-width: 90%;
     height: auto;
   }
+  ${props => props.type === "white" && css`
+    box-shadow: 0 0 2px 0 rgba(125, 125, 125, 0.2);
+    background-color: #ffffff;
+  `}
   ${props => props.noti && css`
     box-shadow: 0 0 2px 0 rgba(125, 125, 125, 0.2);
     background-color: #ffffff;
@@ -47,7 +51,7 @@ const Button = styled.div`
 `;
 
 export const NotificationButton = ({ children, handleClick, noti }) => (
-  <Button noti={noti} onClick={handleClick}>
+  <Button noti={noti} onClick={handleClick} type="white">
     {children}
   </Button>
 )
@@ -58,7 +62,7 @@ NotificationButton.propTypes = {
 };
 
 const ButtonRender = ({ children, handleClick }) => (
-  <Button onClick={handleClick}>
+  <Button onClick={handleClick} type="default">
     {children}
   </Button>
 )

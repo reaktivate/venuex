@@ -20,3 +20,4 @@ import './elements/YNStatus.js';
 import './icons/Icons.js';
 import './components/Events/MonthPicker';
 import './components/Events/LegendItem';
+import './components/Popup.js';
