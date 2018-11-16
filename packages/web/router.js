@@ -1,5 +1,6 @@
 const router = require('next-routes')();
 
+router.add('home', '/', 'index');
 router.add('venue');
 router.add('venue.events', '/venue/events', 'venue/events');
 router.add('venue.events.add', '/venue/events/add', 'venue/events');

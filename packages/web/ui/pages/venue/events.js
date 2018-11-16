@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import router from '@venuex/web/router';
 import Modal from '../../elements/Modal';
 import Link from '../../elements/Link';
 
-export default class extends Component {
+class VenueEventsPage extends Component {
+  static propTypes = {
+    action: PropTypes.string,
+    id: PropTypes.string
+  };
+
   static getInitialProps({ asPath, query }) {
     const route = router.match(asPath).route;
 
@@ -11,6 +17,7 @@ export default class extends Component {
       if (route.name === 'venue.events.add') {
         return { action: 'add' };
       }
+
       if (route.name === 'venue.events.view') {
         return { action: 'view', id: query.id };
       }
@@ -47,3 +54,5 @@ export default class extends Component {
     );
   }
 }
+
+export default VenueEventsPage;
