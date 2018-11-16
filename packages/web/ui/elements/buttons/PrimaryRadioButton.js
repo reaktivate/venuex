@@ -1,7 +1,9 @@
 import styled, { css } from 'styled-components';
-import CheckmarkImg from '../icons/Checkmark.js';
+import propTypes from 'prop-types';
+import CheckmarkImg from '../../icons/Checkmark.js';
 
 const RadioButton = styled.button`
+	outline: none;
 	padding: 0;
 	background-color: transparent;
 	border: 1px solid #b0b0b0;
@@ -20,8 +22,14 @@ const RadioButton = styled.button`
   	max-height: 100%;
   }
 `;
-export default ({ active }) => (
-	<RadioButton active={active}>
+const RadioButtonRender = ({ active, handleClick }) => (
+	<RadioButton active={active} onClick={handleClick}>
 		<CheckmarkImg color="#ffffff" />
 	</RadioButton>
-);
+)
+RadioButtonRender.propTypes = {
+	handleClick: propTypes.func.isRequired,
+	active: propTypes.bool
+};
+
+export default RadioButtonRender;
