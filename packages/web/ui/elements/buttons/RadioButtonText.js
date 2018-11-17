@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import propTypes from 'prop-types';
 
 const colors = {
 	'gray': '#b0b0b0',
@@ -64,6 +65,15 @@ const RadioButton = styled.button`
 		}
   `}
 `;
-export default ({ active, color, children }) => (
-	<RadioButton active={active} color={color}>{children}</RadioButton>
-);
+
+const RadioButtonRender = ({ active, handleClick, color, text }) => (
+	<RadioButton active={active} color={color} onClick={handleClick}>{text}</RadioButton>
+)
+RadioButtonRender.propTypes = {
+	handleClick: propTypes.func.isRequired,
+	text: propTypes.string.isRequired,
+	active: propTypes.bool,
+	color: propTypes.string,
+};
+
+export default RadioButtonRender;
