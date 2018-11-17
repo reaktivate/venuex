@@ -1,10 +1,9 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import Button from '../../ui/elements/Button';
-
+import Button from '../../../ui/elements/buttons/Button.js';
 import { action } from '@storybook/addon-actions';
 
-storiesOf('elements/Button', module)
+storiesOf('elements/buttons/Button', module)
   .add('Button', () => <Button onClick={action('onClick')}>Button</Button>)
   .add('Success', () => (
     <Button onClick={action('onClick')} mode="success">
