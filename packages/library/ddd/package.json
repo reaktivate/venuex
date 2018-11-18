@@ -12,6 +12,7 @@
     "@venuex/utils": "*",
     "invariant": "^2.2.4",
     "lodash": "^4.17.11",
+    "lru_map": "^0.3.3",
     "mobx": "^5.6.0",
     "mobx-react": "^5.3.6",
     "moment": "^2.22.2"
@@ -27,7 +28,9 @@
     "regenerator-runtime": "^0.12.1"
   },
   "babel": {
-    "presets": ["@babel/env"],
+    "presets": [
+      "@babel/env"
+    ],
     "plugins": [
       [
         "@babel/proposal-decorators",
