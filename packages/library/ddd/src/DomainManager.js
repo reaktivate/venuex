@@ -1,25 +1,26 @@
 import InstantiateScope from './InstantiateScope';
 import DataMapper from './DataMapper';
 import DataSerializer from './DataSerializer';
+import ModelRegistry from './ModelRegistry';
 import ModelFactory from './ModelFactory';
-import { getModelName, isModel, isStoreModel } from './Metadata';
+import { getModelName, isStoreModel } from './Metadata';
 import invariant from 'invariant';
 import warning from '@venuex/utils/warning';
 
 class DomainManager {
-  injections = {};
+  dependencies = {};
   container = new Map();
   dataMapper = new DataMapper(this);
   dataSerializer = new DataSerializer(this);
   modelFactory = new ModelFactory(this);
 
-  constructor(injections = {}) {
-    this.injections = injections;
+  constructor(dependencies = {}) {
+    this.dependencies = dependencies;
   }
 
-  get(Class, scope = InstantiateScope.SINGLETON) {
+  get(nameOrClass, scope = InstantiateScope.SINGLETON) {
     invariant(
-      isModel(Class),
+      ModelRegistry.has(nameOrClass),
       '[DomainManager] Class is not marked as recognized domain model. ' +
         'Please use @store or @service decorator!'
     );
@@ -28,35 +29,27 @@ class DomainManager {
       '[DomainManager] Invalid instantiate scope of domain model!'
     );
 
-    const { container, injections } = this;
+    const { modelFactory, container } = this;
+    const Class = ModelRegistry.get(nameOrClass);
     const name = getModelName(Class);
 
     if (scope === InstantiateScope.SINGLETON) {
       let instance = container.get(name);
 
       if (!instance) {
-        instance = new Class({ ...injections, domainManager: this });
+        instance = modelFactory.make(Class);
+
         container.set(name, instance);
-      } else {
-        invariant(
-          Class === instance.constructor || name !== getModelName(instance.constructor),
-          '[DomainManager] Domain model with name "%s" is already registered!',
-          name
-        );
       }
 
       return instance;
     }
 
-    return new Class({ ...injections, domainManager: this });
+    return new modelFactory.make(Class);
   }
 
-  new(Class) {
-    return this.get(Class, InstantiateScope.PROTOTYPE);
-  }
-
-  register(Class) {
-    this.get(Class);
+  new(nameOrClass) {
+    return this.get(nameOrClass, InstantiateScope.PROTOTYPE);
   }
 
   dump(Class) {
@@ -79,16 +72,20 @@ class DomainManager {
   }
 
   load(snapshot) {
-    const { modelFactory, container } = this;
+    const { modelFactory } = this;
 
     for (let [name, attrs] of Object.entries(snapshot)) {
-      if (!container.has(name)) {
-        warning(false, '[DomainManager] Snapshot model not found in manager.');
+      if (!ModelRegistry.has(name)) {
+        warning(false, '[DomainManager] Snapshot model not found in registry.');
         continue;
       }
 
-      modelFactory.assign(container.get(name), attrs);
+      modelFactory.assign(this.get(name), attrs);
     }
+  }
+
+  clear() {
+    this.container.clear();
   }
 }
 

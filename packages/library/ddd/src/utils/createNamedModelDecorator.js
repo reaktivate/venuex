@@ -1,9 +1,12 @@
+import ModelRegistry from '../ModelRegistry';
 import isString from 'lodash/isString';
 import { MODEL_NAME_SYMBOL, MODEL_TYPE_SYMBOL } from '../Metadata';
 
 function markAsModel(Class, type, name) {
   Class[MODEL_TYPE_SYMBOL] = type;
   Class[MODEL_NAME_SYMBOL] = name;
+
+  ModelRegistry.register(Class);
 }
 
 export default (type) => (nameOrClass) => {

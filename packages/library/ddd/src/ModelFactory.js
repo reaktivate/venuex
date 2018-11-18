@@ -16,7 +16,11 @@ class ModelFactory {
       model.setDomainManager(this.domainManager);
     }
 
-    return this.assign(model, attrs);
+    if (attrs) {
+      return this.assign(model, attrs);
+    }
+
+    return model;
   }
 
   assign(model, attrs, schema) {

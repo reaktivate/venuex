@@ -1,7 +1,6 @@
 import LazyEntity from './LazyEntity';
 import isPlainObject from 'lodash/isPlainObject';
 import isEmpty from 'lodash/isEmpty';
-import isNil from 'lodash/isNil';
 import isUndefined from 'lodash/isUndefined';
 import get from 'lodash/get';
 import invariant from 'invariant';
@@ -15,15 +14,11 @@ class DataMapper {
   }
 
   assign(model, attrs, schema = model.constructor.schema) {
-    invariant(!isNil(attrs), '[DataMapper] Trying to assign empty attributes!');
+    invariant(isPlainObject(attrs), '[DataMapper] Attributes should be a plain object!');
+    invariant(!isEmpty(attrs), '[DataMapper] Trying to assign empty attributes!');
     invariant(!isEmpty(schema), '[DataMapper] Mapping without schema is not allowed!');
 
     const lazy = model instanceof LazyEntity;
-
-    if (lazy && !isPlainObject(attrs)) {
-      attrs = { id: attrs };
-    }
-
     let partial = false;
 
     for (const [property, type] of Object.entries(schema)) {
