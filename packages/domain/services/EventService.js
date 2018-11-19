@@ -2,8 +2,8 @@ import { action, runInAction } from 'mobx';
 import { service } from '@venuex/ddd/decorators';
 import { AbstractService } from '@venuex/ddd';
 import EventStore from '../stores/EventStore';
-import firebaseQuery, { prepareCollectionSnapshot } from '../utils/firebase-query';
 import Event from '../models/Event';
+import firebaseQuery, { prepareCollectionSnapshot } from '../utils/firebase-query';
 
 @service('EventService')
 class EventService extends AbstractService {
