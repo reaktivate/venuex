@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import RoundButton from 'ui/elements/RoundIconButton';
+import RoundButton from 'ui/elements/RoundButton';
 import PlusIcon from 'ui/icons/Plus';
 import PropTypes from 'prop-types';
 
