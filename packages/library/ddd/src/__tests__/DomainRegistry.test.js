@@ -3,7 +3,7 @@
 import ModelRegistry from '../ModelRegistry';
 import store from '../decorators/store';
 
-describe('DDD / Registry', () => {
+describe('DomainRegistry', () => {
   afterEach(() => {
     ModelRegistry.clear();
   });

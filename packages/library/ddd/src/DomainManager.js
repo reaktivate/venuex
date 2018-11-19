@@ -1,5 +1,5 @@
 import InstantiateScope from './InstantiateScope';
-import DataMapper from './DataMapper';
+import DataHydrator from './DataHydrator';
 import DataSerializer from './DataSerializer';
 import ModelRegistry from './ModelRegistry';
 import ModelFactory from './ModelFactory';
@@ -10,7 +10,7 @@ import warning from '@venuex/utils/warning';
 class DomainManager {
   dependencies = {};
   container = new Map();
-  dataMapper = new DataMapper(this);
+  dataHydrator = new DataHydrator(this);
   dataSerializer = new DataSerializer(this);
   modelFactory = new ModelFactory(this);
 
@@ -80,7 +80,7 @@ class DomainManager {
         continue;
       }
 
-      modelFactory.assign(this.get(name), attrs);
+      modelFactory.hydrate(this.get(name), attrs);
     }
   }
 

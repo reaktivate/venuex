@@ -5,7 +5,7 @@ class Venue extends Entity {
   static schema = {
     ...Entity.schema,
     name: DataTypes.string.required,
-    theme: DataTypes.object()
+    theme: DataTypes.object
   };
 
   @observable name;

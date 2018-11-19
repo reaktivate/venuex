@@ -2,7 +2,7 @@
 
 const express = require('express');
 const next = require('next');
-const router = require('./router');
+const router = require('../router');
 const { promisify } = require('util');
 
 const port = parseInt(process.env.PORT, 10) || 3000;

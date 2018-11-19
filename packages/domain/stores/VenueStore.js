@@ -1,19 +1,34 @@
-import { observable, computed } from 'mobx';
-import { DataTypes } from '@venuex/ddd';
+import { computed, observable } from 'mobx';
+import { AbstractStore, DataTypes, ObservableRequest } from '@venuex/ddd';
 import { store } from '@venuex/ddd/decorators';
 import Venue from '../models/Venue';
 import get from 'lodash/get';
 
-@store
-class VenueStore {
+@store('VenueStore')
+class VenueStore extends AbstractStore {
   static schema = {
-    current: DataTypes.embed(Venue)
+    entities: DataTypes.mapOf(DataTypes.embed(Venue)),
+    currentVenueId: DataTypes.string,
+    currentVenueLoadRequest: DataTypes.embed(ObservableRequest)
   };
 
-  @observable current;
+  @observable
+  entities = new Map();
 
-  @computed get theme() {
-    return get(this, 'current.theme', {});
+  @observable
+  currentVenueId;
+
+  @observable.ref
+  currentVenueLoadRequest = new ObservableRequest();
+
+  @computed
+  get currentVenue() {
+    return this.entities.get(this.currentVenueId);
+  }
+
+  @computed
+  get currentVenueTheme() {
+    return get(this.currentVenue, 'theme', {});
   }
 }
 

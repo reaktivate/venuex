@@ -6,13 +6,15 @@ class User extends LazyEntity {
     ...LazyEntity.schema,
     fullName: DataTypes.string,
     email: DataTypes.string.required,
-    emailVerified: DataTypes.bool,
+    emailVerified: DataTypes.boolean,
+    phoneNumber: DataTypes.string,
     avatar: DataTypes.string
   };
 
   @observable fullName;
   @observable email;
   @observable emailVerified;
+  @observable phoneNumber;
   @observable avatar;
 
   @computed get displayName() {

@@ -1,37 +1,33 @@
 import React from 'react';
-import NextApp, { Container } from 'next/app';
-import { Provider as DomainProvider } from 'mobx-react';
-import Domain from '@venuex/web/domain';
-
-const domain = Domain.create({});
+import NextApp from 'next/app';
+import { loadGetInitialProps } from 'next/dist/lib/utils';
+import compose from 'lodash/fp/compose';
+import withNextContext from '../hocs/withNextContext';
+import withNextContainer from '../hocs/withNextContainer';
+import withDomain from '../hocs/withDomain';
+import withVenue from '../hocs/withVenue';
+import withStyles from '../hocs/withStyles';
+import withAuth from '../hocs/withAuth';
 
 class App extends NextApp {
-  static async getInitialProps({ Component, router, ctx }) {
-    let pageProps = {};
+  static async getInitialProps(ctx) {
+    const pageProps = await loadGetInitialProps(ctx.Component, ctx);
 
-    await domain.venues.loadVenue();
-
-    const { currentVenue } = domain.venues;
-    const { currentUser } = domain.auth;
-
-    if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps(ctx);
-    }
-
-    return { pageProps, currentVenue, currentUser };
+    return { pageProps };
   }
 
   render() {
     const { Component, pageProps } = this.props;
 
-    return (
-      <Container>
-        <DomainProvider domain={domain}>
-          <Component {...pageProps} />
-        </DomainProvider>
-      </Container>
-    );
+    return <Component {...pageProps} />;
   }
 }
 
-export default App;
+export default compose(
+  withNextContext,
+  withNextContainer,
+  withDomain,
+  withVenue,
+  withStyles,
+  withAuth
+)(App);

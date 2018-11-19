@@ -8,7 +8,7 @@ class DataSerializer {
     this.domainManager = domainManager;
   }
 
-  serialize(model, schema = model.constructor.schema) {
+  serialize(model, { schema = model.constructor.schema } = {}) {
     invariant(!isEmpty(schema), '[DataSerializer] Serialization without schema is not allowed!');
 
     const result = {};

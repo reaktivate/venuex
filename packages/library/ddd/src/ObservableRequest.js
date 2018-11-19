@@ -1,7 +1,7 @@
 import { observable, action, computed } from 'mobx';
 import ObservablePromise, { State } from './ObservablePromise';
 import timeout, { TimeoutError } from '@venuex/utils/timeout';
-import noop from 'lodash/noop';
+import identity from 'lodash/identity';
 import DataTypes from './DataTypes';
 
 const DEFAULT_TIMEOUT = 10e3;
@@ -13,21 +13,73 @@ class CancellationError extends Error {
   }
 }
 
-class ObservableRequestPromise {
-  onFulfilled = noop;
-  onRejected = noop;
+/**
+ * Promise that resolves synchronously
+ */
+class SynchronousPromise {
+  onFulfilled = identity;
+  onRejected = identity;
+  isFulfilled = false;
+  isRejected = false;
+  value;
 
   constructor(executor) {
     try {
-      executor((value) => this.onFulfilled(value), (value) => this.onRejected(value));
+      executor(
+        (value) => {
+          this.isFulfilled = true;
+          this.value = this.onFulfilled(value);
+        },
+        (error) => {
+          this.isRejected = true;
+          this.value = this.onRejected(error);
+        }
+      );
     } catch (error) {
-      this.onRejected(error);
+      this.isRejected = true;
+      this.value = this.onRejected(error);
     }
   }
 
   then(onFulfilled, onRejected) {
-    this.onFulfilled = onFulfilled;
-    this.onRejected = onRejected || noop;
+    return new SynchronousPromise((resolve, reject) => {
+      const next = (value, handler) => {
+        if (value instanceof Promise) {
+          value.then(resolve, reject);
+        } else {
+          handler(value);
+        }
+      };
+
+      const safe = (callback, handler) => (value) => {
+        let isSuccess = false;
+        let thenValue;
+
+        try {
+          thenValue = callback ? callback(value) : value;
+          isSuccess = true;
+        } catch (err) {
+          reject(err);
+        }
+
+        if (callback) {
+          handler = resolve;
+        }
+
+        if (isSuccess) {
+          next(thenValue, handler);
+        }
+      };
+
+      if (this.isFulfilled) {
+        safe(onFulfilled, resolve)(this.value);
+      } else if (this.isRejected) {
+        safe(onRejected, reject)(this.value);
+      } else {
+        this.onFulfilled = safe(onFulfilled, resolve);
+        this.onRejected = safe(onRejected, reject);
+      }
+    });
   }
 }
 
@@ -77,15 +129,19 @@ class ObservableRequest {
 
     request.init(options.initialValue, options);
 
-    this.request = request;
+    // TODO: Write why we need to use synchronous promise resolving here
+    //
 
-    return new ObservableRequestPromise((resolve, reject) => {
+    this.request = request;
+    this.promise = new SynchronousPromise((resolve, reject) => {
       // TODO: Add promise retry
       timeout(promise, options.timeout || DEFAULT_TIMEOUT).then(
         (response) => this.handleResponse(request, State.FULFILLED, response, resolve, reject),
         (error) => this.handleResponse(request, State.REJECTED, error, resolve, reject)
       );
     });
+
+    return this.promise;
   }
 
   @action init(value) {
@@ -119,7 +175,20 @@ class ObservableRequest {
       reject(response);
     }
   }
+
+  then(...args) {
+    if (!this.promise) {
+      throw new Error(
+        'You should execute something with "send" method at first before using "then"!'
+      );
+    }
+
+    return this.promise.then(...args);
+  }
 }
 
-export { CancellationError, TimeoutError };
+ObservableRequest.CancellationError = CancellationError;
+ObservableRequest.TimeoutError = TimeoutError;
+
+export { SynchronousPromise, CancellationError, TimeoutError };
 export default ObservableRequest;

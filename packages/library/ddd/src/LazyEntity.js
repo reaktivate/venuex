@@ -6,7 +6,7 @@ import DataTypes from './DataTypes';
 class LazyEntity extends Entity {
   static schema = {
     ...Entity.schema,
-    loadingRequest: DataTypes.embed(ObservableRequest)
+    loadRequest: DataTypes.embed(ObservableRequest)
   };
 
   static loader = (id, { domainManager }) => {
@@ -16,7 +16,7 @@ class LazyEntity extends Entity {
   domainManager;
 
   @observable.ref
-  loadingRequest = new ObservableRequest();
+  loadRequest = new ObservableRequest();
 
   setDomainManager(domainManager) {
     this.domainManager = domainManager;
@@ -24,12 +24,12 @@ class LazyEntity extends Entity {
 
   @action.bound
   load() {
-    const { loadingRequest } = this;
+    const { loadRequest: request } = this;
 
-    if (!loadingRequest.isPending && !loadingRequest.isFulfilled) {
+    if (!request.isPending && !request.isFulfilled) {
       const loader = this.constructor.loader(this.id, { domainManager: this.domainManager });
 
-      loadingRequest.send(loader).then(this.handleLoadResponse, this.handleLoadError);
+      request.send(loader).then(this.handleLoadResponse, this.handleLoadError);
     }
   }
 
@@ -37,7 +37,7 @@ class LazyEntity extends Entity {
   handleLoadResponse(data) {
     const { modelFactory } = this.domainManager;
 
-    return modelFactory.assign(this, data);
+    return modelFactory.hydrate(this, data);
   }
 
   handleLoadError(error) {}

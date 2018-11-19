@@ -1,33 +1,37 @@
 import { observable, computed } from 'mobx';
-import { DataTypes, ObservableRequest } from '@venuex/ddd';
+import { AbstractStore, DataTypes, ObservableRequest } from '@venuex/ddd';
 import { store } from '@venuex/ddd/decorators';
 import User from '../models/User';
 
-@store
-class AuthStore {
+@store('AuthStore')
+class AuthStore extends AbstractStore {
   static schema = {
-    request: DataTypes.embed(ObservableRequest),
-    me: DataTypes.embed(User),
+    authRequest: DataTypes.embed(ObservableRequest),
+    currentUser: DataTypes.embed(User),
     isAuthenticated: DataTypes.boolean
   };
 
-  @observable.ref request = new ObservableRequest();
+  @observable.ref
+  authRequest = new ObservableRequest();
 
-  @observable me;
-  @observable isAuthenticated = false;
+  @observable
+  currentUser;
+
+  @observable
+  isAuthenticated = false;
 
   @computed
   get isAuthenticating() {
-    return this.request.isPending;
+    return this.authRequest.isPending;
   }
 
   @computed
   get error() {
-    return this.request.isRejected ? this.request.value : undefined;
+    return this.authRequest.isRejected ? this.authRequest.value : undefined;
   }
 
-  isMe(userId) {
-    return this.me && this.me.id === userId;
+  isCurrentUser(userId) {
+    return this.currentUser && this.currentUser.id === userId;
   }
 }
 

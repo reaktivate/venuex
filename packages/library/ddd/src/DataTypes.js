@@ -1,8 +1,10 @@
+import { isObservableMap, isObservableArray, toJS } from 'mobx';
+import isPlainObject from 'lodash/isPlainObject';
+import isArray from 'lodash/isArray';
+import isMap from 'lodash/isMap';
 import toString from 'lodash/toString';
 import toNumber from 'lodash/toNumber';
 import toInteger from 'lodash/toInteger';
-import isPlainObject from 'lodash/isPlainObject';
-import isArray from 'lodash/isArray';
 import identity from 'lodash/identity';
 import invariant from 'invariant';
 import warning from '@venuex/utils/warning';
@@ -102,11 +104,9 @@ export class DateType extends Type {
   };
 
   _serializer = (value) => {
-    if (!moment.isMoment(value)) {
-      return;
+    if (moment.isMoment(value)) {
+      return moment(value).format(this._format);
     }
-
-    return moment(value).format(this._format);
   };
 
   format(format) {
@@ -129,7 +129,7 @@ export class ObjectType extends Type {
     if (this._shape) {
       const { modelFactory } = domainManager;
 
-      return modelFactory.assign({}, value, this._shape);
+      return modelFactory.hydrate({}, value, { schema: this._shape });
     }
 
     return value;
@@ -138,7 +138,11 @@ export class ObjectType extends Type {
   _serializer = (value, { domainManager }) => {
     const { modelFactory } = domainManager;
 
-    return modelFactory.serialize(value, this._shape);
+    if (this._shape) {
+      return modelFactory.serialize(value, { schema: this._shape });
+    }
+
+    return toJS(value);
   };
 
   shape(schema) {
@@ -189,7 +193,51 @@ export class ArrayType extends Type {
   };
 
   _serializer = (value, ...args) => {
+    if (!isArray(value) && !isObservableArray(value)) {
+      return;
+    }
+
     return value.map((item) => this._type.serialize(item, ...args));
+  };
+
+  constructor(Type) {
+    super();
+
+    this._type = Type;
+  }
+}
+
+export class MapType extends Type {
+  _type;
+
+  _transformer = (value, ...args) => {
+    if (!isPlainObject(value)) {
+      warning(false, '[MapType] Value is not an map: "%s".', value);
+
+      return;
+    }
+
+    const map = new Map();
+
+    for (const [key, value] of Object.entries(value)) {
+      map.set(key, this._type.transform(value, ...args));
+    }
+
+    return map;
+  };
+
+  _serializer = (value, ...args) => {
+    if (!isMap(value) && !isObservableMap(value)) {
+      return;
+    }
+
+    const result = {};
+
+    for (const [key, value] of value) {
+      result[key] = this._type.serialize(value, ...args);
+    }
+
+    return result;
   };
 
   constructor(Type) {
@@ -290,7 +338,15 @@ const DataTypes = {
     return new IntegerType();
   },
 
+  get int() {
+    return new IntegerType();
+  },
+
   get boolean() {
+    return new BooleanType();
+  },
+
+  get bool() {
     return new BooleanType();
   },
 
@@ -312,6 +368,10 @@ const DataTypes = {
 
   arrayOf(Type) {
     return new ArrayType(Type);
+  },
+
+  mapOf(Type) {
+    return new MapType(Type);
   },
 
   reference(Class) {

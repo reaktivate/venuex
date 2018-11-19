@@ -7,7 +7,7 @@ import DataTypes from '../DataTypes';
 import store from '../decorators/store';
 import Entity from '../Entity';
 
-describe('DDD / Domain', () => {
+describe('DomainManager', () => {
   afterEach(() => {
     ModelRegistry.clear();
   });
@@ -112,16 +112,18 @@ describe('DDD / Domain', () => {
             return modelFactory.make(DummyEntity, { id: value });
           }
         ),
-        embed: DataTypes.embed(DummyEmbed)
+        embed: DataTypes.embed(DummyEmbed),
+        map: DataTypes.mapOf(DataTypes.embed(DummyEmbed))
       };
 
       @observable property;
+      @observable map;
     }
 
     const domain = new DomainManager();
     const instance = domain.get(DummyStore);
 
-    domain.modelFactory.assign(instance, {
+    domain.modelFactory.hydrate(instance, {
       string: 'foo',
       number: 0.01,
       int: 42.1,
@@ -142,11 +144,21 @@ describe('DDD / Domain', () => {
       embed: {
         property: 'foo',
         other: 'bar'
+      },
+      map: {
+        'dummy-1': {
+          property: 'that is dummy-1'
+        },
+        'dummy-2': {
+          property: 'that is dummy-2'
+        }
       }
     });
 
     expect(instance.ref).toBeInstanceOf(DummyEntity);
     expect(instance.embed).toBeInstanceOf(DummyEmbed);
+    expect(instance.map.get('dummy-1')).toBeInstanceOf(DummyEmbed);
+    expect(instance.map.get('dummy-2')).toBeInstanceOf(DummyEmbed);
 
     const dump = domain.dump();
 
@@ -171,6 +183,14 @@ describe('DDD / Domain', () => {
         ref: { id: 'xyz' },
         embed: {
           property: 'foo'
+        },
+        map: {
+          'dummy-1': {
+            property: 'that is dummy-1'
+          },
+          'dummy-2': {
+            property: 'that is dummy-2'
+          }
         }
       }
     });
@@ -180,6 +200,7 @@ describe('DDD / Domain', () => {
     instance.string = 'bar';
     instance.object.nested.bool = false;
     instance.embed.property = 'bar';
+    instance.map.get('dummy-1').property = 'dummy';
 
     expect(instance.string).toBe('bar');
     expect(instance.object.nested.bool).toBe(false);
@@ -193,6 +214,8 @@ describe('DDD / Domain', () => {
     expect(instance.string).toBe('foo');
     expect(instance.object.nested.bool).toBe(true);
     expect(instance.embed.property).toBe('foo');
+    expect(instance.map.get('dummy-1')).toBeInstanceOf(DummyEmbed);
+    expect(instance.map.get('dummy-1').property).toBe('that is dummy-1');
   });
 
   test('Dump and restore sub-stores', () => {

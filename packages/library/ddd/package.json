@@ -28,22 +28,10 @@
     "regenerator-runtime": "^0.12.1"
   },
   "babel": {
-    "presets": [
-      "@babel/env"
-    ],
+    "presets": ["@babel/env"],
     "plugins": [
-      [
-        "@babel/proposal-decorators",
-        {
-          "legacy": true
-        }
-      ],
-      [
-        "@babel/proposal-class-properties",
-        {
-          "loose": true
-        }
-      ]
+      ["@babel/proposal-decorators", { "legacy": true }],
+      ["@babel/proposal-class-properties", { "loose": true }]
     ]
   },
   "jest": {

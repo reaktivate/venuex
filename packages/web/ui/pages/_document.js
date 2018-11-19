@@ -7,10 +7,10 @@ class Document extends NextDocument {
   static async getInitialProps({ renderPage }) {
     const sheet = new ServerStyleSheet();
     const collectStyles = (App) => (props) => sheet.collectStyles(<App {...props} />);
-    const page = renderPage(collectStyles);
+    const pageProps = renderPage(collectStyles);
     const stylesheet = sheet.getStyleElement();
 
-    return { ...page, stylesheet };
+    return { ...pageProps, stylesheet };
   }
 
   render() {

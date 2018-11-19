@@ -1,11 +1,11 @@
 class ModelFactory {
   domainManager;
-  dataMapper;
+  dataHydrator;
   dataSerializer;
 
   constructor(domainManager) {
     this.domainManager = domainManager;
-    this.dataMapper = domainManager.dataMapper;
+    this.dataHydrator = domainManager.dataHydrator;
     this.dataSerializer = domainManager.dataSerializer;
   }
 
@@ -17,18 +17,22 @@ class ModelFactory {
     }
 
     if (attrs) {
-      return this.assign(model, attrs);
+      return this.hydrate(model, attrs);
     }
 
     return model;
   }
 
-  assign(model, attrs, schema) {
-    return this.dataMapper.assign(model, attrs, schema);
+  hydrate(model, attrs, options) {
+    return this.dataHydrator.hydrate(model, attrs, options);
   }
 
-  serialize(model, schema) {
-    return this.dataSerializer.serialize(model, schema);
+  patch(model, attrs, options) {
+    return this.dataHydrator.patch(model, attrs, options);
+  }
+
+  serialize(model, options) {
+    return this.dataSerializer.serialize(model, options);
   }
 }
 
