@@ -116,21 +116,18 @@ class Popup extends PureComponent {
     if (ind !== -1) {
       return;
     }
-     checked.push(ItemId);
-     this.setState({ checked: [...checked] });
+    checked.push(ItemId);
+    this.setState({ checked: [...checked] });
   };
   handleItemUnchecked = (itemId) => {
     let { checked } = this.state;
-    let ind = picked.indexOf(employeeId);
-    
+    let ind = checked.indexOf(itemId);
+
     if (ind === -1) {
       return;
     }
-    picked.splice(ind, 1);
-     if (this.state.owner === employeeId) {
-      this.handleUnassignClicked();
-    }
-     this.setState({ picked: [...picked] });
+    checked.splice(ind, 1);
+    this.setState({ checked: [...checked] });
   };
   render(){
     const { checked } = this.props;
