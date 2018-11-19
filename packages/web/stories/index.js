@@ -1,4 +1,8 @@
 import './components/Calendar';
+import './components/Events/MonthPicker';
+import './components/Events/LegendItem';
+import './components/NotificationsPopup.js';
+import './components/Popup.js';
 import './elements/buttons/RoundButton.js';
 import './elements/buttons/RadioButtonText.js';
 import './elements/buttons/PrimaryRadioButton.js';
@@ -18,6 +22,3 @@ import './elements/NotificationBox.js';
 import './elements/Switcher.js';
 import './elements/YNStatus.js';
 import './icons/Icons.js';
-import './components/Events/MonthPicker';
-import './components/Events/LegendItem';
-import './components/Popup.js';
