@@ -108,6 +108,18 @@ const DatePickerWrapper = styled.div`
     padding: 0px;
   }
 
+  .react-datepicker__time-container {
+    min-width: 120px;
+  }
+
+  .react-datepicker__time-list {
+    min-width: 120px;
+  }
+
+  .react-datepicker__time-box {
+    min-width: 120px;
+  }
+
   .react-datepicker__time-container
     .react-datepicker__time
     .react-datepicker__time-box
@@ -149,7 +161,7 @@ const DatePickerRender = (props) => {
 
   return (
     <BaseInput {...props}>
-      <DatePickerElement {...props} onChange={onChange} placeholder="Date" />
+      <DatePickerElement {...props} onChange={onChange} />
     </BaseInput>
   );
 };
@@ -157,6 +169,10 @@ const DatePickerRender = (props) => {
 DatePickerRender.propTypes = {
   value: PropTypes.string,
   onChange: PropTypes.func
+};
+
+DatePickerRender.DefaultProps = {
+  placeholderText: 'Date'
 };
 
 export default DatePickerRender;
