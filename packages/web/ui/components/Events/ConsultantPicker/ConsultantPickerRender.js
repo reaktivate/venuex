@@ -5,7 +5,6 @@ import styled, { css } from 'styled-components';
 import CaretDown from 'ui/icons/CaretDown';
 import CaretUp from 'ui/icons/CaretUp';
 import BtnOwner from 'ui/icons/BtnOwner';
-import BtnOwnerUnassign from 'ui/icons/BtnOwnerUnassign';
 import OwnerIcon from 'ui/icons/Owner';
 import Checkbox from '../../../elements/form/Checkbox';
 import BaseInput from 'ui/elements/form/BaseInput';
@@ -167,10 +166,9 @@ const EmployeeRender = (props) => {
       </Group>
       <Group>
         {isOwner ? (
-          <BtnOwnerUnassign
+          <OwnerIcon
             alt=""
             className="assign-badge"
-            onClick={() => handleUnassignClicked()}
           />
         ) : (
           <BtnOwner
