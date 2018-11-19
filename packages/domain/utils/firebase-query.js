@@ -18,7 +18,9 @@ function prepareDocumentSnapshot(snapshot) {
   };
 }
 
-function prepareCollectionSnapshot(snapshot) {}
+function prepareCollectionSnapshot(snapshot) {
+  return snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+}
 
 export default query;
 export { query, prepareDocumentSnapshot, prepareCollectionSnapshot };

@@ -4,6 +4,11 @@
   "env": {
     "browser": true
   },
+  "settings": {
+    "react": {
+      "version": "latest"
+    }
+  },
   "rules": {
     "indent": "off",
     "arrow-parens": ["error", "always"],

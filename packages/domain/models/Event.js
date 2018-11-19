@@ -5,7 +5,7 @@ class Event extends Entity {
   static schema = {
     ...Entity.schema,
     name: DataTypes.string.required,
-    type: DataTypes.string.required,
+    // type: DataTypes.string.required,
     start: DataTypes.date.required,
     end: DataTypes.date.required
   };
