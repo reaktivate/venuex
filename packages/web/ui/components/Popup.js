@@ -1,29 +1,35 @@
 import React, { PureComponent } from 'react';
 import styled, { css } from 'styled-components';
 import propTypes from 'prop-types';
+import CheckBox from '../elements/form/Checkbox.js';
+import Button from '../../ui/elements/buttons/ButtonWithIcon.js';
+import Icon from '../../ui/icons/Lock.js';
+import ClickAway from '../../ui/utils/ClickAwayListener.js';
 
 const ItemWrap = styled.div`
-  max-height: 324x;
   overflow-y: scroll;
   width: 100%;
+  height: 228px;
 `;
 const Item = styled.div`
   cursor: pointer;
   box-sizing: border-box;
-  padding: 10px 20px;
+  padding: 8px 20px;
   display: flex;
   align-items: center;
-  min-height: 60px;
+  min-height: 55px;
   background-color: #ffffff;
   transition-timing-function: ease-in;
   transition: 0.2s background-color;
+  &:hover{
+    background-color: #fafafa;
+  }
 `;
 const ItemIcon = styled.img`
   max-width: 24px;
   margin-right: 8px;
 `;
 const ItemTitle = styled.span`
-  font-family: Montserrat;
   font-size: 15px;
   font-weight: 300;
   letter-spacing: -0.3px;
@@ -32,22 +38,28 @@ const ItemTitle = styled.span`
 
 const PopupWrap = styled.div`
   position: absolute;
-  min-width: 250px;
+  width: 100%;
   right: 0;
   top: calc(100% + 8px);
+  border-radius: 2px;
+  overflow: hidden;
   display: block;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-  // opacity: 0;
+  opacity: 0;
   transition-timing-function: ease-in;
   transition: 0.2s opacity;
-  // pointer-events: none;
+  pointer-events: none;
+  ${props => props.isOpen && css`
+    opacity: 1;
+    pointer-events: auto;
+  `}
 `;
 const PopupSubmit = styled.button`
   cursor: pointer;
   padding: 0;
   border: 0;
-  border-top: 2px solid #d8d8d8;
-  height: 50px;
+  border-top: 1px solid #d8d8d8;
+  height: 49px;
   text-transform: uppercase;
   outline: 0;
   width: 100%;
@@ -62,34 +74,19 @@ const PopupSubmit = styled.button`
 
 const Container = styled.div`
   user-select: none; 
+  font-family: Montserrat;
   position: relative;
   display: inline-block;
 `;
-const options = [
-  {
-    id: 1,
-    name: "opation #1",
-    picture: "https://api.adorable.io/avatars/40/1.png",
-  },
-  {
-    id: 2,
-    name: "opation #2",
-    picture: "https://api.adorable.io/avatars/40/2.png",
-  },
-  {
-    id: 3,
-    name: "opation #3",
-    picture: "https://api.adorable.io/avatars/40/3.png",
-  },
-];
 
 class ItemRender extends PureComponent {
   render(){
-    const { id, handleClickItem, title, picture } = this.props;
+    const { handleClickItem, name, picture, checked } = this.props;
     return(
       <Item onClick={handleClickItem}>
+        <CheckBox checked={checked}/>
         <ItemIcon src={picture} />
-        <ItemTitle>{title}</ItemTitle>
+        <ItemTitle>{name}</ItemTitle>
       </Item>
     )
   }
@@ -97,8 +94,9 @@ class ItemRender extends PureComponent {
 
 ItemRender.propTypes = {
   handleClickItem: propTypes.func.isRequired,
-  title: propTypes.string.isRequired,
+  name: propTypes.string.isRequired,
   picture: propTypes.string.isRequired,
+  checked: propTypes.bool,
 };
 
 class Popup extends PureComponent {
@@ -106,41 +104,73 @@ class Popup extends PureComponent {
     super(props);
 
     this.state = {
+      isOpen: false,
       checked: props.checked
     }
   }
-  handleItemChecked = (ItemId) => {
+  handleClickItem = (ItemId) => {
     let { checked } = this.state;
-    let ind = checked.indexOf(ItemId);
-
-    if (ind !== -1) {
-      return;
+    let index = checked.indexOf(ItemId);
+    if ( index !== -1 ) {
+      checked.splice(index, 1);
     }
-    checked.push(ItemId);
-    this.setState({ checked: [...checked] });
-  };
-  handleItemUnchecked = (itemId) => {
-    let { checked } = this.state;
-    let ind = checked.indexOf(itemId);
-
-    if (ind === -1) {
-      return;
+    else{
+      checked.push(ItemId);
     }
-    checked.splice(ind, 1);
     this.setState({ checked: [...checked] });
-  };
+  }
+  handleSave = () => {
+    alert('Save');
+    this.setState({
+      isOpen: false
+    })
+  }
+  togglePopup = () => {
+    this.setState({
+      isOpen: !this.state.isOpen
+    })
+  }
+  onClickAway = () => {
+    this.setState({
+      isOpen: false
+    })
+  }
   render(){
-    const { checked } = this.props;
+    const { checked, items } = this.props;
     return(
       <Container>
-        <PopupWrap>
-          <ItemWrap>
-            <ItemRender handleClickItem={() => console.log('aaa')} title={options[0]['name']} picture={options[0]['picture']} />
-          </ItemWrap>
-          <PopupSubmit>Save</PopupSubmit>
-        </PopupWrap>
+        <Button
+          ready={true}
+          text="Edit permission for 2 staff members"
+          textColor="gold"
+          buttonColor="white"
+          mode="border"
+          handleClick={this.togglePopup}
+        >
+          <Icon color="#c0b69b" />
+        </Button>
+        <ClickAway onClickAway = {this.onClickAway}>
+          <PopupWrap isOpen={this.state.isOpen}>
+            <ItemWrap>
+              {items.map((item, index) =>
+                <ItemRender
+                  handleClickItem={this.handleClickItem.bind(this, item.id)}
+                  name={item.name}
+                  picture={item.picture}
+                  checked={this.state.checked.indexOf(item.id) !== -1}
+                  key={index}
+                />
+              )}
+            </ItemWrap>
+            <PopupSubmit onClick={this.handleSave}>Save</PopupSubmit>
+          </PopupWrap>
+        </ClickAway>
       </Container>
     )
   }
 }
+Popup.propTypes = {
+  items: propTypes.array.isRequired,
+  checked: propTypes.array,
+};
 export default Popup; 

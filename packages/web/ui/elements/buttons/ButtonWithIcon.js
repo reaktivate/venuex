@@ -43,7 +43,7 @@ const Button = styled.button`
 		}
 	`}
 	${props => props.mode === 'border' && css`
-		border: 1px solid ${props => colors[props.textColor]?colors[props.textColor]:'#ffffff'};
+		border: 1px solid ${props => colors[props.textColor]?colors[props.textColor]:'#ffffff'}!important;
 	`}
 `;
 
@@ -62,7 +62,7 @@ const Name = styled.span`
 `;
 
 const ButtonRender = ({ ready, children, text, buttonColor, textColor, mode,  handleClick}) => (
-	<Button ready={ready} buttonColor={buttonColor} mode={mode} onClick={handleClick}>
+	<Button ready={ready} buttonColor={buttonColor} textColor={textColor} mode={mode} onClick={handleClick}>
 		{children}
 		<Name textColor={textColor}>{text}</Name>
 	</Button>
@@ -73,6 +73,7 @@ ButtonRender.propTypes = {
 	text: propTypes.string.isRequired,
 	children: propTypes.element.isRequired, 
 	ready: propTypes.bool,
+	grayscale: propTypes.bool,
 	buttonColor: propTypes.string,
 	textColor: propTypes.string,
 	mode: propTypes.oneOf(['border']),
