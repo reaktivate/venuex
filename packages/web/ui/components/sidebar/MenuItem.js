@@ -1,10 +1,9 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
-import Link from '../../elements/Link';
 import isString from 'lodash/isString';
 
-const Container = styled(Link)(
+const Container = styled.a(
   ({ theme }) => css`
     color: #fff;
     text-decoration: none;
