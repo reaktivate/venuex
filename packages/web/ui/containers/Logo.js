@@ -10,7 +10,7 @@ export default connect(({ domain }) => {
   const venueName = get(venueStore.currentVenue, 'name');
 
   return {
-    src: venueLogo || defaultLogo,
+    source: venueLogo || defaultLogo,
     alt: venueName || 'VenueX'
   };
 })(Logo);
