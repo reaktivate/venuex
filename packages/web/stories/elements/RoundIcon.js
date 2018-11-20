@@ -1,8 +1,8 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import RoundIcon from 'ui/elements/RoundIcon';
+import RoundIcon from '../../ui/elements/RoundIcon';
 import Icon from '../../ui/icons/Celebration.js';
-import Photo from '../../ui/assets/avatar.png';
+import Photo from '../../ui/assets/default/avatar.png';
 
 storiesOf('elements/RoundIcon', module)
   .add('Photo', () => (
