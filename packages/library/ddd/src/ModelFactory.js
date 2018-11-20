@@ -1,3 +1,7 @@
+import invariant from 'invariant';
+import DataHydrator from './DataHydrator';
+import DataSerializer from './DataSerializer';
+
 class ModelFactory {
   domainManager;
   dataHydrator;
@@ -5,11 +9,13 @@ class ModelFactory {
 
   constructor(domainManager) {
     this.domainManager = domainManager;
-    this.dataHydrator = domainManager.dataHydrator;
-    this.dataSerializer = domainManager.dataSerializer;
+    this.dataHydrator = new DataHydrator(domainManager);
+    this.dataSerializer = new DataSerializer(domainManager);
   }
 
   make(Class, attrs) {
+    invariant(Class, '[ModelFactory] Model class can not be empty!');
+
     const model = new Class();
 
     if (typeof model.setDomainManager === 'function') {
