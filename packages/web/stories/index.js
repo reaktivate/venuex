@@ -1,19 +1,27 @@
-import React from 'react';
-
-import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
-import { linkTo } from '@storybook/addon-links';
-
-import { Button, Welcome } from '@storybook/react/demo';
-
-storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />);
-
-storiesOf('Button', module)
-  .add('with text', () => <Button onClick={action('clicked')}>Hello Button</Button>)
-  .add('with some emoji', () => (
-    <Button onClick={action('clicked')}>
-      <span role="img" aria-label="so cool">
-        😀 😎 👍 💯
-      </span>
-    </Button>
-  ));
+import './components/Calendar';
+import './components/Events/MonthPicker';
+import './components/Events/LegendItem';
+import './components/Popup.js';
+import './components/Tabs.js';
+import './elements/buttons/RoundButton.js';
+import './elements/buttons/RadioButtonText.js';
+import './elements/buttons/PrimaryRadioButton.js';
+import './elements/buttons/Button';
+import './elements/buttons/StatusButton.js';
+import './elements/buttons/ButtonWithIcon.js';
+import './elements/buttons/ThirdButton.js';
+import './elements/buttons/ButtonWithNotification.js';
+import './elements/buttons/OwnerStatus.js';
+import './elements/form/BaseInput';
+import './elements/form/Input';
+import './elements/form/Select';
+import './elements/form/Checkbox';
+import './elements/form/Textarea';
+import './elements/form/DatePicker';
+import './components/Events/ConsultantPicker';
+import './elements/form/SecondaryInput.js';
+import './elements/RoundIcon.js';
+import './elements/NotificationBox.js';
+import './elements/Switcher.js';
+import './elements/YNStatus.js';
+import './icons/Icons.js';
