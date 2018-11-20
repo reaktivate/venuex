@@ -10,6 +10,8 @@ const withPlugins = require('next-compose-plugins');
 const withImages = require('next-images');
 const withOptimizedImages = require('next-optimized-images');
 const withFonts = require('next-fonts');
+const withCSS = require('@zeit/next-css');
+const withSASS = require('@zeit/next-sass');
 
 module.exports = withPlugins(
   [
@@ -21,7 +23,9 @@ module.exports = withPlugins(
     ],
     withOptimizedImages,
     withImages,
-    withFonts
+    withFonts,
+    withCSS,
+    withSASS
   ],
   {
     distDir: process.env.NEXT_DIST_DIR || `../.next`,

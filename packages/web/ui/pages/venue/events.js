@@ -4,6 +4,8 @@ import router from '@venuex/web/router';
 import { connect, unbox } from '@venuex/ddd/react';
 import EventStore from '@venuex/domain/stores/EventStore';
 import EventService from '@venuex/domain/services/EventService';
+import Layout from '@venuex/web/ui/layouts/VenueLayout';
+import Calendar from '@venuex/web/ui/layouts/Calendar';
 
 @connect(({ domain }) => {
   const eventStore = domain.get(EventStore);
@@ -41,25 +43,36 @@ class VenueEventsPage extends Component {
     this.props.fetchCurrentVenueEvents();
   }
 
+  handleAddEvent(e) {
+    console.log('add', e);
+  }
+  handleEditEvent(e) {
+    console.log('edit', e);
+  }
+
   render() {
     const { events, loadRequest } = this.props;
 
     if (!events.length) {
       return (
-        <div>
-          <div>{loadRequest.state}</div>
+        <Layout>
           <div>Loading...</div>
-        </div>
+        </Layout>
       );
     }
 
     return (
-      <div>
+      <Layout>
         <div>{loadRequest.state}</div>
+        <Calendar
+          onEventClick={() => this.handleEditEvent(e)}
+          onCellClick={() => this.handleAddEvent(e)}
+          events={events}
+        />
         {events.map((event) => (
           <div key={event.id}>{event.name}</div>
         ))}
-      </div>
+      </Layout>
     );
   }
 }
