@@ -1,6 +1,4 @@
 import InstantiateScope from './InstantiateScope';
-import DataHydrator from './DataHydrator';
-import DataSerializer from './DataSerializer';
 import ModelRegistry from './ModelRegistry';
 import ModelFactory from './ModelFactory';
 import { getModelName, isStoreModel } from './Metadata';
@@ -10,8 +8,6 @@ import warning from '@venuex/utils/warning';
 class DomainManager {
   dependencies = {};
   container = new Map();
-  dataHydrator = new DataHydrator(this);
-  dataSerializer = new DataSerializer(this);
   modelFactory = new ModelFactory(this);
 
   constructor(dependencies = {}) {
