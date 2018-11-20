@@ -1,35 +1,32 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { css } from 'styled-components';
-import NormalizeStyles from '@venuex/web/ui/styles/normalize';
-import GlobalStyles from '@venuex/web/ui/styles/global';
-import { Tab, TabList, Tabs, TabPanel } from './Tabs.js';
-import Icon from '../icons/User';
-import Sidebar from './Sidebar';
+import { withRouter } from 'next/router';
+import styled from 'styled-components';
+import MasterLayout from './MasterLayout';
+import Sidebar from '../components/Sidebar';
+import Router from '@venuex/web/router';
+import Logo from '../containers/Logo';
+import get from 'lodash/get';
 
-const Layout = styled.div`
+const Container = styled.div`
   display: flex;
   height: 100vh;
 `;
-const TabContainer = styled.div`
-  height: 100%;
-  background-color: #000000;
-  color: #fff;
-`;
 
-const VenueLayout = ({ children }) => (
-  <Fragment>
-    <NormalizeStyles />
-    <GlobalStyles />
-    <Layout>
-      <Sidebar match={{ path: '' }} />
-      <div>{children}</div>
-    </Layout>
-  </Fragment>
+const Main = styled.div``;
+
+const VenueLayout = ({ router, children }) => (
+  <MasterLayout>
+    <Container>
+      <Sidebar logo={<Logo />} route={get(Router.match(router.asPath), 'route.name')} />
+      <Main>{children}</Main>
+    </Container>
+  </MasterLayout>
 );
 
 VenueLayout.propTypes = {
+  router: PropTypes.object.isRequired,
   children: PropTypes.node
 };
 
-export default VenueLayout;
+export default withRouter(VenueLayout);
