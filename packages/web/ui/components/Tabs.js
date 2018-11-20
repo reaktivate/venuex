@@ -1,11 +1,11 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import {
   Tab as UnstyledTab,
   TabList as UnstyledTabList,
   Tabs as UnstyledTabs,
   TabPanel as UnstyledTabPanel
 } from 'react-web-tabs';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 const Tabs = styled(UnstyledTabs)`
   padding: 25px 0;
