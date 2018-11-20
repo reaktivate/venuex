@@ -8,20 +8,13 @@ const webpack = require('webpack');
 const withTranspileModules = require('next-plugin-transpile-modules');
 const withPlugins = require('next-compose-plugins');
 const withImages = require('next-images');
-const withOptimizedImages = require('next-optimized-images');
 const withFonts = require('next-fonts');
 const withCSS = require('@zeit/next-css');
 const withSASS = require('@zeit/next-sass');
 
 module.exports = withPlugins(
   [
-    [
-      withTranspileModules,
-      {
-        transpileModules: ['@venuex']
-      }
-    ],
-    withOptimizedImages,
+    [withTranspileModules, { transpileModules: ['@venuex'] }],
     withImages,
     withFonts,
     withCSS,
