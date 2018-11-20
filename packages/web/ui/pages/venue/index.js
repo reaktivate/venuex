@@ -5,6 +5,7 @@ import Layout from '@venuex/web/ui/layouts/VenueLayout';
 import Head from 'next/head';
 import VenueStore from '@venuex/domain/stores/VenueStore';
 import AuthStore from '@venuex/domain/stores/AuthStore';
+import AuthService from '@venuex/domain/services/AuthService';
 import styled from 'styled-components';
 
 const Title = styled.h1`
@@ -19,6 +20,15 @@ const SubTitle = styled.h2`
 `;
 
 class VenueIndexPage extends Component {
+  componentDidMount() {
+    if (!this.props.currentUser) {
+      this.props.authenticate({
+        email: `test_venue+kaizen-bot@reaktivate.com`,
+        password: 'd3v3l0p3r'
+      });
+    }
+  }
+
   render() {
     const { subtitle, currentVenue, currentUser, isAuthenticated } = this.props;
 
@@ -63,8 +73,10 @@ VenueIndexPage.getInitialProps = async () => {
 export default connect(({ domain }) => {
   const venueStore = domain.get(VenueStore);
   const authStore = domain.get(AuthStore);
+  const authService = domain.get(AuthService);
 
   return unbox({
+    authenticate: authService.authenticate,
     currentVenue: venueStore.currentVenue,
     isAuthenticated: authStore.isAuthenticated,
     currentUser: authStore.currentUser
