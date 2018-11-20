@@ -36,9 +36,9 @@ const CalTitle = styled.div`
 
 const MonthPickerRender = ({ onPreviousMonth, onNextMonth, date }) => (
   <MonthPicker>
-    <StyledIconLeft color="#7d7d7d" onClick={onPreviousMonth} />
+    <StyledIconLeft color="#c0b69b" onClick={onPreviousMonth} />
     <CalTitle>{date.format('MMMM YYYY')}</CalTitle>
-    <StyledIconRight color="#7d7d7d" onClick={onNextMonth} />
+    <StyledIconRight color="#c0b69b" onClick={onNextMonth} />
   </MonthPicker>
 );
 
