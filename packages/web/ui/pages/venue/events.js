@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import router from '@venuex/web/router';
-import { connect, unbox } from '@venuex/ddd/react';
+import Router from '@venuex/web/router';
+import { connect } from '@venuex/ddd/react';
 import EventStore from '@venuex/domain/stores/EventStore';
 import EventService from '@venuex/domain/services/EventService';
 import Layout from '@venuex/web/ui/layouts/VenueLayout';
-import Calendar from '@venuex/web/ui/layouts/Calendar';
+import Calendar from '@venuex/web/ui/components/Calendar';
 
 @connect(({ domain }) => {
   const eventStore = domain.get(EventStore);
@@ -24,7 +24,7 @@ class VenueEventsPage extends Component {
   };
 
   static getInitialProps({ asPath, query }) {
-    const route = router.match(asPath).route;
+    const route = Router.match(asPath).route;
 
     if (route) {
       if (route.name === 'venue.events.add') {
