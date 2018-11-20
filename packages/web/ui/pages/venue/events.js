@@ -63,15 +63,11 @@ class VenueEventsPage extends Component {
 
     return (
       <Layout>
-        <div>{loadRequest.state}</div>
         <Calendar
-          onEventClick={() => this.handleEditEvent(e)}
-          onCellClick={() => this.handleAddEvent(e)}
+          onEventClick={this.handleEditEvent}
+          onCellClick={this.handleAddEvent}
           events={events}
         />
-        {events.map((event) => (
-          <div key={event.id}>{event.name}</div>
-        ))}
       </Layout>
     );
   }

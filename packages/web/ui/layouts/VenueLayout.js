@@ -13,7 +13,9 @@ const Container = styled.div`
   height: 100vh;
 `;
 
-const Main = styled.div``;
+const Main = styled.div`
+  flex: 1;
+`;
 
 const VenueLogo = (
   <RouterLink to="venue">
