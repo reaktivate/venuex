@@ -23,7 +23,7 @@ const Container = styled.div`
   color: #fff;
 `;
 
-const Sidebar = ({ logo, route }) => (
+const Sidebar = ({ logo, currentRoute: route }) => (
   <Container>
     {logo}
     <Fragment>
@@ -54,7 +54,7 @@ const Sidebar = ({ logo, route }) => (
 
 Sidebar.propTypes = {
   logo: PropTypes.node,
-  route: PropTypes.string
+  currentRoute: PropTypes.string
 };
 
 export default Sidebar;

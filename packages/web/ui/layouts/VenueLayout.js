@@ -4,7 +4,7 @@ import { withRouter } from 'next/router';
 import styled from 'styled-components';
 import MasterLayout from './MasterLayout';
 import Sidebar from '../components/Sidebar';
-import Router from '@venuex/web/router';
+import Router, { Link as RouterLink } from '@venuex/web/router';
 import Logo from '../containers/Logo';
 import get from 'lodash/get';
 
@@ -15,14 +15,26 @@ const Container = styled.div`
 
 const Main = styled.div``;
 
-const VenueLayout = ({ router, children }) => (
-  <MasterLayout>
-    <Container>
-      <Sidebar logo={<Logo />} route={get(Router.match(router.asPath), 'route.name')} />
-      <Main>{children}</Main>
-    </Container>
-  </MasterLayout>
+const VenueLogo = (
+  <RouterLink to="venue">
+    <a>
+      <Logo />
+    </a>
+  </RouterLink>
 );
+
+const VenueLayout = ({ router, children }) => {
+  const currentRoute = get(Router.match(router.asPath), 'route.name');
+
+  return (
+    <MasterLayout>
+      <Container>
+        <Sidebar logo={VenueLogo} currentRoute={currentRoute} />
+        <Main>{children}</Main>
+      </Container>
+    </MasterLayout>
+  );
+};
 
 VenueLayout.propTypes = {
   router: PropTypes.object.isRequired,
