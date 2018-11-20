@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect, unbox } from '@venuex/ddd/react';
-import Link from '@venuex/web/ui/elements/Link';
+import { Link } from '@venuex/web/router';
 import Layout from '@venuex/web/ui/layouts/VenueLayout';
 import Head from 'next/head';
 import VenueStore from '@venuex/domain/stores/VenueStore';

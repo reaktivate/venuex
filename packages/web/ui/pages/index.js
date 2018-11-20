@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from '@venuex/web/ui/elements/Link';
+import { Link } from '@venuex/web/router';
 import Layout from '@venuex/web/ui/layouts/VenueLayout';
 import Head from 'next/head';
 
