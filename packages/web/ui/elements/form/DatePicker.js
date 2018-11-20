@@ -61,7 +61,9 @@ const DatePickerWrapper = styled.div`
   }
 
   .react-datepicker__navigation--next {
-    right: 20px;
+    width: 15px;
+    height: 15px;
+    position: relative;
   }
 
   .react-datepicker__day-name {
