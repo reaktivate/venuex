@@ -18,6 +18,7 @@ const Root = styled.div`
   ${(props) =>
     props.checked &&
     css`
+      border-color: ${(props.theme.colors && props.theme.colors.primary) || '#c0b69b'};
       background-color: ${(props.theme.colors && props.theme.colors.primary) || '#c0b69b'};
     `};
 `;

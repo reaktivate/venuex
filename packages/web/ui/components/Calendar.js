@@ -7,8 +7,65 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 const StyledBigCalendar = styled(BigCalendar)`
-  & > div > div > div {
-    border-left: 0px !important;
+  font-family: Montserrat;
+  border: 0;
+  *{
+    border-color: #ededed!important;
+  }
+  & .rbc-month-header{
+    &>div{
+      border-left: 0px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 59px;
+      font-size: 12px;
+      font-weight: 300;
+      letter-spacing: 0.3px;
+      text-align: center;
+      color: #888888;
+    }
+  }
+  .rbc-month-row{
+    .rbc-row-bg{
+      .rbc-day-bg{
+        &.rbc-off-range-bg{
+          background-color: #fafafa!important;
+        }
+        &.rbc-today{
+          background-color: #ffffff;
+        }
+      }
+      .rbc-row-segment{
+        padding: 0 0 2px 0;
+      }
+    }
+    .rbc-row-content{
+      .rbc-date-cell{
+        padding: 8px 5px 4px 0;
+        color: #7d7d7d;
+        font-size: 14px;
+        font-weight: 300;
+        &>div{
+          width: 22px;
+          height: 22px;
+          display: inline-flex;
+          justify-content: center;
+          align-items: center; 
+          border-radius: 50%;
+        }
+        &.rbc-current{
+          &>div{
+            background-color: black;
+            color: #ffffff;
+          }
+        }
+        &.rbc-off-range{
+          opacity: 0.49;
+          color: #888888;
+        } 
+      }
+    }
   }
 `;
 
@@ -34,15 +91,13 @@ class Calendar extends PureComponent {
 
   StyledHeaderWrapper = styled(this.HeaderWrapper)`
     font-size: 14px;
-    font-weight: normal;
+    font-weight: 300;
     font-style: normal;
     font-stretch: normal;
     line-height: normal;
     letter-spacing: -0.2px;
     text-align: right;
     color: #7d7d7d;
-    margin-right: 7px;
-    margin-top: 13px;
   `;
 
   eventWrapper = (props) => <div {...props}>{props.children}</div>;
@@ -77,16 +132,11 @@ class Calendar extends PureComponent {
   StyledToolbar = styled(this.toolbar)`
     & {
       font-size: 12px;
-      font-weight: normal;
-      font-style: normal;
-      font-stretch: normal;
-      line-height: normal;
+      font-weight: 300;
       letter-spacing: 0.3px;
       text-align: center;
       color: #888888;
       text-transform: uppercase;
-      margin-top: 13px;
-      margin-bottom: 13px;
     }
   `;
 
