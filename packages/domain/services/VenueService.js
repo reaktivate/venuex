@@ -48,12 +48,10 @@ class VenueService extends AbstractService {
   subscribeToCurrentVenueChanges() {
     const { firebase, venueStore } = this;
 
-    console.log('subscribeToCurrentVenueChanges');
     firebaseQuery(firebase)
       .collection('venues')
       .doc(this.venueId)
       .onSnapshot((doc) => {
-        console.log(doc);
         if (doc.exists) {
           runInAction(() => {
             const { currentVenue } = venueStore;
