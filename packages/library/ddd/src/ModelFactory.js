@@ -1,4 +1,4 @@
-import invariant from 'invariant';
+import invariant from 'tiny-invariant';
 import DataHydrator from './DataHydrator';
 import DataSerializer from './DataSerializer';
 

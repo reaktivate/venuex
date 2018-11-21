@@ -1,4 +1,4 @@
-import { action, runInAction } from 'mobx';
+import { action } from 'mobx';
 import { service } from '@venuex/ddd/decorators';
 import { AbstractService } from '@venuex/ddd';
 import VenueStore from '../stores/VenueStore';
@@ -28,40 +28,37 @@ class VenueService extends AbstractService {
       .get()
       .then(prepareDocumentSnapshot);
 
-    return request.send(query).then((data) => {
-      const { entities } = venueStore;
-      const { id } = data;
-
-      runInAction(() => {
-        venueStore.currentVenueId = id;
-
-        if (!entities.has(id)) {
-          entities.set(id, this.createEntity(Venue, data));
-        }
-      });
-
-      return entities.get(id);
-    });
+    return request.send(query).then(this.updateCurrentVenue);
   }
 
   @action.bound
   subscribeToCurrentVenueChanges() {
-    const { firebase, venueStore } = this;
-
-    firebaseQuery(firebase)
+    return firebaseQuery(this.firebase)
       .collection('venues')
       .doc(this.venueId)
-      .onSnapshot((doc) => {
-        if (doc.exists) {
-          runInAction(() => {
-            const { currentVenue } = venueStore;
-
-            if (currentVenue) {
-              this.updateEntity(currentVenue, doc.data());
-            }
+      .onSnapshot((snapshot) => {
+        if (snapshot.exists) {
+          this.updateCurrentVenue({
+            id: snapshot.id,
+            ...snapshot.data()
           });
         }
       });
+  }
+
+  @action.bound
+  updateCurrentVenue(data) {
+    const { venueStore: store } = this;
+    const { entities } = store;
+    const { id } = data;
+
+    store.currentVenueId = id;
+
+    if (!entities.has(id)) {
+      entities.set(id, this.createEntity(Venue, data));
+    } else {
+      this.updateEntity(entities.get(id), data);
+    }
   }
 }
 

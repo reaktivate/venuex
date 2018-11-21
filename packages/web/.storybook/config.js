@@ -8,7 +8,7 @@ import { ThemeProvider } from 'styled-components';
 import theme from '@venuex/web/ui/styles/theme';
 
 function loadStories() {
-  require('../stories');
+  require('@venuex/web/stories');
 }
 
 addDecorator(withOptions({

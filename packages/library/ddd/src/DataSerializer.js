@@ -1,4 +1,4 @@
-import invariant from 'invariant';
+import invariant from 'tiny-invariant';
 import isEmpty from 'lodash/isEmpty';
 
 class DataSerializer {

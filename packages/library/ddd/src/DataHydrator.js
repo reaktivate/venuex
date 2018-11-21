@@ -4,8 +4,8 @@ import isEmpty from 'lodash/isEmpty';
 import isUndefined from 'lodash/isUndefined';
 import has from 'lodash/has';
 import get from 'lodash/get';
-import invariant from 'invariant';
-import warning from '@venuex/utils/warning';
+import invariant from 'tiny-invariant';
+import warning from 'tiny-warning';
 
 function validateArguments(attrs, schema) {
   invariant(isPlainObject(attrs), '[DataHydrator] Attributes should be a plain object!');
@@ -53,8 +53,7 @@ class DataHydrator {
 
           warning(
             isLazyEntity,
-            '[DataHydrator] Property "%s" is marked as required but got an empty value.',
-            property
+            `[DataHydrator] Property "${property}" is marked as required but got an empty value.`
           );
         }
 
@@ -69,11 +68,8 @@ class DataHydrator {
 
           warning(
             isLazyEntity,
-            '[DataHydrator] Property "%s" is marked as required but got empty value. ' +
-              'Raw value "%s" was transformed to "%s".',
-            property,
-            rawValue,
-            value
+            `[DataHydrator] Property "${property}" is marked as required but got empty value. ` +
+              `Raw value "${rawValue}" was transformed to "${value}".`
           );
         }
 
