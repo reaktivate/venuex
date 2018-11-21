@@ -1,6 +1,6 @@
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import Popup from '../../ui/components/Popup.js';
+import Popup from '../../ui/components/NotificationsPopup.js';
 import Bell from '../../ui/icons/Bell.js';
 
 const items = [
@@ -31,7 +31,7 @@ const items = [
 ];
 const headerTitle = 'Overdue Payments:';
 
-storiesOf('components/Popup', module)
+storiesOf('components/NotificationsPopup', module)
   .add('Default', () => (
     <div style={{ marginLeft: '300px', marginTop: '20px' }}>
       <Popup items={items} headerTitle={headerTitle}>
