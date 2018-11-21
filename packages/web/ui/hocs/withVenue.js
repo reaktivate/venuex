@@ -41,7 +41,9 @@ const withVenue = (WrappedComponent) => {
     }
 
     componentWillUnmount() {
-      this.unsubscribe();
+      if (this.unsubscribe) {
+        this.unsubscribe();
+      }
     }
 
     render() {
