@@ -1,7 +1,7 @@
 import React from 'react';
 import { withTheme } from 'styled-components';
 
-const Checklist = props => (
+const Checklist = (props) => (
   <svg width={props.size} height={props.size} {...props} viewBox="0 0 24 24">
     <g fill={props.color ? props.color : props.theme.colors.primary}>
       <path d="M21.798 6.235v16.76c0 .443-.36.803-.804.803H3.24a.804.804 0 0 1-.804-.804V1.173c0-.444.36-.804.804-.804l13.332.003a.537.537 0 0 1 .145-.003l.094.007a.71.71 0 0 1 .103.028h.054l.1.068c.06.039.113.086.165.145l4.394 5.136a.769.769 0 0 1 .155.355v.034a.331.331 0 0 0-.041-.113l.041.15v.05l.004-.037.012.043zm-4.372-.803h1.814l-1.814-2.12v2.12zM4.051 22.19h16.132V7.039h-3.56a.804.804 0 0 1-.804-.804V1.944H4.051V22.19z" />

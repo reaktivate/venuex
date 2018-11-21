@@ -1,7 +1,7 @@
 import React from 'react';
 import { withTheme } from 'styled-components';
 
-const CalendarEdit = props => (
+const CalendarEdit = (props) => (
   <svg width={props.size} height={props.size} {...props} viewBox="0 0 26 22">
     <g fill="none" fillRule="evenodd">
       <path

@@ -1,0 +1,14 @@
+{
+  "env": {
+    "NODE_ENV": "development"
+  },
+  "watch": [
+    ".env",
+    "babel.config.js",
+    "next.config.js",
+    "server/index.js",
+    "router/index.js",
+    "config/index.js"
+  ],
+  "ext": "js json"
+}

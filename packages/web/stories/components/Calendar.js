@@ -7,9 +7,11 @@ import { action } from '@storybook/addon-actions';
 let today = new Date();
 
 let yesterday = new Date();
+
 yesterday.setDate(today.getDate() - 1);
 
 let tomorrow = new Date();
+
 tomorrow.setDate(today.getDate() + 1);
 
 const events = [

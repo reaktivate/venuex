@@ -1,7 +1,7 @@
 import React from 'react';
 import { withTheme } from 'styled-components';
 
-const Line = props => (
+const Line = (props) => (
   <svg width={props.size} height={props.size} {...props} viewBox="0 0 12 12">
     <path
       fill="none"
@@ -14,6 +14,7 @@ const Line = props => (
     />
   </svg>
 );
+
 Line.defaultProps = {
   size: 24
 };

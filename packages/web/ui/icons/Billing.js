@@ -1,7 +1,7 @@
 import React from 'react';
 import { withTheme } from 'styled-components';
 
-const Billing = props => (
+const Billing = (props) => (
   <svg width={props.size} height={props.size} viewBox="0 0 25 20" {...props}>
     <g fill="none" fillRule="evenodd">
       <path
@@ -17,6 +17,7 @@ const Billing = props => (
     </g>
   </svg>
 );
+
 Billing.defaultProps = {
   size: 24
 };

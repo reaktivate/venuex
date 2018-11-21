@@ -42,48 +42,47 @@ import MoneyIcon from '../../ui/icons/MoneyIcon';
 import Photos from '../../ui/icons/Photos';
 import RSVP from '../../ui/icons/RSVP';
 
-storiesOf('Icons', module)
-  .add('ALL', () => (
-  	<div>
-		<Bell color="#000000" />
-		<Billing color="#000000" />
-		<CalendarDelete color="#000000" />
-		<CalendarEdit color="#000000" />
-		<ManageStaffIcon color="#000000" />
-		<Delete color="#000000" />
-		<Rings color="#000000" />
-		<Plus color="#000000" />
-		<Crown color="#000000" />
-		<Celebration color="#000000" />
-		<Glasses color="#000000" />
-		<Close color="#000000" />
-		<CalendarBlank color="#000000" />
-		<User color="#000000" />
-		<ChairIcon color="#000000" />
-		<Room color="#000000" />
-		<Notes color="#000000" />
-		<CaretDown color="#000000" />
-		<CaretLeft color="#000000" />
-		<People color="#000000" />
-		<CaretRight color="#000000" />
-		<Checkmark color="#000000" />
-		<Exclamation color="#000000" />
-		<Line color="#000000" />
-		<Key color="#000000" />
-		<Camera color="#000000" />
-		<LogOut color="#000000" />
-		<Filter color="#000000" />
-		<Lock color="#000000" />
-		<Search color="#000000" />
-		<AddUserIcon color="#000000" />
-		<ImportFile color="#000000" />
-		<AddGroup color="#000000" />
-		<Home color="#000000" />
-		<Phone color="#000000" />
-		<Email color="#000000" />
-		<Checklist color="#000000" />
-		<MoneyIcon color="#000000" />
-		<Photos color="#000000" />
-		<RSVP color="#000000" />
-  	</div>
-  ));
+storiesOf('Icons', module).add('ALL', () => (
+  <div>
+    <Bell color="#000000" />
+    <Billing color="#000000" />
+    <CalendarDelete color="#000000" />
+    <CalendarEdit color="#000000" />
+    <ManageStaffIcon color="#000000" />
+    <Delete color="#000000" />
+    <Rings color="#000000" />
+    <Plus color="#000000" />
+    <Crown color="#000000" />
+    <Celebration color="#000000" />
+    <Glasses color="#000000" />
+    <Close color="#000000" />
+    <CalendarBlank color="#000000" />
+    <User color="#000000" />
+    <ChairIcon color="#000000" />
+    <Room color="#000000" />
+    <Notes color="#000000" />
+    <CaretDown color="#000000" />
+    <CaretLeft color="#000000" />
+    <People color="#000000" />
+    <CaretRight color="#000000" />
+    <Checkmark color="#000000" />
+    <Exclamation color="#000000" />
+    <Line color="#000000" />
+    <Key color="#000000" />
+    <Camera color="#000000" />
+    <LogOut color="#000000" />
+    <Filter color="#000000" />
+    <Lock color="#000000" />
+    <Search color="#000000" />
+    <AddUserIcon color="#000000" />
+    <ImportFile color="#000000" />
+    <AddGroup color="#000000" />
+    <Home color="#000000" />
+    <Phone color="#000000" />
+    <Email color="#000000" />
+    <Checklist color="#000000" />
+    <MoneyIcon color="#000000" />
+    <Photos color="#000000" />
+    <RSVP color="#000000" />
+  </div>
+));

@@ -1,7 +1,7 @@
 import React from 'react';
 import { withTheme } from 'styled-components';
 
-const User = props => (
+const User = (props) => (
   <svg width={props.size} height={props.size} {...props} viewBox="0 0 19 21">
     <g
       fill={props.color ? props.color : props.theme.colors.primary}

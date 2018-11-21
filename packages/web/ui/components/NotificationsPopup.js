@@ -30,7 +30,7 @@ const HeaderIcon = styled.i`
   margin-left: 5px;
   border-bottom: 1px solid #d8d8d8;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
-  background-color: ${props => props.count?"#c02026":"#cccccc"};
+  background-color: ${(props) => (props.count ? '#c02026' : '#cccccc')};
   border-radius: 50%;
   font-family: Montserrat;
   font-size: 14px;
@@ -57,7 +57,7 @@ const Item = styled.div`
   position: relative;
   transition-timing-function: ease-in;
   transition: 0.2s background-color;
-  &:hover{
+  &:hover {
     background-color: #fafafa;
   }
 `;
@@ -74,7 +74,7 @@ const ItemDesc = styled.div`
   font-size: 12px;
   font-weight: 300;
   color: #7d7d7d;
-  b{
+  b {
     margin-left: 5px;
     font-weight: 400;
   }
@@ -94,26 +94,33 @@ const PopupWrap = styled.div`
   transition-timing-function: ease-in;
   transition: 0.2s opacity;
   pointer-events: none;
-  ${props => props.isOpen && css`
-    opacity: 1;
-    pointer-events: auto;
-  `}
+  ${(props) =>
+    props.isOpen &&
+    css`
+      opacity: 1;
+      pointer-events: auto;
+    `}
 `;
 const Container = styled.div`
-  user-select: none; 
+  user-select: none;
   position: relative;
   display: inline-block;
 `;
+
 class ItemRender extends PureComponent {
-  render(){
+  render() {
     const { handleClickItem, title, desc, date, id } = this.props;
-    return(
+
+    return (
       <Item onClick={handleClickItem}>
         <ItemTitle>{title}</ItemTitle>
-        <ItemDesc>{desc}<b>{date}</b></ItemDesc>
-        <StyledArrow color="#c0b69b" width="9px"/>
+        <ItemDesc>
+          {desc}
+          <b>{date}</b>
+        </ItemDesc>
+        <StyledArrow color="#c0b69b" width="9px" />
       </Item>
-    )
+    );
   }
 }
 ItemRender.propTypes = {
@@ -126,36 +133,37 @@ ItemRender.propTypes = {
 class Popup extends PureComponent {
   state = {
     isOpen: false
-  }
-  handleClick = () =>{
+  };
+  handleClick = () => {
     this.setState({
       isOpen: !this.state.isOpen
     });
-  }
-  handleClickItem = (id) =>{
-    alert('id: '+id);
-  }
-  onClickAway = () =>{
+  };
+  handleClickItem = (id) => {
+    alert('id: ' + id);
+  };
+  onClickAway = () => {
     this.setState({
       isOpen: false
     });
-  }
+  };
   render() {
     const { headerTitle, items, children } = this.props;
     const count = items.length;
+
     return (
       <Container>
-        <NotificationButton noti={count?true:false} handleClick={this.handleClick}>
-        {children}
+        <NotificationButton noti={count ? true : false} handleClick={this.handleClick}>
+          {children}
         </NotificationButton>
-        <ClickAway onClickAway = {this.onClickAway}>
+        <ClickAway onClickAway={this.onClickAway}>
           <PopupWrap isOpen={this.state.isOpen}>
             <HeaderWrap>
               <HeaderText>{headerTitle}</HeaderText>
               <HeaderIcon count={count}>{count}</HeaderIcon>
             </HeaderWrap>
             <ItemWrap>
-              {items.map((item, index) =>
+              {items.map((item, index) => (
                 <ItemRender
                   handleClickItem={this.handleClickItem.bind(this, item.id)}
                   title={item.title}
@@ -163,7 +171,7 @@ class Popup extends PureComponent {
                   date={item.date}
                   key={index}
                 />
-              )}
+              ))}
             </ItemWrap>
           </PopupWrap>
         </ClickAway>

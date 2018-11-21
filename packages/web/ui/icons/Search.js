@@ -1,8 +1,7 @@
-/* eslint-disable */
 import React from 'react';
 import { withTheme } from 'styled-components';
 
-const Search = props => (
+const Search = (props) => (
   <svg width={props.size} height={props.size} {...props} viewBox="0 0 14 14">
     <path
       fill={props.color ? props.color : props.theme.colors.primary}
@@ -10,6 +9,7 @@ const Search = props => (
     />
   </svg>
 );
+
 Search.defaultProps = {
   size: 24
 };

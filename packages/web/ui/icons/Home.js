@@ -1,7 +1,7 @@
 import React from 'react';
 import { withTheme } from 'styled-components';
 
-const Home = props => (
+const Home = (props) => (
   <svg width={props.size} height={props.size} {...props} viewBox="0 0 25 25">
     <path
       fill={props.color ? props.color : props.theme.colors.primary}

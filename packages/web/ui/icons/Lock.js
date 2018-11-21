@@ -1,7 +1,7 @@
 import React from 'react';
 import { withTheme } from 'styled-components';
 
-const Lock = props => (
+const Lock = (props) => (
   <svg width={props.size} height={props.size} {...props} viewBox="0 0 24 24">
     <g fill={props.color ? props.color : props.theme.colors.primary}>
       <path d="M18.002 9.718h.677c1.037 0 1.891.793 1.891 1.782v9.071c0 .989-.854 1.783-1.89 1.783H5.32c-1.036 0-1.89-.794-1.89-1.783V11.5c0-.989.854-1.782 1.89-1.782H6v-3.47C6 3.155 8.697.649 12 .649s6.001 2.506 6.001 5.6v3.47zm-1.728-3.47c0-2.17-1.913-3.946-4.274-3.946-2.361 0-4.274 1.777-4.274 3.947v3.469h8.548v-3.47zm2.57 5.252c0-.064-.07-.128-.165-.128H5.321c-.096 0-.164.064-.164.128v9.071c0 .065.068.128.164.128h13.357c.096 0 .164-.063.164-.128v-.35l.001-8.721z" />
@@ -9,6 +9,7 @@ const Lock = props => (
     </g>
   </svg>
 );
+
 Lock.defaultProps = {
   size: 24
 };

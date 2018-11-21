@@ -2,11 +2,11 @@ import styled, { css } from 'styled-components';
 import propTypes from 'prop-types';
 
 const colors = {
-  'light_gray': '#b0b0b0',
-  'green': '#2cb070',
-  'red': '#c02026',
-  'yellow': '#f9cc4f',
-  'gray': '#888888',
+  light_gray: '#b0b0b0',
+  green: '#2cb070',
+  red: '#c02026',
+  yellow: '#f9cc4f',
+  gray: '#888888'
 };
 const Summary = styled.div`
   max-width: 150px;
@@ -16,27 +16,32 @@ const Summary = styled.div`
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  ${props => props.mode === 'two-dots' && css`
-    position: relative;
-    &:after, &:before{
-      content: '';
-      right: 4px;
-      position: absolute;
-      width: 4px;
-      border-radius: 50%;
-      height: 4px;
-      background-color: #b0b0b0;
-    }
-    &:after{
-      top: 52px;
-    }
-    &:before{
-      top: 45px;
-    }
-  `}
-  ${props => props.mode === 'line-before' && css`
-    border-left: 1px solid #b0b0b0;
-  `}
+  ${(props) =>
+    props.mode === 'two-dots' &&
+    css`
+      position: relative;
+      &:after,
+      &:before {
+        content: '';
+        right: 4px;
+        position: absolute;
+        width: 4px;
+        border-radius: 50%;
+        height: 4px;
+        background-color: #b0b0b0;
+      }
+      &:after {
+        top: 52px;
+      }
+      &:before {
+        top: 45px;
+      }
+    `}
+  ${(props) =>
+    props.mode === 'line-before' &&
+    css`
+      border-left: 1px solid #b0b0b0;
+    `}
 }
 @media screen and (max-width: 1250px){
   padding: 0 10px 10px 10px;
@@ -54,7 +59,7 @@ const Name = styled.span`
   line-height: normal;
   letter-spacing: -0.3px;
   color: #b0b0b0;
-  color: ${props => colors[props.color]};
+  color: ${(props) => colors[props.color]};
 `;
 const Count = styled.span`
   font-family: 'Lora';
@@ -72,11 +77,12 @@ const SummaryRender = ({ name, count, color, mode }) => (
     <Count>{count}</Count>
   </Summary>
 );
+
 SummaryRender.propTypes = {
   name: propTypes.string.isRequired,
   count: propTypes.string.isRequired,
   color: propTypes.string,
-  mode: propTypes.oneOf(['line-before', 'two-dots']),
+  mode: propTypes.oneOf(['line-before', 'two-dots'])
 };
 
 export default SummaryRender;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { withTheme } from 'styled-components';
 
-const Glasses = props => (
+const Glasses = (props) => (
   <svg width={props.size} height={props.size} {...props} viewBox="0 0 60 71">
     <g
       fill={props.color ? props.color : props.theme.colors.primary}
@@ -15,6 +15,7 @@ const Glasses = props => (
     </g>
   </svg>
 );
+
 Glasses.defaultProps = {
   size: 24
 };
