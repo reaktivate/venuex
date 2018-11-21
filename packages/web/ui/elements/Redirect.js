@@ -8,7 +8,7 @@ class Redirect extends Component {
   };
 
   componentDidMount() {
-    Router.push(this.props.to);
+    Router.pushRoute(this.props.to);
   }
 
   render() {
