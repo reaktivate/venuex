@@ -1,8 +1,8 @@
 import { createGlobalStyle } from 'styled-components';
-import MontserratSemiBoldFont from '@venuex/web/ui/assets/fonts/Montserrat-SemiBold.ttf';
-import MontserratBoldFont from '@venuex/web/ui/assets/fonts/Montserrat-Bold.ttf';
-import MontserratBlackFont from '@venuex/web/ui/assets/fonts/Montserrat-Black.ttf';
-import MontserratLoraRegular from '@venuex/web/ui/assets/fonts/Lora-Regular.ttf';
+import MontserratSemiBoldFont from '@venuex/web/assets/fonts/Montserrat-SemiBold.ttf';
+import MontserratBoldFont from '@venuex/web/assets/fonts/Montserrat-Bold.ttf';
+import MontserratBlackFont from '@venuex/web/assets/fonts/Montserrat-Black.ttf';
+import MontserratLoraRegular from '@venuex/web/assets/fonts/Lora-Regular.ttf';
 
 export default createGlobalStyle`
   @font-face {
