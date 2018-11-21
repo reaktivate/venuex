@@ -29,7 +29,7 @@ const ErrorText = styled.div`
   color: #c02026;
   font-size: 12px;
   position: absolute;
-  top: 0;
+  bottom: 100%;
 `;
 
 const LabelWrapper = styled.div`
@@ -41,11 +41,12 @@ const LabelWrapper = styled.div`
   letter-spacing: -0.3px;
   min-width: 100px;
   box-sizing: border-box;
+  padding-top: ${(props) => props.labelMarginTop};
 `;
 
-const BaseInput = ({ label, children, alignItems, ...props }) => (
+const BaseInput = ({ label, children, alignItems, labelMarginTop, ...props }) => (
   <Container alignItems={alignItems}>
-    <LabelWrapper>{label}</LabelWrapper>
+    <LabelWrapper labelMarginTop={labelMarginTop}>{label}</LabelWrapper>
     <Right>
       {props.meta && props.meta.touched && props.meta.error && (
         <ErrorText>{props.meta.error}</ErrorText>

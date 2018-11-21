@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import LegendItem from '@venuex/web/ui/components/Events/LegendItem';
+import LegendItem from '@venuex/web/ui/components/events/LegendItem';
 
 storiesOf('components/Events/LegendItem', module).add('default', () => (
   <React.Fragment>

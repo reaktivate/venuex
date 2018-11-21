@@ -19,6 +19,7 @@ const StyledSelect = styled.select`
   font-weight: 300;
   &:focus {
     outline: 0;
+    border-bottom: 1px solid #c0b69b;
   }
 
   ${(props) =>
