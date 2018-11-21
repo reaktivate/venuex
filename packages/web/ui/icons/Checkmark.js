@@ -1,4 +1,3 @@
-/*eslint-disable */
 import React from 'react';
 import { withTheme } from 'styled-components';
 
@@ -10,6 +9,7 @@ const Checkmark = (props) => (
     />
   </svg>
 );
+
 Checkmark.defaultProps = {
   size: 24
 };

@@ -1,13 +1,9 @@
-/* eslint-disable */
 import React from 'react';
 import { withTheme } from 'styled-components';
 
-const AddUserIcon = props => (
+const AddUserIcon = (props) => (
   <svg width={props.size} height={props.size} {...props} viewBox="0 0 26 22">
-    <g
-      fill={props.color ? props.color : props.theme.colors.primary}
-      fillRule="evenodd"
-    >
+    <g fill={props.color ? props.color : props.theme.colors.primary} fillRule="evenodd">
       <path d="M22.234 10.929h-2.111l.002-2.116a.59.59 0 0 0-.586-.588.59.59 0 0 0-.588.588l-.003 2.115-2.116-.003a.596.596 0 0 0-.591.588v.009a.607.607 0 0 0 .175.409c.106.106.255.17.41.176l2.121-.004v2.112a.594.594 0 0 0 .582.595.591.591 0 0 0 .593-.587v-2.12h2.112a.59.59 0 0 0 .588-.587.589.589 0 0 0-.588-.587z" />
       <path
         fillRule="nonzero"

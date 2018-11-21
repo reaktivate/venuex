@@ -1,4 +1,3 @@
-/*eslint-disable */
 import React from 'react';
 import { withTheme } from 'styled-components';
 
@@ -11,6 +10,7 @@ const CaretDown = (props) => (
     />
   </svg>
 );
+
 CaretDown.defaultProps = {
   size: 24
 };

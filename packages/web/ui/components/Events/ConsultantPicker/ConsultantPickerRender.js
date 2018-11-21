@@ -1,4 +1,3 @@
-/*eslint-disable */
 import React from 'react';
 
 import styled, { css } from 'styled-components';
@@ -154,6 +153,7 @@ const EmployeeRender = (props) => {
 
   const isPicked = picked.indexOf(employee.id) !== -1;
   const isOwner = owner === employee.id;
+
   return (
     <Consultant picked={isPicked} isOwner={isOwner} key={employee.id}>
       <Group>
@@ -166,10 +166,7 @@ const EmployeeRender = (props) => {
       </Group>
       <Group>
         {isOwner ? (
-          <OwnerIcon
-            alt=""
-            className="assign-badge"
-          />
+          <OwnerIcon alt="" className="assign-badge" />
         ) : (
           <BtnOwner
             alt=""
@@ -184,7 +181,9 @@ const EmployeeRender = (props) => {
 
 const ConsultantPickerRender = (props) => {
   const { handleToggle, getEmployeeById, isOpen, employees, picked, owner } = props;
+
   console.log(picked);
+
   return (
     <BaseInput label="Consultant:" {...props}>
       <Container {...props}>
@@ -194,12 +193,12 @@ const ConsultantPickerRender = (props) => {
               ? 'Pick a staff'
               : picked.map((id) => (
                 <Group key={id} style={{ margin: '10px 0px' }}>
-                  <ConsultantLabel
-                    name={getEmployeeById(id).name}
-                    picture={getEmployeeById(id).picture}
-                  />
-                  {owner === id && <OwnerIcon size={76} />}
-                </Group>
+                    <ConsultantLabel
+                      name={getEmployeeById(id).name}
+                      picture={getEmployeeById(id).picture}
+                    />
+                    {owner === id && <OwnerIcon size={76} />}
+                  </Group>
                 ))}
           </Placeholder>
           {isOpen ? <StyledCaretDown size={14} /> : <StyledCaretUp size={14} />}
