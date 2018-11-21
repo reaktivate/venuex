@@ -18,7 +18,6 @@
         "displayName": true,
         "preprocess": false
       }
-    ],
-    "babel-plugin-dev-expression"
+    ]
   ]
 }

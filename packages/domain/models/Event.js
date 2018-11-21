@@ -17,14 +17,14 @@ class Event extends Entity {
     // type: DataTypes.string.required,
     start: DataTypes.date.required,
     end: DataTypes.date.required,
-    payments: DataTypes.arrayOf(Payment),
+    payments: DataTypes.arrayOf(DataTypes.embed(Payment)),
     notes: DataTypes.string,
     clientName: DataTypes.string,
     clientId: DataTypes.string, // reference to client user, in future - NA now
     room: DataTypes.string, // reference to venue.room
     layout: DataTypes.string, // reference to venue.layout
     minimumGuests: DataTypes.int,
-    consultants: DataTypes.arrayOf(string), // references to staff
+    consultants: DataTypes.arrayOf(DataTypes.string), // references to staff
     owner: DataTypes.string, // reference to staff
     ceremonyKind: DataTypes.string, // reference to venue.ceremonyKinds
     actualGuests: DataTypes.int
@@ -42,7 +42,7 @@ class Event extends Entity {
   @observable layout;
   @observable minimumGuests;
   @observable consultants;
-  @osbervable owner;
+  @observable owner;
   @observable ceremonyKind;
 }
 
