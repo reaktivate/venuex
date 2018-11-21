@@ -17,6 +17,7 @@ const ColorExample = styled.div`
 const Label = styled.div`
   font-size: 12px;
   color: #888888;
+  font-weight: 300;
   float: left;
   margin: 3px 5px;
   margin-right: 20px;

@@ -27,7 +27,7 @@ const StyledTextField = styled.input`
 `;
 
 const Input = (props) => (
-  <BaseInput {...props} label={props.test}>
+  <BaseInput {...props} label={props.label}>
     <StyledTextField {...props} />
   </BaseInput>
 );
