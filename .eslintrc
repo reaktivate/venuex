@@ -23,7 +23,7 @@
     "operator-linebreak": ["error", "after"],
     "consistent-return": "off",
     "no-process-exit": "off",
-    "no-console": "error",
+    "no-console": "warn",
     "no-multiple-empty-lines": ["error", { "max": 1, "maxEOF": 0 }],
     "generator-star-spacing": ["error", "after"],
     "padding-line-between-statements": [

@@ -39,8 +39,6 @@ class AuthService extends AbstractService {
     const { auth } = this;
 
     return auth.onAuthStateChanged((user) => {
-      console.log('onAuthStateChanged: ', user && user.toJSON());
-
       this.syncAuthenticatedUser();
     });
   }

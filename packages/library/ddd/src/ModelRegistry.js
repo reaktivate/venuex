@@ -1,6 +1,6 @@
 import { getModelName as getClassModelName, isModel } from './Metadata';
 import isString from 'lodash/isString';
-import invariant from 'invariant';
+import invariant from 'tiny-invariant';
 
 function getModelName(arg) {
   if (!isString(arg)) {
@@ -25,8 +25,7 @@ class ModelRegistry {
     if (this.map.has(name)) {
       invariant(
         Class === this.map.get(name),
-        '[ModelRegistry] Domain model with name "%s" is already registered!',
-        name
+        `[ModelRegistry] Domain model with name "${name}" is already registered!`
       );
     }
 

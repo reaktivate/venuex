@@ -6,8 +6,8 @@ import toString from 'lodash/toString';
 import toNumber from 'lodash/toNumber';
 import toInteger from 'lodash/toInteger';
 import identity from 'lodash/identity';
-import invariant from 'invariant';
-import warning from '@venuex/utils/warning';
+import invariant from 'tiny-invariant';
+import warning from 'tiny-warning';
 import moment from 'moment';
 import createDefaultEntityResolver from './utils/defaultEntityResolver';
 
@@ -95,7 +95,7 @@ export class DateType extends Type {
     const date = moment(value, this._format, true);
 
     if (!date.isValid()) {
-      warning(false, '[DateType] Invalid date value: "%s".', value);
+      warning(false, `[DateType] Invalid date value: "${value}".`);
 
       return;
     }
@@ -121,7 +121,7 @@ export class ObjectType extends Type {
 
   _transformer = (value, { domainManager }) => {
     if (!isPlainObject(value)) {
-      warning(false, '[ObjectType] Value is not an object: "%s".', value);
+      warning(false, `[ObjectType] Value is not an object: "${value}".`);
 
       return;
     }
@@ -161,9 +161,8 @@ export class EnumerationType extends Type {
     if (!this._options.includes(value)) {
       warning(
         false,
-        '[EnumerationType] Invalid enumeration option. Allowed one of ["%s"] but got "%s".',
-        this._options.join('", "'),
-        value
+        '[EnumerationType] Invalid enumeration option. ' +
+          `Allowed one of ["${this._options.join('", "')}"] but got "${value}".`
       );
 
       return;
@@ -184,7 +183,7 @@ export class ArrayType extends Type {
 
   _transformer = (value, ...args) => {
     if (!isArray(value)) {
-      warning(false, '[ArrayType] Value is not an array: "%s".', value);
+      warning(false, `[ArrayType] Value is not an array: "${value}".`);
 
       return;
     }
@@ -212,7 +211,7 @@ export class MapType extends Type {
 
   _transformer = (value, ...args) => {
     if (!isPlainObject(value)) {
-      warning(false, '[MapType] Value is not an map: "%s".', value);
+      warning(false, `[MapType] Value is not an map: "${value}".`);
 
       return;
     }

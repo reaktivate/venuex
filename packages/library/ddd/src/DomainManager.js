@@ -2,8 +2,8 @@ import InstantiateScope from './InstantiateScope';
 import ModelRegistry from './ModelRegistry';
 import ModelFactory from './ModelFactory';
 import { getModelName, isStoreModel } from './Metadata';
-import invariant from 'invariant';
-import warning from '@venuex/utils/warning';
+import invariant from 'tiny-invariant';
+import warning from 'tiny-warning';
 
 class DomainManager {
   dependencies = {};
