@@ -62,11 +62,9 @@ Event.propTypes = {
 const StyledBigCalendar = styled(BigCalendar)`
   font-family: 'Montserrat';
   border: 0;
-
   * {
     border-color: #ededed !important;
   }
-
   & .rbc-month-header {
     & > div {
       border-left: 0px;
@@ -81,33 +79,27 @@ const StyledBigCalendar = styled(BigCalendar)`
       color: #888888;
     }
   }
-
   .rbc-month-row {
     .rbc-row-bg {
       .rbc-day-bg {
         &.rbc-off-range-bg {
           background-color: #fafafa !important;
         }
-
         &.rbc-today {
           background-color: #ffffff;
         }
       }
-
       .rbc-row-segment {
         padding: 0 0 2px 0;
       }
     }
-
     .rbc-row-content {
       pointer-events: none;
-
       .rbc-date-cell {
         padding: 8px 5px 4px 0;
         color: #7d7d7d;
         font-size: 14px;
         font-weight: 300;
-
         & ${StyledDateHeader} {
           width: 22px;
           height: 22px;
@@ -116,14 +108,12 @@ const StyledBigCalendar = styled(BigCalendar)`
           align-items: center;
           border-radius: 50%;
         }
-
         &.rbc-current {
           & ${StyledDateHeader} {
             background-color: black;
             color: #ffffff;
           }
         }
-
         &.rbc-off-range {
           opacity: 0.49;
           color: #888888;

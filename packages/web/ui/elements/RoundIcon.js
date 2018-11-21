@@ -1,10 +1,11 @@
+import React from 'react';
 import styled, { css } from 'styled-components';
 import propTypes from 'prop-types';
 
 const Box = styled.div`
   user-select: none;
-  height: 120px;
-  width: 120px;
+  height: ${(props) => props.size}px;
+  width: ${(props) => props.size}px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -41,11 +42,19 @@ const Box = styled.div`
     `}
 `;
 
-const BoxRender = ({ type, children }) => <Box type={type}>{children}</Box>;
+const BoxRender = ({ type, children, ...props }) => (
+  <Box type={type} {...props}>
+    {children}
+  </Box>
+);
 
 BoxRender.propTypes = {
   type: propTypes.oneOf(['photo', 'icon']),
   children: propTypes.element.isRequired
+};
+
+BoxRender.defaultProps = {
+  size: 120
 };
 
 export default BoxRender;
