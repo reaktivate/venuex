@@ -1,9 +1,11 @@
 import React from 'react';
 import { configure, addDecorator } from '@storybook/react';
 import { withOptions } from '@storybook/addon-options';
-import Layout from '@venuex/web/ui/components/Layout';
+
+import Layout from '@venuex/web/ui/layouts/MasterLayout';
 import { ThemeProvider } from 'styled-components';
-import defaultTheme from '@venuex/web/ui/styles/defaultTheme.json';
+
+import theme from '@venuex/web/ui/styles/theme';
 
 function loadStories() {
   require('../stories');
@@ -15,7 +17,8 @@ addDecorator(withOptions({
 
 addDecorator((story) => (
   <Layout>
-    <ThemeProvider theme={defaultTheme}>
+
+    <ThemeProvider theme={theme}>
       {story()}
     </ThemeProvider>
   </Layout>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { withTheme } from 'styled-components';
 
-const Key = props => (
+const Key = (props) => (
   <svg width={props.size} height={props.size} {...props} viewBox="0 0 24 24">
     <g fill={props.color ? props.color : props.theme.colors.primary}>
       <path d="M5.021 16.445a4.904 4.904 0 0 1-4.897-4.898c0-2.7 2.197-4.897 4.897-4.897S9.92 8.848 9.92 11.547c0 2.7-2.198 4.898-4.898 4.898zm0-8.084a3.19 3.19 0 0 0-3.187 3.186 3.19 3.19 0 0 0 3.187 3.187 3.19 3.19 0 0 0 3.187-3.187 3.191 3.191 0 0 0-3.187-3.186z" />
@@ -11,6 +11,7 @@ const Key = props => (
     </g>
   </svg>
 );
+
 Key.defaultProps = {
   size: 24
 };

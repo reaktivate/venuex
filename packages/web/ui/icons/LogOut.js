@@ -1,8 +1,7 @@
-/* eslint-disable */
 import React from 'react';
 import { withTheme } from 'styled-components';
 
-const Camera = props => (
+const Camera = (props) => (
   <svg width={props.size} height={props.size} {...props} viewBox="0 0 24 24">
     <path
       fill={props.color ? props.color : props.theme.colors.primary}
@@ -11,6 +10,7 @@ const Camera = props => (
     />
   </svg>
 );
+
 Camera.defaultProps = {
   size: 24
 };

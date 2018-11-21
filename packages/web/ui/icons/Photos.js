@@ -1,7 +1,7 @@
 import React from 'react';
 import { withTheme } from 'styled-components';
 
-const Photos = props => (
+const Photos = (props) => (
   <svg width={props.size} height={props.size} {...props} viewBox="0 0 24 24">
     <g fill={props.color ? props.color : props.theme.colors.primary}>
       <path d="M2.889 2.878c-.236 0-.431.215-.431.485v17.41c0 .27.195.484.43.484H20.81c.236 0 .43-.215.43-.484V3.363c0-.27-.194-.485-.43-.485H2.889zm0-1.352h17.92c.929 0 1.678.824 1.678 1.837v17.41c0 1.012-.749 1.836-1.677 1.836H2.889c-.929 0-1.677-.824-1.677-1.836V3.363c0-1.013.748-1.837 1.677-1.837z" />
@@ -10,6 +10,7 @@ const Photos = props => (
     </g>
   </svg>
 );
+
 Photos.defaultProps = {
   size: 24
 };

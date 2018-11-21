@@ -6,7 +6,7 @@
     "plugin:node/recommended",
     "plugin:jest/recommended",
     "plugin:import/warnings",
-    "prettier"
+    "plugin:prettier/recommended"
   ],
   "env": {
     "es6": true,
@@ -14,6 +14,7 @@
     "jest": true
   },
   "rules": {
+    "prettier/prettier": "error",
     "indent": "off",
     "no-unused-vars": ["error", { "vars": "all", "args": "none" }],
     "no-underscore-dangle": "off",
@@ -24,11 +25,18 @@
     "no-process-exit": "off",
     "no-console": "error",
     "no-multiple-empty-lines": ["error", { "max": 1, "maxEOF": 0 }],
+    "generator-star-spacing": ["error", "after"],
+    "padding-line-between-statements": [
+      "error",
+      { "blankLine": "always", "prev": "*", "next": "return" },
+      { "blankLine": "always", "prev": ["const", "let", "var"], "next": "*" },
+      { "blankLine": "any", "prev": ["const", "let", "var"], "next": ["const", "let", "var"] },
+      { "blankLine": "always", "prev": "multiline-block-like", "next": "multiline-block-like" }
+    ],
     "eol-last": ["error", "always"],
     "node/no-unsupported-features": "off",
     "node/no-unsupported-features/es-syntax": "off",
     "import/no-extraneous-dependencies": "off",
-    "import/no-named-as-default-member": "off",
-    "prettier/prettier": "error"
+    "import/no-named-as-default-member": "off"
   }
 }

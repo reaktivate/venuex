@@ -26,3 +26,4 @@ import './elements/Switcher.js';
 import './elements/YNStatus.js';
 import './icons/Icons.js';
 import './components/ManageStaff/StaffList';
+import './elements/form/SearchInput.js';

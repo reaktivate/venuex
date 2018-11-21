@@ -1,3 +1,5 @@
 import React from 'react';
 
-export default () => <div>Welcome to /host!</div>;
+const HostIndexPage = () => <div>Welcome to /host!</div>;
+
+export default HostIndexPage;

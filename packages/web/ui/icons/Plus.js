@@ -14,6 +14,7 @@ const Plus = (props) => {
     </svg>
   );
 };
+
 Plus.defaultProps = {
   size: 24
 };

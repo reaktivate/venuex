@@ -31,12 +31,14 @@ const Button = styled.div`
       background-color: #c0b69b;
     }
   }
-  ${props => props.active && css`
-    filter: grayscale(0%);
-    &:after{
-      background-color: #c0b69b; 
-    }
-  `}
+  ${(props) =>
+    props.active &&
+    css`
+      filter: grayscale(0%);
+      &:after {
+        background-color: #c0b69b;
+      }
+    `}
 }
 `;
 const Name = styled.span`
@@ -53,11 +55,12 @@ const ButtonRender = ({ text, children, active, handleClick }) => (
     <Name>{text}</Name>
   </Button>
 );
+
 ButtonRender.propTypes = {
   text: propTypes.string.isRequired,
   handleClick: propTypes.func.isRequired,
   children: propTypes.element.isRequired,
-  active: propTypes.bool,
+  active: propTypes.bool
 };
 
 export default ButtonRender;

@@ -1,17 +1,17 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import {
   Tab as UnstyledTab,
   TabList as UnstyledTabList,
   Tabs as UnstyledTabs,
   TabPanel as UnstyledTabPanel
 } from 'react-web-tabs';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 const Tabs = styled(UnstyledTabs)`
-	padding: 25px 0;
-	max-width: 500px;
-	width: 100%;
-	display: flex;
+  padding: 25px 0;
+  max-width: 500px;
+  width: 100%;
+  display: flex;
 `;
 
 const TabList = styled(UnstyledTabList)`
@@ -37,7 +37,7 @@ const Tab = styled(UnstyledTab)`
   background-color: #ffffff;
   filter: grayscale(100%);
   transition-timing-function: ease-in;
-  transition: .2s filter;
+  transition: 0.2s filter;
   user-select: none;
   text-transform: uppercase;
   font-family: Montserrat;
@@ -45,11 +45,12 @@ const Tab = styled(UnstyledTab)`
   font-weight: 400;
   letter-spacing: -0.1px;
   color: #c0b69b;
-  &>svg, &>img{
-	  margin-right: 10px;
+  & > svg,
+  & > img {
+    margin-right: 10px;
   }
-  &:after{
-	  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  &:after {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
     content: '';
     right: 0;
     position: absolute;
@@ -57,28 +58,23 @@ const Tab = styled(UnstyledTab)`
     height: 100%;
     background-color: transparent;
     transition-timing-function: ease-in;
-    transition: .2s all;
+    transition: 0.2s all;
   }
-  &:hover{
-	  filter: grayscale(0%);
+  &:hover {
+    filter: grayscale(0%);
   }
-  &[aria-selected = "true"]{	
-	  filter: grayscale(0%);
-	  &:after{
-		  box-shadow: -2px 0 4px 0 rgba(0, 0, 0, 0.15);
-	    background-color: #c0b69b; 
-	  }
+  &[aria-selected='true'] {
+    filter: grayscale(0%);
+    &:after {
+      box-shadow: -2px 0 4px 0 rgba(0, 0, 0, 0.15);
+      background-color: #c0b69b;
+    }
   }
 `;
 
 const TabPanel = styled(UnstyledTabPanel)`
-	padding: 0 10px 0 40px;
-	flex-grow: 1;
+  padding: 0 10px 0 40px;
+  flex-grow: 1;
 `;
 
-export {
-  Tabs,
-  TabList,
-  Tab,
-  TabPanel
-};
+export { Tabs, TabList, Tab, TabPanel };

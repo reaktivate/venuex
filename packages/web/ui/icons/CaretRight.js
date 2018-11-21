@@ -1,7 +1,7 @@
 import React from 'react';
 import { withTheme } from 'styled-components';
 
-const CaretRight = props => (
+const CaretRight = (props) => (
   <svg width={props.size} height={props.size} {...props} viewBox="0 0 9 16">
     <path
       fill={props.color ? props.color : props.theme.colors.primary}
@@ -9,6 +9,7 @@ const CaretRight = props => (
     />
   </svg>
 );
+
 CaretRight.defaultProps = {
   size: 24
 };

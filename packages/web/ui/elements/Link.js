@@ -1,1 +1,5 @@
-export { Link as default } from '@venuex/web/router';
+import styled from 'styled-components';
+
+const Link = styled.a``;
+
+export default Link;

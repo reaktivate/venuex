@@ -1,7 +1,7 @@
 import React from 'react';
 import { withTheme } from 'styled-components';
 
-const MoneyIcon = props => (
+const MoneyIcon = (props) => (
   <svg width={props.size} height={props.size} {...props} viewBox="0 0 24 24">
     <g fill={props.color ? props.color : props.theme.colors.primary}>
       <path d="M1.65 7.15a.35.35 0 0 0-.35.35v12c0 .193.157.35.35.35h19a.35.35 0 0 0 .35-.35v-12a.35.35 0 0 0-.35-.35h-19zm0-1.3h19c.911 0 1.65.739 1.65 1.65v12a1.65 1.65 0 0 1-1.65 1.65h-19A1.65 1.65 0 0 1 0 19.5v-12c0-.911.739-1.65 1.65-1.65z" />

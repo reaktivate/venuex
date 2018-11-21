@@ -1,7 +1,7 @@
 import React from 'react';
 import { withTheme } from 'styled-components';
 
-const Bell = props => (
+const Bell = (props) => (
   <svg width={props.size} height={props.size} {...props} viewBox="0 0 22 24">
     <g transform="translate(-15 -13)" fill="none" fillRule="evenodd">
       <path
