@@ -25,3 +25,4 @@ import './elements/NotificationBox.js';
 import './elements/Switcher.js';
 import './elements/YNStatus.js';
 import './icons/Icons.js';
+import './components/ManageStaff/StaffList';
