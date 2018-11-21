@@ -16,8 +16,10 @@ const StyledSelect = styled.select`
   cursor: pointer;
   color: #7d7d7d;
   font-size: 15px;
+  font-weight: 300;
   &:focus {
     outline: 0;
+    border-bottom: 1px solid #c0b69b;
   }
 
   ${(props) =>
