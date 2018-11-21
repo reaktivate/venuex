@@ -1,41 +1,22 @@
 import React, { PureComponent } from 'react';
 import styled, { css } from 'styled-components';
 import propTypes from 'prop-types';
-import CheckBox from '../elements/form/Checkbox.js';
 import Button from '../../ui/elements/buttons/ButtonWithIcon.js';
 import Icon from '../../ui/icons/Lock.js';
 import ClickAway from '../../ui/utils/ClickAwayListener.js';
+import Item from '../../ui/elements/PermissionItem.js';
 
-const ItemWrap = styled.div`
-  overflow-y: scroll;
-  width: 100%;
-  height: 228px;
-`;
-const Item = styled.div`
-  cursor: pointer;
-  box-sizing: border-box;
-  padding: 8px 20px;
-  display: flex;
-  align-items: center;
-  min-height: 55px;
-  background-color: #ffffff;
-  transition-timing-function: ease-in;
-  transition: 0.2s background-color;
-  &:hover{
-    background-color: #fafafa;
-  }
-`;
-const ItemIcon = styled.img`
-  max-width: 24px;
-  margin-right: 8px;
-`;
-const ItemTitle = styled.span`
-  font-size: 15px;
-  font-weight: 300;
-  letter-spacing: -0.3px;
-  color: #222222;
-`;
+import CalendarEdit from '../../ui/icons/CalendarEdit.js';
+import CalendarDelete from '../../ui/icons/CalendarDelete.js';
+import Billing from '../../ui/icons/Billing.js';
+import ManageStaffIcon from '../../ui/icons/ManageStaffIcon.js';
 
+const Container = styled.div`
+  user-select: none; 
+  font-family: Montserrat;
+  position: relative;
+  display: inline-block;
+`;
 const PopupWrap = styled.div`
   position: absolute;
   width: 100%;
@@ -71,33 +52,11 @@ const PopupSubmit = styled.button`
     background-color: #fafafa;
   }
 `;
-
-const Container = styled.div`
-  user-select: none; 
-  font-family: Montserrat;
-  position: relative;
-  display: inline-block;
+const ItemWrap = styled.div`
+  overflow-y: scroll;
+  width: 100%;
+  height: 228px;
 `;
-
-class ItemRender extends PureComponent {
-  render(){
-    const { handleClickItem, name, picture, checked } = this.props;
-    return(
-      <Item onClick={handleClickItem}>
-        <CheckBox checked={checked}/>
-        <ItemIcon src={picture} />
-        <ItemTitle>{name}</ItemTitle>
-      </Item>
-    )
-  }
-}
-
-ItemRender.propTypes = {
-  handleClickItem: propTypes.func.isRequired,
-  name: propTypes.string.isRequired,
-  picture: propTypes.string.isRequired,
-  checked: propTypes.bool,
-};
 
 class Popup extends PureComponent {
   constructor(props){
@@ -142,25 +101,40 @@ class Popup extends PureComponent {
         <Button
           ready={true}
           text="Edit permission for 2 staff members"
-          textColor="gold"
+          textColor={this.state.isOpen?"gold":"gray"}
           buttonColor="white"
           mode="border"
           handleClick={this.togglePopup}
         >
-          <Icon color="#c0b69b" />
+          <Icon color={this.state.isOpen?"#c0b69b":"#B0B0B0"} />
         </Button>
         <ClickAway onClickAway = {this.onClickAway}>
           <PopupWrap isOpen={this.state.isOpen}>
             <ItemWrap>
-              {items.map((item, index) =>
-                <ItemRender
-                  handleClickItem={this.handleClickItem.bind(this, item.id)}
-                  name={item.name}
-                  picture={item.picture}
-                  checked={this.state.checked.indexOf(item.id) !== -1}
-                  key={index}
-                />
-              )}
+              <Item
+                handleClickItem={this.handleClickItem.bind(this, 1)}
+                name="Create & Edit Events"
+                icon={<CalendarEdit color="#222222" size="24px" style={{marginRight: '10px'}}/>}
+                checked={this.state.checked.indexOf(1) !== -1}
+              />
+              <Item
+                handleClickItem={this.handleClickItem.bind(this, 2)}
+                name="Delete Events"
+                icon={<CalendarDelete color="#222222" size="24px" style={{marginRight: '10px'}}/>}
+                checked={this.state.checked.indexOf(2) !== -1}
+              />
+              <Item
+                handleClickItem={this.handleClickItem.bind(this, 3)}
+                name="View Billing"
+                icon={<Billing color="#222222" size="24px" style={{marginRight: '10px'}}/>}
+                checked={this.state.checked.indexOf(3) !== -1}
+              />
+              <Item
+                handleClickItem={this.handleClickItem.bind(this, 4)}
+                name="Manage Staff Permissions"
+                icon={<ManageStaffIcon color="#222222" size="24px" style={{marginRight: '10px'}}/>}
+                checked={this.state.checked.indexOf(4) !== -1}
+              />
             </ItemWrap>
             <PopupSubmit onClick={this.handleSave}>Save</PopupSubmit>
           </PopupWrap>

@@ -2,7 +2,7 @@ import './components/Calendar';
 import './components/Events/MonthPicker';
 import './components/Events/LegendItem';
 import './components/NotificationsPopup.js';
-import './components/Popup.js';
+import './components/PermissionPopup.js';
 import './components/Tabs.js';
 import './components/Events/ConsultantPicker';
 import './elements/buttons/RoundButton.js';
