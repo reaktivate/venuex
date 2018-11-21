@@ -27,7 +27,7 @@ const VenueWebsite = () => (
       {/*<Route path={router.path('venue.staff')} exact />*/}
       {/*<Route path={router.path('venue.billing')} exact />*/}
       <Redirect from={router.path('venue')} exact to="venue.events" />
-      <Route component={NotFoundPage}></Route>
+      <Route component={NotFoundPage} />
     </Switch>
   </VenueLayout>
 );
@@ -44,9 +44,11 @@ class Router extends Component {
       <ReactRouter history={history}>
         <MasterLayout>
           <Switch>
-            <Route path={router.path('landing')} exact>{dynamic(LandingPage)}</Route>
+            <Route path={router.path('landing')} exact>
+              {dynamic(LandingPage)}
+            </Route>
             <Route path={router.path('venue')}>{VenueWebsite}</Route>
-            <Route component={NotFoundPage}></Route>
+            <Route component={NotFoundPage} />
           </Switch>
         </MasterLayout>
       </ReactRouter>

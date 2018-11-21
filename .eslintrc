@@ -20,7 +20,7 @@
     "no-underscore-dangle": "off",
     "arrow-parens": ["error", "always"],
     "quote-props": ["error", "as-needed"],
-    "operator-linebreak": ["error", "after"],
+    "operator-linebreak": "off",
     "consistent-return": "off",
     "no-process-exit": "off",
     "no-console": "warn",

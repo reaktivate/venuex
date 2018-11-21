@@ -35,9 +35,7 @@ const withVenue = (WrappedComponent) => {
 
       if (!currentVenue) {
         // TODO: Render splash screen
-        return (
-          <div>Loading...</div>
-        )
+        return <div>Loading...</div>;
       }
 
       return (

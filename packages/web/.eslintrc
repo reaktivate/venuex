@@ -1,6 +1,12 @@
 {
-  "plugins": ["react", "jsx-a11y"],
-  "extends": ["plugin:react/recommended", "react-app", "plugin:jsx-a11y/recommended", "prettier/react"],
+  "plugins": ["react", "jsx-a11y", "prettier"],
+  "extends": [
+    "react-app",
+    "plugin:react/recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:prettier/recommended",
+    "prettier/react"
+  ],
   "env": {
     "browser": true
   },
@@ -10,20 +16,18 @@
     }
   },
   "rules": {
-    "indent": "off",
-    "arrow-parens": ["error", "always"],
+    "prettier/prettier": "warn",
     "space-before-function-paren": [
-      "error",
+      "warn",
       {
         "named": "never",
         "anonymous": "always",
         "asyncArrow": "always"
       }
     ],
-    "quote-props": ["error", "as-needed"],
-    "operator-linebreak": ["error", "after"],
+    "quote-props": ["warn", "as-needed"],
     "padding-line-between-statements": [
-      "error",
+      "warn",
       { "blankLine": "always", "prev": "import", "next": "*" },
       { "blankLine": "never", "prev": "import", "next": "import" },
       { "blankLine": "always", "prev": "*", "next": "return" },
@@ -31,8 +35,7 @@
       { "blankLine": "any", "prev": ["const", "let", "var"], "next": ["const", "let", "var"] },
       { "blankLine": "always", "prev": "multiline-block-like", "next": "multiline-block-like" }
     ],
-    "import/newline-after-import": "error",
-    "react/jsx-indent": ["error", 2],
+    "react/jsx-indent": "off",
     "react/sort-comp": "off",
     "react/no-find-dom-node": "off",
     "react/prop-types": "warn"
