@@ -1,8 +1,8 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import LegendItem from 'ui/components/events/LegendItem';
+import LegendItem from 'ui/components/Events/LegendItem';
 
-storiesOf('components/eevents/LegendItem', module).add('default', () => (
+storiesOf('components/Events/LegendItem', module).add('default', () => (
   <React.Fragment>
     <LegendItem color="#c0b69b" label=" = 1st Payment" />
     <LegendItem color="rgba(192, 182, 155, 0.65)" label=" = 2nd Payment" />
