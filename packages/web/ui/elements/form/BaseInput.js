@@ -41,7 +41,7 @@ const LabelWrapper = styled.div`
   letter-spacing: -0.3px;
   min-width: 100px;
   box-sizing: border-box;
-  padding-top: ${props => props.labelMarginTop};
+  padding-top: ${(props) => props.labelMarginTop};
 `;
 
 const BaseInput = ({ label, children, alignItems, labelMarginTop, ...props }) => (

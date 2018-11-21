@@ -12,7 +12,7 @@ const SearchBox = styled.div`
   border: 1px solid #ededed;
   position: relative;
   align-items: center;
-  input {
+  input{
     z-index: 2;
     position: relative;
     border: none;
@@ -31,7 +31,7 @@ const SearchBox = styled.div`
     line-height: normal;
     letter-spacing: -0.1px;
     color: #7c7a7a;
-    &::-webkit-input-placeholder {
+    &::-webkit-input-placeholder{
       font-family: 'Montserrat', sans-serif;
       font-size: 15px;
       font-weight: 300;
@@ -41,7 +41,7 @@ const SearchBox = styled.div`
       letter-spacing: -0.1px;
       color: #b0b0b0;
     }
-    &::-moz-placeholder {
+    &::-moz-placeholder{
       font-family: 'Montserrat', sans-serif;
       font-size: 15px;
       font-weight: 300;
@@ -51,7 +51,7 @@ const SearchBox = styled.div`
       letter-spacing: -0.1px;
       color: #b0b0b0;
     }
-    &:-ms-input-placeholder {
+    &:-ms-input-placeholder{
       font-family: 'Montserrat', sans-serif;
       font-size: 15px;
       font-weight: 300;
@@ -61,7 +61,7 @@ const SearchBox = styled.div`
       letter-spacing: -0.1px;
       color: #b0b0b0;
     }
-    &:-moz-placeholder {
+    &:-moz-placeholder{
       font-family: 'Montserrat', sans-serif;
       font-size: 15px;
       font-weight: 300;
@@ -72,8 +72,7 @@ const SearchBox = styled.div`
       color: #b0b0b0;
     }
   }
-  img,
-  svg {
+  img, svg{
     position: absolute;
     z-index: 1;
     right: 15px;

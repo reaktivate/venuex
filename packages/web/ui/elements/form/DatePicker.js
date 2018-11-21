@@ -21,7 +21,7 @@ const DatePickerWrapper = styled.div`
       css`
         padding: 0px;
       `}
-    &__month-container{
+    &__month-container {
       width: 100%;
     }
     &__triangle {
@@ -40,7 +40,7 @@ const DatePickerWrapper = styled.div`
       color: #000000;
       padding: 15px 0;
     }
-    &__day{
+    &__day {
       height: 28px;
       width: 28px;
       border-radius: 50%;
@@ -49,7 +49,7 @@ const DatePickerWrapper = styled.div`
       text-align: center;
       color: #7d7d7d;
       margin: 2.5%;
-      &:hover{
+      &:hover {
         border-radius: 50%;
       }
       &-name {
@@ -63,39 +63,39 @@ const DatePickerWrapper = styled.div`
         margin: 2.5%;
         box-sizing: border-box;
       }
-      &--outside-month{
+      &--outside-month {
         color: #b0b0b0;
       }
-      &--keyboard-selected{
+      &--keyboard-selected {
         background-color: #ffffff;
         border: 1px solid #7d7d7d;
-        &:hover{
+        &:hover {
           background-color: #f0f0f0;
         }
       }
-      &--today{
+      &--today {
         background-color: #000000;
         color: #ffffff;
         border-color: #000000;
-        &:hover{
+        &:hover {
           background-color: #000000;
         }
       }
     }
 
-    &__navigation{
+    &__navigation {
       width: 13px;
       height: 13px;
       border: 0;
       border-radius: 20%;
       border-top: 3px solid #c0b69b;
       top: 24px;
-      &--next{
+      &--next {
         border-right: 3px solid #c0b69b;
         transform: rotate(45deg);
         right: 34px;
       }
-      &--previous{
+      &--previous {
         border-left: 3px solid #c0b69b;
         transform: rotate(-45deg);
         left: 30px;
