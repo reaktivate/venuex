@@ -5,7 +5,7 @@
   "extends": [
     "plugin:node/recommended",
     "plugin:jest/recommended",
-    "plugin:import/warnings",
+    "plugin:import/recommended",
     "plugin:prettier/recommended"
   ],
   "env": {
@@ -28,6 +28,8 @@
     "generator-star-spacing": ["error", "after"],
     "padding-line-between-statements": [
       "error",
+      { "blankLine": "always", "prev": "import", "next": "*" },
+      { "blankLine": "never", "prev": "import", "next": "import" },
       { "blankLine": "always", "prev": "*", "next": "return" },
       { "blankLine": "always", "prev": ["const", "let", "var"], "next": "*" },
       { "blankLine": "any", "prev": ["const", "let", "var"], "next": ["const", "let", "var"] },
@@ -36,6 +38,7 @@
     "eol-last": ["error", "always"],
     "node/no-unsupported-features": "off",
     "node/no-unsupported-features/es-syntax": "off",
+    "import/newline-after-import": "error",
     "import/no-extraneous-dependencies": "off",
     "import/no-named-as-default-member": "off"
   }

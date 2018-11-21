@@ -22,6 +22,16 @@
     ],
     "quote-props": ["error", "as-needed"],
     "operator-linebreak": ["error", "after"],
+    "padding-line-between-statements": [
+      "error",
+      { "blankLine": "always", "prev": "import", "next": "*" },
+      { "blankLine": "never", "prev": "import", "next": "import" },
+      { "blankLine": "always", "prev": "*", "next": "return" },
+      { "blankLine": "always", "prev": ["const", "let", "var"], "next": "*" },
+      { "blankLine": "any", "prev": ["const", "let", "var"], "next": ["const", "let", "var"] },
+      { "blankLine": "always", "prev": "multiline-block-like", "next": "multiline-block-like" }
+    ],
+    "import/newline-after-import": "error",
     "react/jsx-indent": ["error", 2],
     "react/sort-comp": "off",
     "react/no-find-dom-node": "off",
