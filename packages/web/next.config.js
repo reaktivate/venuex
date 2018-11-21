@@ -1,3 +1,4 @@
+/* eslint-disable node/no-unpublished-require */
 const dotenv = require('dotenv');
 const dotenvExpand = require('dotenv-expand');
 
