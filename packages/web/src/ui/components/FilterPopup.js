@@ -92,7 +92,7 @@ class FilterPopup extends Component {
     super(props);
 
     this.state = {
-      isOpen: true,
+      isOpen: false,
       checked: null,
       eventName: ''
     };
