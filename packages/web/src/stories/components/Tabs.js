@@ -1,3 +1,4 @@
+import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { Tab, TabList, Tabs, TabPanel } from '../../ui/components/Tabs.js';
 import Icon from '../../ui/icons/User.js';

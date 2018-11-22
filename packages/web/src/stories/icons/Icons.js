@@ -14,7 +14,7 @@ import Glasses from '../../ui/icons/Glasses';
 import Close from '../../ui/icons/Close';
 import Calendar from '../../ui/icons/Calendar';
 import User from '../../ui/icons/User';
-import ChairIcon from '../../ui/icons/ChairIcon';
+import Chair from '../../ui/icons/Chair';
 import Room from '../../ui/icons/Room';
 import Notes from '../../ui/icons/Notes';
 import CaretDown from '../../ui/icons/CaretDown';
@@ -30,14 +30,14 @@ import LogOut from '../../ui/icons/LogOut';
 import Filter from '../../ui/icons/Filter';
 import Lock from '../../ui/icons/Lock';
 import Search from '../../ui/icons/Search';
-import AddUserIcon from '../../ui/icons/AddUserIcon';
+import AddUser from '../../ui/icons/AddUser';
 import ImportFile from '../../ui/icons/ImportFile';
 import AddGroup from '../../ui/icons/AddGroup';
 import Home from '../../ui/icons/Home';
 import Phone from '../../ui/icons/Phone';
 import Email from '../../ui/icons/Email';
 import Checklist from '../../ui/icons/Checklist';
-import MoneyIcon from '../../ui/icons/MoneyIcon';
+import Money from '../../ui/icons/Money';
 import Photos from '../../ui/icons/Photos';
 import RSVP from '../../ui/icons/RSVP';
 
@@ -57,7 +57,7 @@ storiesOf('Icons', module).add('ALL', () => (
     <Close color="#000000" />
     <Calendar color="#000000" />
     <User color="#000000" />
-    <ChairIcon color="#000000" />
+    <Chair color="#000000" />
     <Room color="#000000" />
     <Notes color="#000000" />
     <CaretDown color="#000000" />
@@ -73,14 +73,14 @@ storiesOf('Icons', module).add('ALL', () => (
     <Filter color="#000000" />
     <Lock color="#000000" />
     <Search color="#000000" />
-    <AddUserIcon color="#000000" />
+    <AddUser color="#000000" />
     <ImportFile color="#000000" />
     <AddGroup color="#000000" />
     <Home color="#000000" />
     <Phone color="#000000" />
     <Email color="#000000" />
     <Checklist color="#000000" />
-    <MoneyIcon color="#000000" />
+    <Money color="#000000" />
     <Photos color="#000000" />
     <RSVP color="#000000" />
   </div>

@@ -1,3 +1,4 @@
+import React from 'react';
 import { storiesOf } from '@storybook/react';
 import NotificationBox from '../../ui/elements/NotificationBox.js';
 

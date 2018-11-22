@@ -1,3 +1,4 @@
+import React from 'react';
 import { storiesOf } from '@storybook/react';
 import OwnerStatus from '../../../ui/elements/buttons/OwnerStatus.js';
 import { action } from '@storybook/addon-actions';

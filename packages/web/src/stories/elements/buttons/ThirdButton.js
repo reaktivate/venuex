@@ -1,3 +1,4 @@
+import React from 'react';
 import { storiesOf } from '@storybook/react';
 import ThirdButton from '../../../ui/elements/buttons/ThirdButton.js';
 import { action } from '@storybook/addon-actions';
