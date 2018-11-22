@@ -53,14 +53,14 @@ const RadioButton = styled.button((props) => {
     &:before {
       top: 16px;
       left: 19px;
-      border: 2px solid ${(props) => colors[props.color]};
+      border: 2px solid ${colors[props.color]};
       width: 16px;
       height: 16px;
     }
     &:hover {
       &:after {
         opacity: 0.5;
-        background-color: ${(props) => colors[props.color]};
+        background-color: ${colors[props.color]};
       }
     }
   `;
