@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import RoundButton from '@venuex/web/ui/elements/RoundButton';
+import RoundButton from '@venuex/web/ui/elements/buttons/RoundButton';
 import PlusIcon from '@venuex/web/ui/icons/Plus';
 import PropTypes from 'prop-types';
 
@@ -14,7 +14,7 @@ const AddIcon = styled(PlusIcon)`
 
 const AddButton = (props) => (
   <RoundButton {...props}>
-    <AddIcon />
+    <AddIcon color="#ffffff" />
   </RoundButton>
 );
 

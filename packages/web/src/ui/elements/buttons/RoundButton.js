@@ -6,8 +6,10 @@ const Button = styled.div(
   css`
     user-select: none;
     cursor: pointer;
-    height: 50px;
-    width: 50px;
+    min-height: 50px;
+    min-width: 50px;
+    max-height: 50px;
+    max-width: 50px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -72,8 +74,8 @@ NotificationButton.propTypes = {
   noti: PropTypes.bool.isRequired
 };
 
-const RoundButton = ({ children, handleClick }) => (
-  <Button onClick={handleClick} type="default">
+const RoundButton = ({ children, handleClick, ...props }) => (
+  <Button onClick={handleClick} type="default" {...props}>
     {children}
   </Button>
 );

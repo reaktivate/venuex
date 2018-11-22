@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
-
 import ClickAway from '../../ui/utils/ClickAwayListener.js';
 import UserButton from '../../ui/elements/buttons/UserButton.js';
 import Camera from '../../ui/icons/Camera.js';
@@ -14,6 +13,7 @@ const Container = styled.div`
   position: relative;
   display: inline-block;
   cursor: pointer;
+  margin-left: 15px;
 `;
 
 const PopupWrap = styled.div((props) => {
@@ -111,7 +111,7 @@ class UserPopup extends Component {
     });
   };
   render() {
-    const { userName } = this.props;
+    const { userName, handleChangePassword, handleEditProfile, handleLogOut } = this.props;
 
     return (
       <Container>
@@ -124,15 +124,15 @@ class UserPopup extends Component {
         <ClickAway onClickAway={this.onClickAway}>
           <PopupWrap isOpen={this.state.isOpen}>
             <PopupTitle>Hi, {userName}!</PopupTitle>
-            <Item onClick={this.handleEditProfile}>
+            <Item onClick={handleEditProfile}>
               <Camera color="#c0b69b" size="24px" />
               <ItemName>Edit profile image</ItemName>
             </Item>
-            <Item onClick={this.handleChangePassword}>
+            <Item onClick={handleChangePassword}>
               <Key color="#c0b69b" size="24px" />
               <ItemName>Change password</ItemName>
             </Item>
-            <Item onClick={this.handleLogOut} grayscale={true}>
+            <Item onClick={handleLogOut} grayscale={true}>
               <LogOut color="#c0b69b" size="24px" />
               <ItemName>log out</ItemName>
             </Item>
@@ -143,6 +143,9 @@ class UserPopup extends Component {
   }
 }
 UserPopup.propTypes = {
-  userName: PropTypes.string
+  userName: PropTypes.string,
+  handleEditProfile: PropTypes.func.isRequire,
+  handleChangePassword: PropTypes.func.isRequire,
+  handleLogOut: PropTypes.func.isRequire
 };
 export default UserPopup;

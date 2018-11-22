@@ -2,10 +2,8 @@ import React, { PureComponent } from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import ClickAway from '../../ui/utils/ClickAwayListener.js';
-
 import Button from '../elements/buttons/IconButton.js';
 import Item from '../../ui/elements/PermissionItem.js';
-
 import Lock from '../../ui/icons/Lock.js';
 import CalendarEdit from '../../ui/icons/CalendarEdit.js';
 import CalendarDelete from '../../ui/icons/CalendarDelete.js';
