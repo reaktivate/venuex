@@ -56,7 +56,10 @@ const BaseInput = ({ label, children, alignItems, labelMarginTop, ...props }) =>
 );
 
 BaseInput.propTypes = {
-  label: PropTypes.string
+  label: PropTypes.string,
+  children: PropTypes.element,
+  alignItems: PropTypes.string,
+  labelMarginTop: PropTypes.string
 };
 
 export default BaseInput;
