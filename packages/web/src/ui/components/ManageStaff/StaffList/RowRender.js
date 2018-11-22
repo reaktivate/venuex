@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import moment from 'moment';
+import { observer } from '@venuex/ddd/react';
 import Checkbox from '@venuex/web/ui/elements/form/Checkbox';
 import RoundIcon from '@venuex/web/ui/elements/RoundIcon';
 import Billing from '@venuex/web/ui/icons/Billing.js';
@@ -61,13 +62,17 @@ const Name = styled.span`
   color: #222222;
 `;
 
-const PermissionBtn = (props) => {
+const PermissionBtn = styled((props) => {
   const { isActive, Icon } = props;
 
   let color = isActive ? '#c0b69b' : '#d8d8d8';
 
   return <Icon color={color} {...props} />;
-};
+})(
+  css`
+    cursor: pointer;
+  `
+);
 
 const permissionStatus = (permission, list) => {
   return list[permission];
@@ -75,7 +80,14 @@ const permissionStatus = (permission, list) => {
 
 const RowRender = (props) => {
   const { picture, displayName, email, permissions, dateAdded, id, owner } = props.data;
-  const { selected, rowCheckHandler, rowUncheckHandler, rowEditHandler, rowDeleteHandler } = props;
+  const {
+    selected,
+    rowCheckHandler,
+    rowUncheckHandler,
+    rowEditHandler,
+    rowDeleteHandler,
+    rowChangePermission
+  } = props;
 
   return (
     <Row>
@@ -101,15 +113,30 @@ const RowRender = (props) => {
         <PermissionBtn
           Icon={CalendarEdit}
           isActive={permissionStatus('createAndEditEvents', permissions)}
+          onClick={() => {
+            rowChangePermission('createAndEditEvents', props.data);
+          }}
         />
         <PermissionBtn
           Icon={CalendarDelete}
           isActive={permissionStatus('deleteEvents', permissions)}
+          onClick={() => {
+            rowChangePermission('deleteEvents', props.data);
+          }}
         />
-        <PermissionBtn Icon={Billing} isActive={permissionStatus('viewBilling', permissions)} />
+        <PermissionBtn
+          Icon={Billing}
+          isActive={permissionStatus('viewBilling', permissions)}
+          onClick={() => {
+            rowChangePermission('viewBilling', props.data);
+          }}
+        />
         <PermissionBtn
           Icon={ManageStaffIcon}
           isActive={permissionStatus('manageStaffPermissions', permissions)}
+          onClick={() => {
+            rowChangePermission('manageStaffPermissions', props.data);
+          }}
         />
       </Column>
       <Column style={{ width: '104px' }}>{moment(dateAdded.toString()).format('L')}</Column>
@@ -140,7 +167,8 @@ RowRender.propTypes = {
   rowCheckHandler: PropTypes.func,
   rowUncheckHandler: PropTypes.func,
   rowEditHandler: PropTypes.func,
-  rowDeleteHandler: PropTypes.func
+  rowDeleteHandler: PropTypes.func,
+  rowChangePermission: PropTypes.func
 };
 
-export default RowRender;
+export default observer(RowRender);

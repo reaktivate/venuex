@@ -1,10 +1,11 @@
-import { action, runInAction } from 'mobx';
+import { action } from 'mobx';
 import { service } from '@venuex/ddd/decorators';
 import { AbstractService } from '@venuex/ddd';
 import VenueStaffStore from '../stores/VenueStaffStore';
 import Employee from '../models/Employee';
-// import User from '../models/User';
 import firebaseQuery, { prepareCollectionSnapshot } from '../utils/firebase-query';
+
+const USERS_COLLECTION = 'users';
 
 @service('VenueStaffService')
 class VenueStaffService extends AbstractService {
@@ -15,27 +16,34 @@ class VenueStaffService extends AbstractService {
   }
 
   @action.bound
-  fetchCurrentVenueStaff() {
-    const { firebase, staffStore, venueId } = this;
-    const { loadRequest } = staffStore;
+  updatePermissions(memberId, permissions) {
+    const { firebase } = this;
 
     const query = firebaseQuery(firebase)
-      .collection('users')
+      .collection(USERS_COLLECTION)
+      .doc(memberId)
+      .update({ permissions });
+
+    query.catch(() => {
+      //rise error to user
+    });
+  }
+
+  @action.bound
+  fetchCurrentVenueStaff() {
+    const { firebase, staffStore, venueId } = this;
+    const { entities } = staffStore;
+
+    firebaseQuery(firebase)
+      .collection(USERS_COLLECTION)
       .where('venueId', '==', venueId)
       .where('userType', '==', 'staff')
-      .get()
-      .then(prepareCollectionSnapshot)
-      .then((list) =>
-        list.map((entry) => ({
+      .onSnapshot((snapshot) => {
+        const list = prepareCollectionSnapshot(snapshot).map((entry) => ({
           ...entry,
           dateAdded: entry.dateAdded.toDate()
-        }))
-      );
+        }));
 
-    loadRequest.send(query).then((list) => {
-      const { entities } = staffStore;
-
-      runInAction(() => {
         list.forEach((entry) => {
           const { id } = entry;
 
@@ -46,10 +54,7 @@ class VenueStaffService extends AbstractService {
           }
         });
       });
-    });
   }
-
-  subscribeToNewEvents() {}
 }
 
 export default VenueStaffService;

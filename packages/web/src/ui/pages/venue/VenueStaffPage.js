@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from '@venuex/ddd/react';
 import VenueStaffStore from '@venuex/domain/stores/VenueStaffStore';
 import VenueStaffService from '@venuex/domain/services/VenueStaffService';
-import { action } from '@storybook/addon-actions';
 import StaffList from '@venuex/web/ui/components/ManageStaff/StaffList/StaffList';
 import Header from '@venuex/web/ui/containers/Header';
-import MonthPickerRender from '@venuex/web/ui/components/events/MonthPicker';
 import RoundButton from '@venuex/web/ui/elements/buttons/RoundButton';
 import Plus from '@venuex/web/ui/icons/Plus';
 
@@ -13,19 +12,21 @@ import Plus from '@venuex/web/ui/icons/Plus';
   const staffStore = domain.get(VenueStaffStore);
   const staffService = domain.get(VenueStaffService);
 
-  const { fetchCurrentVenueStaff } = staffService;
+  const { fetchCurrentVenueStaff, updatePermissions } = staffService;
   const { loadRequest, list: staff } = staffStore;
 
   return {
     fetchCurrentVenueStaff,
+    updatePermissions,
     loadRequest,
     staff
   };
 })
-class VenueEventsPage extends Component {
+class VenueStaffPage extends Component {
   state = {
     selected: []
   };
+
   componentDidMount() {
     this.props.fetchCurrentVenueStaff();
   }
@@ -33,6 +34,16 @@ class VenueEventsPage extends Component {
   handleAddUser(e) {
     console.log('add', e);
   }
+
+  handlePermissionChange = (permissionType, item) => {
+    const { updatePermissions } = this.props;
+    const { id, permissions } = item;
+
+    permissions[permissionType] = !permissions[permissionType];
+
+    updatePermissions(id, permissions);
+  };
+
   action() {
     return function (e) {
       console.log('edit', e);
@@ -67,10 +78,18 @@ class VenueEventsPage extends Component {
           rowUncheckHandler={action('uncheck')}
           rowEditHandler={action('edit')}
           rowDeleteHandler={action('delete')}
+          rowChangePermission={this.handlePermissionChange}
         />
       </React.Fragment>
     );
   }
 }
 
-export default VenueEventsPage;
+VenueStaffPage.propTypes = {
+  fetchCurrentVenueStaff: PropTypes.func,
+  updatePermissions: PropTypes.func,
+  loadRequest: PropTypes.object,
+  staff: PropTypes.array
+};
+
+export default VenueStaffPage;
