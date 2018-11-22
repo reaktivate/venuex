@@ -20,7 +20,7 @@ class Header extends Component {
 
     return (
       <StyledHeader>
-        {children}
+        <div style={{ width: '100%', display: 'flex' }}>{children}</div>
         <UserPopup
           userName={userName}
           handleEditProfile={action('handleEditProfile')}
