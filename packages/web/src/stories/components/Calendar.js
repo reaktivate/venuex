@@ -1,7 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import Calendar from '@venuex/web/ui/components/Calendar';
-
 import { action } from '@storybook/addon-actions';
 
 let today = new Date();

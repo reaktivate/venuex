@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-
 import Checkbox from '@venuex/web/ui/elements/form/Checkbox';
+import PropTypes from 'prop-types';
 
 const HeaderColumn = styled.div`
   height: 100%;
@@ -106,6 +106,7 @@ const GridHeader = (props) => {
           date added
         </SortBtn>
       </HeaderColumn>
+      <HeaderColumn style={{ width: '80px' }} />
       <HeaderColumn style={{ width: '20%' }} />
     </React.Fragment>
   );
@@ -114,6 +115,15 @@ const GridHeader = (props) => {
 GridHeader.defaultProps = {
   sort: 'name',
   sortDirection: 'asc'
+};
+
+GridHeader.propTypes = {
+  sort: PropTypes.string,
+  sortDirection: PropTypes.string,
+  checkAllHandler: PropTypes.func,
+  uncheckAllHandler: PropTypes.func,
+  checkAllChecked: PropTypes.func,
+  headerClickHandler: PropTypes.func
 };
 
 export default GridHeader;

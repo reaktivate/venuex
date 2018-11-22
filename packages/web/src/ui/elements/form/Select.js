@@ -2,7 +2,6 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import BaseInput from '@venuex/web/ui/elements/form/BaseInput';
 //import dropdownCaretDown from '@venuex/web/ui/icons/raw/caret-down-custom.svg';
-
 import PropTypes from 'prop-types';
 
 const StyledSelect = styled.select`

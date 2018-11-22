@@ -1,7 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import Checkmark from '@venuex/web/ui/icons/Checkmark';
-
 import PropTypes from 'prop-types';
 
 const Root = styled.div`

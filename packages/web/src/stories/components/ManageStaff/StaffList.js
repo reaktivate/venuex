@@ -9,7 +9,7 @@ const staff = [
     picture: 'https://api.adorable.io/avatars/40/3.png',
     id: 1,
     email: 'abc@gmail.com',
-    permission: ['edit', 'delete', 'bill', 'staff'],
+    permissions: ['edit', 'delete', 'bill', 'staff'],
     dateAdded: new Date()
   },
   {
@@ -17,8 +17,9 @@ const staff = [
     picture: 'https://api.adorable.io/avatars/40/4.png',
     id: 2,
     email: 'gfsds@gmail.com',
-    permission: ['edit', 'bill', 'staff'],
-    dateAdded: new Date()
+    permissions: ['edit', 'bill', 'staff'],
+    dateAdded: new Date(),
+    owner: 1
   }
 ];
 

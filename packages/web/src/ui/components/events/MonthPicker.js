@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import IconRight from '@venuex/web/ui/icons/CaretRight.js';
 import IconLeft from '@venuex/web/ui/icons/CaretLeft.js';
-
 import PropTypes from 'prop-types';
 import moment from 'moment';
 

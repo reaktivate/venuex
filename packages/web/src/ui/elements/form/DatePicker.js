@@ -3,7 +3,6 @@ import styled, { css } from 'styled-components';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import BaseInput from '@venuex/web/ui/elements/form/BaseInput';
-
 import PropTypes from 'prop-types';
 
 const DatePickerWrapper = styled.div`

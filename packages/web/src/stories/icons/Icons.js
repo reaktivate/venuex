@@ -1,6 +1,5 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-
 import Bell from '../../ui/icons/Bell.js';
 import Billing from '../../ui/icons/Billing.js';
 import CalendarDelete from '../../ui/icons/CalendarDelete.js';

@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import ConsultantsPickerRender from './ConsultantPickerRender';
-
 import PropTypes from 'prop-types';
 
 class ConsultantsPicker extends PureComponent {

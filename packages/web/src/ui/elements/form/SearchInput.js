@@ -87,6 +87,7 @@ const SearchBoxRender = ({ children }) => (
     <SearchIcon color="#b0b0b0" />
   </SearchBox>
 );
+
 SearchBoxRender.PropTypes = {
   children: PropTypes.element.isRequired
 };

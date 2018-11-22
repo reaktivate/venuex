@@ -1,5 +1,4 @@
 import React from 'react';
-
 import styled, { css } from 'styled-components';
 import CaretDown from '@venuex/web/ui/icons/CaretDown';
 import CaretUp from '@venuex/web/ui/icons/CaretUp';
@@ -192,7 +191,7 @@ const ConsultantPickerRender = (props) => {
             {picked.length === 0
               ? 'Pick a staff'
               : picked.map((id) => (
-                <Group key={id} style={{ margin: '10px 0px' }}>
+                  <Group key={id} style={{ margin: '10px 0px' }}>
                     <ConsultantLabel
                       name={getEmployeeById(id).name}
                       picture={getEmployeeById(id).picture}

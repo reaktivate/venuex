@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import moment from 'moment';
 import Checkbox from '@venuex/web/ui/elements/form/Checkbox';
 import RoundIcon from '@venuex/web/ui/elements/RoundIcon';
@@ -9,7 +9,14 @@ import CalendarEdit from '@venuex/web/ui/icons/CalendarEdit.js';
 import ManageStaffIcon from '@venuex/web/ui/icons/ManageStaff.js';
 import Delete from '@venuex/web/ui/icons/Delete.js';
 import Edit from '@venuex/web/ui/icons/Edit.js';
+import Owner from '@venuex/web/ui/icons/Owner.js';
 import PropTypes from 'prop-types';
+
+const StyledEdit = styled(Edit)(
+  css`
+    margin-right: 30px;
+  `
+);
 
 const Row = styled.div`
   display: flex;
@@ -67,7 +74,7 @@ const permissionStatus = (permission, list) => {
 };
 
 const RowRender = (props) => {
-  const { picture, displayName, email, permissions, dateAdded, id } = props.data;
+  const { picture, displayName, email, permissions, dateAdded, id, owner } = props.data;
   const { selected, rowCheckHandler, rowUncheckHandler, rowEditHandler, rowDeleteHandler } = props;
 
   return (
@@ -106,9 +113,10 @@ const RowRender = (props) => {
         />
       </Column>
       <Column style={{ width: '104px' }}>{moment(dateAdded.toString()).format('L')}</Column>
+      <Column style={{ width: '80px' }}>{owner ? <Owner /> : ''}</Column>
       <Column style={{ width: '20%' }}>
         <span className="staff-list-tools">
-          <Edit
+          <StyledEdit
             color="#7d7d7d"
             onClick={() => {
               rowEditHandler(props.data);
