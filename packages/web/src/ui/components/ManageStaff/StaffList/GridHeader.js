@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Checkbox from '@venuex/web/ui/elements/form/Checkbox';
+import PermissionPopup from '@venuex/web/ui/components/PermissionPopup';
 import PropTypes from 'prop-types';
 
 const HeaderColumn = styled.div`
@@ -53,6 +54,12 @@ const SortBtn = styled.div`
   }
 `;
 
+const CheckedHeader = () => (
+  <HeaderColumn>
+    <PermissionPopup />
+  </HeaderColumn>
+);
+
 const GridHeader = (props) => {
   const {
     sort,
@@ -65,6 +72,7 @@ const GridHeader = (props) => {
 
   return (
     <React.Fragment>
+      <CheckedHeader />
       <HeaderColumn style={{ width: '50px' }}>
         <Checkbox
           checked={checkAllChecked}
