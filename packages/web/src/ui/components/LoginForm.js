@@ -10,7 +10,7 @@ const LoginForm = (props) => {
   return (
     <div>
       <Input label="name" value={login} />
-      <Password label="name" value={password} />
+      <Password label="password" value={password} />
       <Button onClick={onSubmit}>Login</Button>
     </div>
   );
