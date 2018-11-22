@@ -1,5 +1,6 @@
+import React from 'react';
 import { storiesOf } from '@storybook/react';
-import SearchInput from '@venuex/web/ui/elements/form/SearchInput';
+import SearchInput from '../../../ui/elements/form/SearchInput';
 
 storiesOf('elements/form/SearchInput', module).add('default', () => (
   <SearchInput>

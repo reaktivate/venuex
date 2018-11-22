@@ -1,13 +1,14 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import RoundIcon from '@venuex/web/ui/elements/RoundIcon';
-import Icon from '@venuex/web/ui/icons/Celebration.js';
-import Photo from '@venuex/web/assets/default/avatar.png';
+import RoundIcon from '../../ui/elements/RoundIcon';
+import Icon from '../../ui/icons/Celebration.js';
+
+const photo = 'https://api.adorable.io/avatars/40/1.png';
 
 storiesOf('elements/RoundIcon', module)
   .add('Photo', () => (
     <RoundIcon type="photo">
-      <img src={Photo} />
+      <img src={photo} alt="avatar" />
     </RoundIcon>
   ))
   .add('Icon', () => (

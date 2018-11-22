@@ -1,46 +1,50 @@
+import React from 'react';
 import styled, { css } from 'styled-components';
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
-const Button = styled.div`
-  max-width: 180px;
-  cursor: pointer;
-  min-height: 50px;
-  padding: 10px 30px 10px 20px;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  box-sizing: border-box;
-  position: relative;
-  filter: grayscale(100%);
-  transition-timing-function: ease-in;
-  transition: .2s filter;
-  user-select: none;
-  text-transform: uppercase;
-  &:after{
-    content: '';
-    right: 4px;
-    position: absolute;
-    width: 4px;
-    height: 100%;
-    background-color: transparent;
+const Button = styled.div(
+  css`
+    max-width: 180px;
+    cursor: pointer;
+    min-height: 50px;
+    padding: 10px 30px 10px 20px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    position: relative;
+    filter: grayscale(100%);
     transition-timing-function: ease-in;
-    transition: .2s background-color;
-  }
-  &:hover{
-    &:after{
-      background-color: #c0b69b;
+    transition: 0.2s filter;
+    user-select: none;
+    text-transform: uppercase;
+    &:after {
+      content: '';
+      right: 4px;
+      position: absolute;
+      width: 4px;
+      height: 100%;
+      background-color: transparent;
+      transition-timing-function: ease-in;
+      transition: 0.2s background-color;
     }
-  }
-  ${(props) =>
-    props.active &&
-    css`
-      filter: grayscale(0%);
+    &:hover {
       &:after {
         background-color: #c0b69b;
       }
-    `}
-}
-`;
+    }
+  `,
+  (props) => {
+    if (props.active) {
+      return css`
+        filter: grayscale(0%);
+        &:after {
+          background-color: #c0b69b;
+        }
+      `;
+    }
+  }
+);
 const Name = styled.span`
   margin-left: 10px;
   font-family: Montserrat;
@@ -49,18 +53,18 @@ const Name = styled.span`
   letter-spacing: -0.1px;
   color: #c0b69b;
 `;
-const ButtonRender = ({ text, children, active, handleClick }) => (
+const ThirdButton = ({ text, children, active, handleClick }) => (
   <Button active={active} onClick={handleClick}>
     {children}
     <Name>{text}</Name>
   </Button>
 );
 
-ButtonRender.propTypes = {
-  text: propTypes.string.isRequired,
-  handleClick: propTypes.func.isRequired,
-  children: propTypes.element.isRequired,
-  active: propTypes.bool
+ThirdButton.propTypes = {
+  text: PropTypes.string.isRequired,
+  handleClick: PropTypes.func.isRequired,
+  children: PropTypes.element.isRequired,
+  active: PropTypes.bool
 };
 
-export default ButtonRender;
+export default ThirdButton;
