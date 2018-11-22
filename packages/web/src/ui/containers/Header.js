@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import UserPopup from '@venuex/web/ui/components/UserPopup';
-import { action } from '@storybook/addon-actions';
 
 const userName = 'John Adams';
 
@@ -23,9 +22,9 @@ class Header extends Component {
         <div style={{ width: '100%', display: 'flex' }}>{children}</div>
         <UserPopup
           userName={userName}
-          handleEditProfile={action('handleEditProfile')}
-          handleChangePassword={action('handleChangePassword')}
-          handleLogOut={action('handleLogOut')}
+          handleEditProfile={() => console.log('handleEditProfile')}
+          handleChangePassword={() => console.log('handleChangePassword')}
+          handleLogOut={() => console.log('handleLogOut')}
         />
       </StyledHeader>
     );

@@ -11,7 +11,6 @@ const colors = {
 };
 const SummaryWrap = styled.div(
   css`
-    max-width: 150px;
     padding: 0 23px 10px 23px;
     display: flex;
     flex-direction: column;
@@ -78,8 +77,8 @@ const Count = styled.span`
   letter-spacing: -0.9px;
   color: #181818;
 `;
-const Summary = ({ name, count, color, mode }) => (
-  <SummaryWrap mode={mode}>
+const Summary = ({ name, count, color, mode, ...props }) => (
+  <SummaryWrap mode={mode} {...props}>
     <Name color={color}>{name}</Name>
     <Count>{count}</Count>
   </SummaryWrap>
