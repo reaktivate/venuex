@@ -30,8 +30,14 @@ const events = [
   }
 ];
 
-storiesOf('components/FilterPopup', module).add('Default', () => (
-  <div style={{ marginLeft: '300px', marginTop: '20px' }}>
-    <FilterPopup events={events} />
-  </div>
-));
+storiesOf('components/FilterPopup', module)
+  .add('Default', () => (
+    <div style={{ marginLeft: '300px', marginTop: '20px' }}>
+      <FilterPopup events={events} />
+    </div>
+  ))
+  .add('Empty', () => (
+    <div style={{ marginLeft: '300px', marginTop: '20px' }}>
+      <FilterPopup events={[]} />
+    </div>
+  ));
