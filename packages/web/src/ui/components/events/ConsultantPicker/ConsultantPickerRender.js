@@ -1,27 +1,31 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import CaretDown from '@venuex/web/ui/icons/CaretDown';
-import CaretUp from '@venuex/web/ui/icons/CaretUp';
 import BtnOwner from '@venuex/web/ui/icons/BtnOwner';
 import OwnerIcon from '@venuex/web/ui/icons/Owner';
 import Checkbox from '../../../elements/form/Checkbox';
 import BaseInput from '@venuex/web/ui/elements/form/BaseInput';
 import PropTypes from 'prop-types';
 
-const StyledCaretDown = styled(CaretDown)`
-  width: 13px;
-  height: 8px;
-  min-width: 30%;
+const Arrow = styled.div`
+  position: absolute;
+  top: 21px;
+  right: 20px;
+  transition: 0.3s transform;
+  transform: rotate(${props => props.isOpen?"180deg":"0deg"});
 `;
+const ArrowRender = (props) => {
+  const { isOpen } = props;
 
-const StyledCaretUp = styled(CaretUp)`
-  width: 13px;
-  height: 8px;
-  min-width: 30%;
-`;
+  return (
+    <Arrow isOpen={isOpen}>
+      <CaretDown size={14} color="#c0b69b" />
+    </Arrow>
+  );
+};
 
 const Container = styled.div`
-  border-bottom: solid 1px #d8d8d8;
+  border-bottom: solid 1px ${props => props.isOpen?"#c0b69b":"#d8d8d8"};
   position: relative;
 
   ${(props) =>
@@ -73,13 +77,21 @@ const PickContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 5px;
+  padding: 10px 35px 10px 5px;
   cursor: pointer;
+  min-height: 60px;
+  box-sizing: border-box;
 `;
 
 const Placeholder = styled.div`
   color: #7d7d7d;
   font-size: 15px;
+  padding-top: ${props => props.count?"0":'15px'};
+  &>div{
+    margin-top: 15px;
+    &:first-child{
+      margin-top: 0;
+    }
 `;
 
 const Dropdown = styled.div`
@@ -184,14 +196,14 @@ const ConsultantPickerRender = (props) => {
   console.log(picked);
 
   return (
-    <BaseInput label="Consultant:" {...props}>
-      <Container {...props}>
+    <BaseInput label="Consultant:" {...props} alignItems="flex-start" labelMarginTop="30px">
+      <Container {...props} isOpen={isOpen}>
         <PickContainer onClick={handleToggle} onBlur={handleToggle}>
-          <Placeholder>
+          <Placeholder count={picked.length}>
             {picked.length === 0
               ? 'Pick a staff'
               : picked.map((id) => (
-                  <Group key={id} style={{ margin: '10px 0px' }}>
+                  <Group key={id} >
                     <ConsultantLabel
                       name={getEmployeeById(id).name}
                       picture={getEmployeeById(id).picture}
@@ -200,13 +212,13 @@ const ConsultantPickerRender = (props) => {
                   </Group>
                 ))}
           </Placeholder>
-          {isOpen ? <StyledCaretDown size={14} /> : <StyledCaretUp size={14} />}
+          <ArrowRender isOpen={isOpen} />
         </PickContainer>
 
         {isOpen && (
           <Dropdown>
-            {employees.map((employee) => (
-              <EmployeeRender employee={employee} {...props} />
+            {employees.map((employee, index) => (
+              <EmployeeRender employee={employee} {...props} key={index}/>
             ))}
           </Dropdown>
         )}
