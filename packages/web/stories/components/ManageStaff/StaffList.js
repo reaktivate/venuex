@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import StaffList from 'ui/components/ManageStaff/StaffList/StaffList';
+import StaffList from 'ui/components/StaffList/StaffList';
 
 import { action } from '@storybook/addon-actions';
 
@@ -19,7 +19,8 @@ const staff = [
     id: 2,
     email: 'gfsds@gmail.com',
     permission: ['edit', 'bill', 'staff'],
-    dateAdded: new Date()
+    dateAdded: new Date(),
+    owner: 1
   }
 ];
 

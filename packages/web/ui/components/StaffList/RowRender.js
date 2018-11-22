@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import moment from 'moment';
 
 import Checkbox from 'ui/elements/form/Checkbox';
@@ -10,10 +10,17 @@ import CalendarEdit from 'ui/icons/CalendarEdit.js';
 import ManageStaffIcon from 'ui/icons/ManageStaffIcon.js';
 import Delete from 'ui/icons/Delete.js';
 import Edit from 'ui/icons/Edit.js';
+import Owner from 'ui/icons/Owner.js';
 
 import PropTypes from 'prop-types';
 
-const Row = styled.div`
+const StyledEdit = styled(Edit)(
+  css`
+    margin-right: 30px;
+  `
+);
+
+const Row = styled.div(css`
   display: flex;
   width: 100%;
   height: 65px;
@@ -28,9 +35,9 @@ const Row = styled.div`
       display: flex;
     }
   }
-`;
+`);
 
-const Column = styled.div`
+const Column = styled.div(css`
   height: 100%;
   display: flex;
   justify-content: left;
@@ -49,12 +56,12 @@ const Column = styled.div`
     margin-right: 5px;
     margin-left: 5px;
   }
-`;
+`);
 
-const Name = styled.span`
+const Name = styled.span(css`
   margin-left: 10px;
   color: #222222;
-`;
+`);
 
 const PermissionBtn = (props) => {
   const { isActive, Icon } = props;
@@ -69,7 +76,7 @@ const permissionStatus = (permission, list) => {
 };
 
 const RowRender = (props) => {
-  const { picture, name, email, permission, dateAdded, id } = props.data;
+  const { picture, name, email, permission, dateAdded, id, owner } = props.data;
   const { selected, rowCheckHandler, rowUncheckHandler, rowEditHandler, rowDeleteHandler } = props;
 
   return (
@@ -99,9 +106,10 @@ const RowRender = (props) => {
         <PermissionBtn Icon={ManageStaffIcon} isActive={permissionStatus('staff', permission)} />
       </Column>
       <Column style={{ width: '104px' }}>{moment(dateAdded.toString()).format('L')}</Column>
+      <Column style={{ width: '80px' }}>{owner ? <Owner /> : ''}</Column>
       <Column style={{ width: '20%' }}>
         <span className="staff-list-tools">
-          <Edit
+          <StyledEdit
             color="#7d7d7d"
             onClick={() => {
               rowEditHandler(props.data);
@@ -119,7 +127,7 @@ const RowRender = (props) => {
   );
 };
 
-RowRender.PropTypes = {
+RowRender.propTypes = {
   data: PropTypes.array.isRequired,
   selected: PropTypes.array.isRequired,
   rowCheckHandler: PropTypes.func,
