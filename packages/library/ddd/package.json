@@ -10,12 +10,13 @@
   },
   "dependencies": {
     "@venuex/utils": "*",
-    "invariant": "^2.2.4",
     "lodash": "^4.17.11",
     "lru_map": "^0.3.3",
     "mobx": "^5.6.0",
     "mobx-react": "^5.3.6",
-    "moment": "^2.22.2"
+    "moment": "^2.22.2",
+    "tiny-invariant": "^1.0.3",
+    "tiny-warning": "^1.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.1.6",

@@ -5,7 +5,7 @@ import User from './User';
 class Employee extends User {
   static schema = {
     ...User.schema,
-    permissions: DataTypes.object().shape({
+    permissions: DataTypes.object.shape({
       createAndEditEvents: DataTypes.boolean,
       deleteEvents: DataTypes.boolean,
       manageStaffPermissions: DataTypes.boolean,

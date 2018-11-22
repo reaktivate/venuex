@@ -1,6 +1,6 @@
-import invariant from 'invariant';
+import invariant from 'tiny-invariant';
 import isNil from 'lodash/isNil';
-import warning from '@venuex/utils/warning';
+import warning from 'tiny-warning';
 import isPlainObject from 'lodash/isPlainObject';
 
 const createDefaultEntityResolver = (domainManager, Store, Entity) => (value) => {

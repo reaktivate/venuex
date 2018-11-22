@@ -1,15 +1,16 @@
 {
-  "presets": ["next/babel"],
   "plugins": [
     [
       "module-resolver",
       {
         "root": ["./"],
         "alias": {
-          "@venuex/web": "./"
+          "@venuex/web": "./src"
         }
       }
     ],
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    ["@babel/proposal-class-properties", { "loose": true }],
     [
       "babel-plugin-styled-components",
       {
