@@ -93,5 +93,7 @@ IconButton.propTypes = {
   textColor: PropTypes.string,
   mode: PropTypes.oneOf(['border'])
 };
-
+IconButton.defaultProps = {
+  ready: true
+};
 export default IconButton;

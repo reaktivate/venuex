@@ -1,3 +1,4 @@
+import './containers/Header';
 import './components/Calendar';
 import './components/events/MonthPicker';
 import './components/events/LegendItem';

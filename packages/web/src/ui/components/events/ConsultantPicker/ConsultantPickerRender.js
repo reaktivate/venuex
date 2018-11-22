@@ -12,7 +12,7 @@ const Arrow = styled.div`
   top: 21px;
   right: 20px;
   transition: 0.3s transform;
-  transform: rotate(${props => props.isOpen?"180deg":"0deg"});
+  transform: rotate(${(props) => (props.isOpen ? '180deg' : '0deg')});
 `;
 const ArrowRender = (props) => {
   const { isOpen } = props;
@@ -25,7 +25,7 @@ const ArrowRender = (props) => {
 };
 
 const Container = styled.div`
-  border-bottom: solid 1px ${props => props.isOpen?"#c0b69b":"#d8d8d8"};
+  border-bottom: solid 1px ${(props) => (props.isOpen ? '#c0b69b' : '#d8d8d8')};
   position: relative;
 
   ${(props) =>
@@ -86,7 +86,7 @@ const PickContainer = styled.div`
 const Placeholder = styled.div`
   color: #7d7d7d;
   font-size: 15px;
-  padding-top: ${props => props.count?"0":'15px'};
+  padding-top: ${(props) => (props.count ? '0' : '15px')};
   &>div{
     margin-top: 15px;
     &:first-child{
@@ -203,7 +203,7 @@ const ConsultantPickerRender = (props) => {
             {picked.length === 0
               ? 'Pick a staff'
               : picked.map((id) => (
-                  <Group key={id} >
+                  <Group key={id}>
                     <ConsultantLabel
                       name={getEmployeeById(id).name}
                       picture={getEmployeeById(id).picture}
@@ -218,7 +218,7 @@ const ConsultantPickerRender = (props) => {
         {isOpen && (
           <Dropdown>
             {employees.map((employee, index) => (
-              <EmployeeRender employee={employee} {...props} key={index}/>
+              <EmployeeRender employee={employee} {...props} key={index} />
             ))}
           </Dropdown>
         )}
