@@ -28,7 +28,13 @@ class VenueStaffPage extends Component {
   };
 
   componentDidMount() {
-    this.props.fetchCurrentVenueStaff();
+    this.unsubscribe = this.props.fetchCurrentVenueStaff();
+  }
+
+  componentWillUnmount() {
+    if (this.unsubscribe) {
+      this.unsubscribe();
+    }
   }
 
   handleAddUser(e) {

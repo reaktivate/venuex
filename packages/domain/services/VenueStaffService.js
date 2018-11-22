@@ -34,7 +34,7 @@ class VenueStaffService extends AbstractService {
     const { firebase, staffStore, venueId } = this;
     const { entities } = staffStore;
 
-    firebaseQuery(firebase)
+    return firebaseQuery(firebase)
       .collection(USERS_COLLECTION)
       .where('venueId', '==', venueId)
       .where('userType', '==', 'staff')
@@ -53,6 +53,32 @@ class VenueStaffService extends AbstractService {
             entities.set(id, this.createEntity(Employee, entry));
           }
         });
+      });
+  }
+
+  findOrCreate(id, attrs) {
+    const {
+      staffStore: { entities }
+    } = this;
+
+    if (!entities.has(id)) {
+      entities.set(id, this.createEntity(Employee, { id, ...attrs }));
+    }
+
+    return entities.get(id);
+  }
+
+  async fetchById(id) {
+    const { firebase } = this;
+
+    return firebaseQuery(firebase)
+      .collection(USERS_COLLECTION)
+      .doc(id)
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          return doc.data();
+        }
       });
   }
 }
