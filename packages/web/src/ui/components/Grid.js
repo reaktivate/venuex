@@ -43,7 +43,7 @@ const Grid = (props) => {
       </Header>
       <Content>
         {data.map((row) => (
-          <RowRender {...props} data={row} />
+          <RowRender {...props} data={row} key={row.id} />
         ))}
       </Content>
     </Table>

@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
-
 import Checkbox from '@venuex/web/ui/elements/form/Checkbox';
 import RoundIcon from '@venuex/web/ui/elements/RoundIcon';
 import Billing from '@venuex/web/ui/icons/Billing.js';
@@ -10,7 +9,6 @@ import CalendarEdit from '@venuex/web/ui/icons/CalendarEdit.js';
 import ManageStaffIcon from '@venuex/web/ui/icons/ManageStaff.js';
 import Delete from '@venuex/web/ui/icons/Delete.js';
 import Edit from '@venuex/web/ui/icons/Edit.js';
-
 import PropTypes from 'prop-types';
 
 const Row = styled.div`
@@ -65,11 +63,11 @@ const PermissionBtn = (props) => {
 };
 
 const permissionStatus = (permission, list) => {
-  return list.indexOf(permission) === -1 ? 0 : 1;
+  return list[permission];
 };
 
 const RowRender = (props) => {
-  const { picture, name, email, permission, dateAdded, id } = props.data;
+  const { picture, displayName, email, permissions, dateAdded, id } = props.data;
   const { selected, rowCheckHandler, rowUncheckHandler, rowEditHandler, rowDeleteHandler } = props;
 
   return (
@@ -87,16 +85,25 @@ const RowRender = (props) => {
       </Column>
       <Column style={{ width: '20%' }}>
         <RoundIcon size="40" type="photo">
-          <img src={picture} />
+          <img src={picture} alt="avatar" />
         </RoundIcon>
-        <Name>{name}</Name>
+        <Name>{displayName}</Name>
       </Column>
       <Column style={{ width: '20%' }}>{email}</Column>
       <Column className="permissions" style={{ width: '20%' }}>
-        <PermissionBtn Icon={CalendarEdit} isActive={permissionStatus('edit', permission)} />
-        <PermissionBtn Icon={CalendarDelete} isActive={permissionStatus('delete', permission)} />
-        <PermissionBtn Icon={Billing} isActive={permissionStatus('bill', permission)} />
-        <PermissionBtn Icon={ManageStaffIcon} isActive={permissionStatus('staff', permission)} />
+        <PermissionBtn
+          Icon={CalendarEdit}
+          isActive={permissionStatus('createAndEditEvents', permissions)}
+        />
+        <PermissionBtn
+          Icon={CalendarDelete}
+          isActive={permissionStatus('deleteEvents', permissions)}
+        />
+        <PermissionBtn Icon={Billing} isActive={permissionStatus('viewBilling', permissions)} />
+        <PermissionBtn
+          Icon={ManageStaffIcon}
+          isActive={permissionStatus('manageStaffPermissions', permissions)}
+        />
       </Column>
       <Column style={{ width: '104px' }}>{moment(dateAdded.toString()).format('L')}</Column>
       <Column style={{ width: '20%' }}>
@@ -119,7 +126,7 @@ const RowRender = (props) => {
   );
 };
 
-RowRender.PropTypes = {
+RowRender.propTypes = {
   data: PropTypes.array.isRequired,
   selected: PropTypes.array.isRequired,
   rowCheckHandler: PropTypes.func,

@@ -8,7 +8,10 @@ class User extends LazyEntity {
     email: DataTypes.string.required,
     emailVerified: DataTypes.boolean,
     phoneNumber: DataTypes.string,
-    avatar: DataTypes.string
+    avatar: DataTypes.string,
+    venueId: DataTypes.string,
+    userType: DataTypes.string,
+    dateAdded: DataTypes.date
   };
 
   @observable fullName;
