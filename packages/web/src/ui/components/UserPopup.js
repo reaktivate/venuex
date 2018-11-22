@@ -32,6 +32,8 @@ const PopupWrap = styled.div((props) => {
     transition-timing-function: ease-in;
     transition: 0.2s opacity;
     pointer-events: ${props.isOpen ? 'auto' : 'none'};
+    z-index: 100;
+    background: white;
   `;
 });
 

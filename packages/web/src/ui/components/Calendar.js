@@ -152,7 +152,7 @@ class Calendar extends Component {
         localizer={calendarLocalizer}
         defaultView="month"
         events={events}
-        date={date}
+        date={date.toDate()}
         step={60}
         showMultiDayTimes
         toolbar={false}
