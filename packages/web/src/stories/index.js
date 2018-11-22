@@ -4,6 +4,7 @@ import './components/events/LegendItem';
 import './components/NotificationsPopup.js';
 import './components/PermissionPopup.js';
 import './components/Tabs.js';
+import './components/LoginForm.js';
 import './components/events/ConsultantPicker';
 import './components/UserPopup.js';
 import './elements/buttons/RoundButton.js';
