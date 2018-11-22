@@ -39,12 +39,7 @@ class VenueStaffService extends AbstractService {
       .where('venueId', '==', venueId)
       .where('userType', '==', 'staff')
       .onSnapshot((snapshot) => {
-        const list = prepareCollectionSnapshot(snapshot).map((entry) => ({
-          ...entry,
-          dateAdded: entry.dateAdded.toDate()
-        }));
-
-        list.forEach((entry) => {
+        prepareCollectionSnapshot(snapshot).forEach((entry) => {
           const { id } = entry;
 
           if (entities.has(id)) {

@@ -11,7 +11,7 @@ class User extends LazyEntity {
     avatar: DataTypes.string,
     venueId: DataTypes.string,
     userType: DataTypes.string,
-    dateAdded: DataTypes.date
+    dateAdded: DataTypes.timestamp
   };
 
   @observable fullName;
