@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { connect } from '@venuex/ddd/react';
 import { withRouter } from 'react-router';
 import router from '@venuex/web/lib/router';
+import query from 'query-string';
 import EventStore from '@venuex/domain/stores/EventStore';
 import EventService from '@venuex/domain/services/EventService';
 import Calendar from '@venuex/web/ui/components/Calendar';
@@ -13,7 +14,7 @@ function generateEventAddPath(date) {
 
   if (date) {
     date = moment(date).format('YYYY-MM-DD');
-    path += '?date=' + encodeURIComponent(date);
+    path += '?' + query.stringify({ date });
   }
 
   return path;
