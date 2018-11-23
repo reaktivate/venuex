@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import LazyUserName from './LazyUserName.js';
 
@@ -22,6 +22,7 @@ const Row = styled.div`
 `;
 
 const Column = styled.div`
+  width: 100%;
   height: 100%;
   display: flex;
   justify-content: left;
@@ -30,8 +31,8 @@ const Column = styled.div`
   font-weight: 600;
   letter-spacing: 0.3px;
   color: #222222;
-  padding-left: 27px;
-
+  padding: 0 10px;
+  width: 100%;
   &.guests {
     justify-content: center;
   }
@@ -40,6 +41,14 @@ const Column = styled.div`
     color: #888888;
   }
 `;
+const ColumnText = styled.span((props) => {
+  return css`
+    font-size: 15px;
+    font-weight: 300;
+    letter-spacing: -0.3px;
+    color: ${props.gray ? '#7d7d7d' : '#222222'};
+  `;
+});
 
 class BillingTableRow extends Component {
   static propTypes = {
@@ -64,17 +73,25 @@ class BillingTableRow extends Component {
 
     return (
       <Row>
-        <Column style={{ width: '15%' }}>{data.clientName}</Column>
-        <Column style={{ width: '20%' }}>{data.name}</Column>
-        <Column style={{ width: '120px' }}>{data.ceremonyKind}</Column>
-        <Column className="guests" style={{ width: '65px' }}>
-          {data.actualGuests}
+        <Column
+          style={{ maxWidth: 'calc((100% - 360px)/4)', paddingLeft: '20px', minWidth: '100px' }}
+        >
+          <ColumnText>{data.clientName}</ColumnText>
         </Column>
-        <Column className="date" style={{ width: '104px' }}>
-          {data.start.format('MM/DD/Y')}
+        <Column style={{ maxWidth: 'calc((100% - 360px)/3)', minWidth: '120px' }}>
+          <ColumnText>{data.name}</ColumnText>
+        </Column>
+        <Column style={{ maxWidth: '140px' }}>
+          <ColumnText>{data.ceremonyKind}</ColumnText>
+        </Column>
+        <Column className="guests" style={{ maxWidth: '90px', justifyContent: 'center' }}>
+          <ColumnText>{data.actualGuests}</ColumnText>
+        </Column>
+        <Column className="date" style={{ maxWidth: '130px', justifyContent: 'center' }}>
+          <ColumnText gray={true}>{data.start.format('MM/DD/Y')}</ColumnText>
         </Column>
 
-        <Column style={{ width: '20%' }}>
+        <Column style={{ maxWidth: 'calc((100% - 360px)/3)', minWidth: '120px' }}>
           <LazyUserName user={data.owner} />
         </Column>
       </Row>

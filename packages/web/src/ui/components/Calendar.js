@@ -89,8 +89,11 @@ const StyledBigCalendar = styled(BigCalendar)`
     }
   }
   .rbc-month-row {
+    min-height: 122px;
     .rbc-row-bg {
+      height: 122px;
       .rbc-day-bg {
+        height: 122px;
         &.rbc-off-range-bg {
           background-color: #fafafa !important;
         }
@@ -128,24 +131,6 @@ const StyledBigCalendar = styled(BigCalendar)`
           color: #888888;
         }
       }
-    }
-  }
-  .rbc-month-view {
-    height: 1000px;
-  }
-  @media screen and (max-width: 1300px) {
-    .rbc-month-view {
-      height: 800px;
-    }
-  }
-  @media screen and (max-width: 1100px) {
-    .rbc-month-view {
-      height: 700px;
-    }
-  }
-  @media screen and (max-width: 900px) {
-    .rbc-month-view {
-      height: 600px;
     }
   }
 `;

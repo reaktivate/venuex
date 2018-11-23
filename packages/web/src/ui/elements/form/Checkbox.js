@@ -34,8 +34,8 @@ const StyledCheckmark = styled(Checkmark)`
     `};
 `;
 
-const Checkbox = ({ checked, onCheck, onUncheck }) => (
-  <Root checked={checked} onClick={() => (checked ? onUncheck() : onCheck())}>
+const Checkbox = ({ checked, onCheck, onUncheck, ...props }) => (
+  <Root checked={checked} onClick={() => (checked ? onUncheck() : onCheck())} {...props}>
     <StyledCheckmark color="white" checked={checked} />
   </Root>
 );
