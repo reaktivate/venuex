@@ -23,7 +23,16 @@ const HeaderColumn = styled.div`
   }
 
   &.name div {
-    margin-left: 48px;
+    margin-left: 28px;
+  }
+
+  &.type {
+    justify-content: left;
+  }
+
+  &.owner {
+    justify-content: left;
+    padding-left: 60px;
   }
 `;
 
@@ -65,7 +74,7 @@ const GridHeader = (props) => {
 
   return (
     <React.Fragment>
-      <HeaderColumn className="name" style={{ width: '20%' }}>
+      <HeaderColumn className="name" style={{ width: '15%' }}>
         <SortBtn
           active={sort === 'clientName'}
           sortDirection={sortDirection}
@@ -87,7 +96,7 @@ const GridHeader = (props) => {
           Event name
         </SortBtn>
       </HeaderColumn>
-      <HeaderColumn style={{ width: '20%' }}>
+      <HeaderColumn className="type" style={{ width: '120px' }}>
         <SortBtn
           active={sort === 'ceremonyKind'}
           sortDirection={sortDirection}
@@ -98,7 +107,7 @@ const GridHeader = (props) => {
           Event type
         </SortBtn>
       </HeaderColumn>
-      <HeaderColumn style={{ width: '20%' }}>
+      <HeaderColumn style={{ width: '65px' }}>
         <SortBtn
           active={sort === 'actualGuests'}
           sortDirection={sortDirection}
@@ -109,7 +118,7 @@ const GridHeader = (props) => {
           Guests
         </SortBtn>
       </HeaderColumn>
-      <HeaderColumn style={{ width: '20%' }}>
+      <HeaderColumn style={{ width: '104px' }}>
         <SortBtn
           active={sort === 'start'}
           sortDirection={sortDirection}
@@ -120,7 +129,7 @@ const GridHeader = (props) => {
           Event date
         </SortBtn>
       </HeaderColumn>
-      <HeaderColumn style={{ width: '20%' }}>
+      <HeaderColumn className="owner" style={{ width: '20%' }}>
         <SortBtn
           active={sort === 'owner'}
           sortDirection={sortDirection}
@@ -128,7 +137,7 @@ const GridHeader = (props) => {
             headerClickHandler('owner');
           }}
         >
-          Owner
+          Created By
         </SortBtn>
       </HeaderColumn>
     </React.Fragment>

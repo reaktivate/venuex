@@ -5,7 +5,7 @@ import StaffList from '@venuex/web/ui/components/ManageStaff/StaffList/StaffList
 
 const staff = [
   {
-    name: 'abc',
+    displayName: 'abc',
     picture: 'https://api.adorable.io/avatars/40/3.png',
     id: 1,
     email: 'abc@gmail.com',
@@ -13,7 +13,7 @@ const staff = [
     dateAdded: new Date()
   },
   {
-    name: 'dgsdg',
+    displayName: 'dgsdg',
     picture: 'https://api.adorable.io/avatars/40/4.png',
     id: 2,
     email: 'gfsds@gmail.com',

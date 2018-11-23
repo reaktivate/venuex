@@ -29,16 +29,15 @@ const Column = styled.div`
   font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.3px;
-  color: #888888;
+  color: #222222;
   padding-left: 27px;
 
-  &.permissions {
+  &.guests {
     justify-content: center;
   }
 
-  &.permissions svg {
-    margin-right: 5px;
-    margin-left: 5px;
+  &.date {
+    color: #888888;
   }
 `;
 
@@ -65,11 +64,15 @@ class BillingTableRow extends Component {
 
     return (
       <Row>
-        <Column style={{ width: '20%' }}>{data.clientName}</Column>
+        <Column style={{ width: '15%' }}>{data.clientName}</Column>
         <Column style={{ width: '20%' }}>{data.name}</Column>
-        <Column style={{ width: '20%' }}>{data.ceremonyKind}</Column>
-        <Column style={{ width: '20%' }}>{data.actualGuests}</Column>
-        <Column style={{ width: '20%' }}>{data.start.format('MMM DD')}</Column>
+        <Column style={{ width: '120px' }}>{data.ceremonyKind}</Column>
+        <Column className="guests" style={{ width: '65px' }}>
+          {data.actualGuests}
+        </Column>
+        <Column className="date" style={{ width: '104px' }}>
+          {data.start.format('MM/DD/Y')}
+        </Column>
 
         <Column style={{ width: '20%' }}>
           <LazyUserName user={data.owner} />
