@@ -71,15 +71,14 @@ const SortBtn = styled.div`
 `;
 
 const CheckedHeader = (props) => {
-  const { permissionList, selected } = props;
+  const { permissionList, selected, saveHandler } = props;
   let count = selected.length;
 
   let lexForm = 'Member' + (count > 1 ? 's' : '');
 
   return (
-    <HeaderColumn className="buttons" style={{ width: 'calc(100% - 70px)' }}>
-      <PermissionPopup checked={permissionList} />
-
+    <HeaderColumn className="buttons" style={{ maxWidth: 'calc(100% - 70px)' }}>
+      <PermissionPopup checked={permissionList} saveHandler={saveHandler} count={count} />
       <IconButton
         ready={true}
         text={`Delete ${count} Staff ${lexForm}`}

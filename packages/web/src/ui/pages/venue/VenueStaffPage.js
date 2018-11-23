@@ -56,6 +56,69 @@ class VenueStaffPage extends Component {
     };
   }
 
+  checkAllHandler = () => {
+    let selected = this.props.staff.map((user) => user.id);
+
+    this.setState({
+      selected: selected
+    });
+  };
+
+  uncheckAllHandler = () => {
+    this.setState({
+      selected: []
+    });
+  };
+
+  rowCheckHandler = (user) => {
+    let selected = this.state.selected || [];
+
+    if (selected.indexOf(user.id) !== -1) {
+      return;
+    }
+
+    this.setState({
+      selected: [...selected, user.id]
+    });
+  };
+
+  rowUncheckHandler = (user) => {
+    let selected = [...this.state.selected];
+
+    if (selected.indexOf(user.id) === -1) {
+      return;
+    }
+
+    let i = selected.indexOf(user.id);
+
+    selected.splice(i, 1);
+
+    this.setState({
+      selected: selected
+    });
+  };
+
+  saveHandler = (selectedPermissions) => {
+    const { updatePermissions, staff } = this.props;
+
+    let permissionsList = [
+      'createAndEditEvents',
+      'deleteEvents',
+      'viewBilling',
+      'manageStaffPermissions'
+    ];
+
+    staff.map((user) => {
+      const { permissions } = user;
+
+      permissionsList.map((permission) => {
+        permissions[permission] = selectedPermissions.indexOf(permission) === -1 ? false : true;
+      });
+
+      updatePermissions(user.id, permissions);
+    });
+  };
+
   render() {
     const { staff, loadRequest } = this.props;
     const { selected } = this.state;
@@ -64,6 +127,8 @@ class VenueStaffPage extends Component {
     if (!staff.length) {
       return <div>Loading...</div>;
     }
+
+    let checkAllChecked = staff.length == selected.length;
 
     return (
       <React.Fragment>
@@ -78,13 +143,15 @@ class VenueStaffPage extends Component {
           selected={selected}
           sort="name"
           headerClickHandler={action('Sort')}
-          checkAllHandler={action('check all')}
-          uncheckAllHandler={action('uncheck all')}
-          rowCheckHandler={action('check')}
-          rowUncheckHandler={action('uncheck')}
+          checkAllHandler={this.checkAllHandler}
+          uncheckAllHandler={this.uncheckAllHandler}
+          rowCheckHandler={this.rowCheckHandler}
+          rowUncheckHandler={this.rowUncheckHandler}
+          checkAllChecked={checkAllChecked}
           rowEditHandler={action('edit')}
           rowDeleteHandler={action('delete')}
           rowChangePermission={this.handlePermissionChange}
+          saveHandler={this.saveHandler}
         />
       </React.Fragment>
     );

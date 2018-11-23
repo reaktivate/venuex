@@ -8,6 +8,9 @@ import BillingList from '@venuex/web/ui/components/billing/BillingList';
 import Header from '@venuex/web/ui/containers/Header';
 import RoundButton from '@venuex/web/ui/elements/buttons/RoundButton';
 import Plus from '@venuex/web/ui/icons/Plus';
+import SummaryItem from '@venuex/web/ui/elements/Summary';
+import Summary from '@venuex/web/ui/containers/Summary';
+import Button from '@venuex/web/ui/elements/buttons/Button';
 import MonthPickerRender from '@venuex/web/ui/components/events/MonthPicker';
 import moment from 'moment';
 
@@ -56,10 +59,23 @@ class VenueEventsPage extends Component {
     this.setState({ date: this.state.date.add(delta, 'month') });
   }
 
+  getSummary = (events) => {
+    events = events || [];
+
+    return {
+      count: events.length,
+      guests: events.reduce((acc, event) => acc + event.actualGuests, 0)
+    };
+  };
+
   render() {
     const { events, bills } = this.props;
     const action = this.action;
     const { date } = this.state;
+
+    let summary = this.getSummary(events);
+
+    console.log(events);
 
     if (!events.length) {
       return <div>Loading...</div>;
@@ -74,6 +90,41 @@ class VenueEventsPage extends Component {
             onPreviousMonth={() => this.handleMonthChange(-1)}
           />
         </Header>
+
+        <Summary>
+          <SummaryItem
+            name="Total Events"
+            count={summary.count}
+            color="gray"
+            style={{ paddingRight: '30px' }}
+          />
+
+          <SummaryItem
+            name="Total Guests"
+            count={summary.guests}
+            color="gray"
+            mode="line-before"
+            style={{ paddingLeft: '30px', paddingRight: '30px' }}
+          />
+          <SummaryItem
+            name="Current Balance"
+            count="$ 5,000"
+            color="gray"
+            mode="line-before"
+            style={{ paddingLeft: '30px', paddingRight: '30px' }}
+          />
+          <SummaryItem
+            name="Due Date: in 18 days"
+            count={date.format('MMM d, Y')}
+            color="gray"
+            mode="line-before"
+            style={{ paddingLeft: '30px', marginRight: 'auto' }}
+          />
+          <Button onClick={() => console.log('make a payment')} mode="success">
+            make a payment
+          </Button>
+        </Summary>
+
         <BillingList
           data={events}
           selected={[]}

@@ -110,7 +110,7 @@ const PermissionBtn = styled((props) => {
 );
 
 const permissionStatus = (permission, list) => {
-  return list && list[permission];
+  list = list || [];
 };
 
 const RowRender = (props) => {
