@@ -57,7 +57,7 @@ class VenueEventsPage extends Component {
             onPreviousMonth={() => this.handleMonthChange(-1)}
           />
           <RoundButton handleClick={() => this.handleAddEvent()}>
-            <Plus color={'white'} />
+            <Plus color={'white'} size="16px" />
           </RoundButton>
         </Header>
         <Calendar

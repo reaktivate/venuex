@@ -6,14 +6,11 @@ const Table = styled.div`
   flex-direction: column;
   padding: 0;
   border-radius: 2px;
-  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
   background-color: #ffffff;
-  max-width: calc(100% - 30px);
   width: 100%;
   box-sizing: border-box;
-  margin: 20px auto 20px auto;
   align-items: center;
-
+  border: 1px solid #eeeeee;
   & .staff-list-tools {
     display: none;
   }
@@ -30,7 +27,6 @@ const Header = styled.div`
   width: 100%;
   display: flex;
   height: 65px;
-  border-bottom: 1px solid #ededed;
 `;
 
 const Grid = (props) => {
