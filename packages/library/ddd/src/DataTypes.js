@@ -116,6 +116,30 @@ export class DateType extends Type {
   }
 }
 
+export class TimestampType extends Type {
+  _transformer = (value) => {
+    if (value.toDate && (value.nanoseconds || value.seconds)) {
+      value = value.toDate();
+    }
+
+    const date = moment(value, this._format, true);
+
+    if (!date.isValid()) {
+      warning(false, `[DateType] Invalid date value: "${value}".`);
+
+      return;
+    }
+
+    return date;
+  };
+
+  _serializer = (value) => {
+    if (moment.isMoment(value)) {
+      return moment(value).unix();
+    }
+  };
+}
+
 export class ObjectType extends Type {
   _shape;
 
@@ -351,6 +375,10 @@ const DataTypes = {
 
   get date() {
     return new DateType();
+  },
+
+  get timestamp() {
+    return new TimestampType();
   },
 
   get object() {

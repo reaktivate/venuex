@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 import { connect } from '@venuex/ddd/react';
 import EventStore from '@venuex/domain/stores/EventStore';
 import EventService from '@venuex/domain/services/EventService';
 import Calendar from '@venuex/web/ui/components/Calendar';
+import Header from '@venuex/web/ui/containers/Header';
+import MonthPickerRender from '@venuex/web/ui/components/events/MonthPicker';
+import RoundButton from '@venuex/web/ui/elements/buttons/RoundButton';
+import Plus from '@venuex/web/ui/icons/Plus';
 import EventView from '@venuex/web/ui/components/EventView';
-import PropTypes from 'prop-types';
 
 @connect(({ domain }) => {
   const eventStore = domain.get(EventStore);
@@ -20,19 +24,10 @@ import PropTypes from 'prop-types';
   };
 })
 class VenueEventsPage extends Component {
-  static propTypes = {
-    events: PropTypes.array,
-    loadRequest: PropTypes.object,
-    fetchCurrentVenueEvents: PropTypes.func
+  state = {
+    date: moment(new Date()),
+    event: null
   };
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      event: null
-    };
-  }
 
   componentDidMount() {
     this.props.fetchCurrentVenueEvents();
@@ -46,29 +41,43 @@ class VenueEventsPage extends Component {
     this.setState({ event: e });
   };
 
+  handleMonthChange(delta) {
+    this.setState({ date: this.state.date.add(delta, 'month') });
+  }
+
   render() {
-    const { events /*loadRequest*/ } = this.props;
-    const { event } = this.state;
+    const { events, loadRequest } = this.props;
+    const { date, event } = this.state;
 
     if (!events.length) {
       return <div>Loading...</div>;
     }
 
     return (
-      <div style={{ display: 'flex', flexFlow: 'column', height: '100%' }}>
-        <div style={{ flex: '2' }}>
-          <Calendar
-            onEventClick={this.handleEditEvent}
-            onCellClick={this.handleAddEvent}
-            events={events}
+      <React.Fragment>
+        <Header>
+          <MonthPickerRender
+            date={date}
+            onNextMonth={() => this.handleMonthChange(1)}
+            onPreviousMonth={() => this.handleMonthChange(-1)}
           />
-        </div>
+          <RoundButton handleClick={() => this.handleAddEvent()}>
+            <Plus color={'white'} size="16px" />
+          </RoundButton>
+        </Header>
+        <Calendar
+          onEventClick={this.handleEditEvent}
+          onCellClick={this.handleAddEvent}
+          events={events}
+          date={date}
+        />
+
         {event && (
-          <div style={{ display: 'flex', flex: '1', justifyContent: 'center' }}>
+          <div style={{ position: 'absolute', bottom: 0, background: 'white', 'z-index': '10' }}>
             <EventView event={event} />
           </div>
         )}
-      </div>
+      </React.Fragment>
     );
   }
 }

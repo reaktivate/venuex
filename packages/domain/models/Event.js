@@ -1,5 +1,6 @@
 import { observable } from 'mobx';
 import { Entity, DataTypes } from '@venuex/ddd';
+import Employee from './Employee';
 
 class Payment {
   static schema = {
@@ -25,9 +26,9 @@ class Event extends Entity {
     layout: DataTypes.string, // reference to venue.layout
     minimumGuests: DataTypes.int,
     consultants: DataTypes.arrayOf(DataTypes.string), // references to staff
-    owner: DataTypes.string, // reference to staff
     ceremonyKind: DataTypes.string, // reference to venue.ceremonyKinds
-    actualGuests: DataTypes.int
+    actualGuests: DataTypes.int,
+    owner: DataTypes.reference(Employee)
   };
 
   @observable name;
