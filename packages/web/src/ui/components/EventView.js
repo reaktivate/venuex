@@ -4,9 +4,8 @@ import styled from 'styled-components';
 import RoundIcon from '@venuex/web/ui/elements/RoundIcon';
 import Button from '@venuex/web/ui/elements/buttons/Button';
 import Icon from '@venuex/web/ui/icons/ImportFile';
-import SideTabs from '@venuex/web/ui/components/SideTabs';
 import LazyUserName from '@venuex/web/ui/components/billing/LazyUserName';
-import CalendarIcon from '@venuex/web/ui/icons/Calendar';
+import { Tab, TabList, TabPanel, Tabs } from '@venuex/web/ui/components/Tabs';
 
 const Container = styled.div`
   display: flex;
@@ -67,12 +66,11 @@ class Header extends Component {
 }
 
 const ContentContainer = styled.div`
-  width: 100%;
-  padding: 30px 20px;
+  display: flex;
+  padding: 0 20px;
 `;
 
 const Details = styled.div`
-  padding: 0 40px;
   font-size: 15px;
 `;
 const DetailsLineContainer = styled.div`
@@ -95,7 +93,7 @@ const DetailsSimpleText = styled.div`
 class DetailsLine extends Component {
   static propTypes = {
     name: PropTypes.string,
-    value: PropTypes.object
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
   };
 
   render() {
@@ -120,57 +118,57 @@ class Content extends Component {
 
     return (
       <ContentContainer>
-        <SideTabs
-          tabs={[
-            {
-              title: 'Event Overview',
-              icon: <CalendarIcon color="#c0b69b" size="20" />,
-              content: (
-                <Details>
-                  {event.consultants.map((consultant) => (
-                    <DetailsLine
-                      key={consultant.id}
-                      name="Consultant"
-                      value={<LazyUserName user={consultant} />}
-                    />
-                  ))}
-                  {event.type && <DetailsLine name="Event Type" value={event.type} />}
-                  {event.ceremony && <DetailsLine name="Ceremony" value={event.ceremony} />}
-                  <DetailsLine name="Start Time" value={event.start.format('LT')} />
-                  <DetailsLine name="End Time" value={event.end.format('LT')} />
-                </Details>
-              )
-            },
-            {
-              title: 'Client Details',
-              icon: <CalendarIcon color="#c0b69b" size="20" />,
-              content: (
-                <Details>
-                  <DetailsLine name="Name" value={event.clientName} />
-                </Details>
-              )
-            },
-            {
-              title: 'Room & Layout',
-              icon: <CalendarIcon color="#c0b69b" size="20" />,
-              content: (
-                <Details>
-                  <DetailsLine name="Room" value={event.room} />
-                  <DetailsLine name="Layout" value={event.layout} />
-                </Details>
-              )
-            },
-            {
-              title: 'Notes',
-              icon: <CalendarIcon color="#c0b69b" size="20" />,
-              content: (
-                <Details>
-                  <DetailsSimpleText>{event.notes}</DetailsSimpleText>
-                </Details>
-              )
-            }
-          ]}
-        />
+        <Tabs defaultTab="one">
+          <TabList>
+            <Tab tabFor="one">
+              <Icon color="#c0b69b" />
+              Event Overview
+            </Tab>
+            <Tab tabFor="two">
+              <Icon color="#c0b69b" />
+              Client Details
+            </Tab>
+            <Tab tabFor="three">
+              <Icon color="#c0b69b" />
+              Room & Layout
+            </Tab>
+            <Tab tabFor="four">
+              <Icon color="#c0b69b" />
+              Notes
+            </Tab>
+          </TabList>
+          <TabPanel tabId="one">
+            <Details>
+              {event.consultants.map((consultant) => (
+                <DetailsLine
+                  key={consultant.id}
+                  name="Consultant"
+                  value={<LazyUserName user={consultant} />}
+                />
+              ))}
+              {event.type && <DetailsLine name="Event Type" value={event.type} />}
+              {event.ceremony && <DetailsLine name="Ceremony" value={event.ceremony} />}
+              <DetailsLine name="Start Time" value={event.start.format('LT')} />
+              <DetailsLine name="End Time" value={event.end.format('LT')} />
+            </Details>
+          </TabPanel>
+          <TabPanel tabId="two">
+            <Details>
+              <DetailsLine name="Name" value={event.clientName} />
+            </Details>
+          </TabPanel>
+          <TabPanel tabId="three">
+            <Details>
+              <DetailsLine name="Room" value={event.room} />
+              <DetailsLine name="Layout" value={event.layout} />
+            </Details>
+          </TabPanel>
+          <TabPanel tabId="four">
+            <Details>
+              <DetailsSimpleText>{event.notes}</DetailsSimpleText>
+            </Details>
+          </TabPanel>
+        </Tabs>
       </ContentContainer>
     );
   }

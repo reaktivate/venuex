@@ -18,8 +18,9 @@ const event = {
   start: today,
   end: moment(today).add({ hours: 2 }),
   extraData: { somekey: 1 },
-  consultant: { name: 'Ivan Drago' },
-  type: 'Wedding'
+  type: 'Wedding',
+  consultants: ['staff-1'],
+  owner: 'staff-1'
 };
 
 storiesOf('components/EventView', module).add('default', () => (
