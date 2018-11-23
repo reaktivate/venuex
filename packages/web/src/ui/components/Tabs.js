@@ -8,7 +8,6 @@ import styled from 'styled-components';
 
 const Tabs = styled(UnstyledTabs)`
   padding: 25px 0;
-  max-width: 500px;
   width: 100%;
   display: flex;
 `;
@@ -16,18 +15,15 @@ const Tabs = styled(UnstyledTabs)`
 const TabList = styled(UnstyledTabList)`
   display: flex;
   flex-direction: column;
-  max-width: 180px;
-  width: 100%;
+  flex: 1 0 180px;
   border-right: 1px solid #d8d8d8;
 `;
 
 const Tab = styled(UnstyledTab)`
-  max-width: 180px;
   cursor: pointer;
   min-height: 50px;
-  padding: 10px 30px 10px 20px;
-  display: inline-flex;
-  justify-content: center;
+  display: flex;
+  justify-content: flex-start;
   align-items: center;
   box-sizing: border-box;
   position: relative;
@@ -44,6 +40,7 @@ const Tab = styled(UnstyledTab)`
   font-weight: 400;
   letter-spacing: -0.1px;
   color: #c0b69b;
+  padding: 0;
   & > svg,
   & > img {
     margin-right: 10px;
@@ -73,7 +70,7 @@ const Tab = styled(UnstyledTab)`
 
 const TabPanel = styled(UnstyledTabPanel)`
   padding: 0 10px 0 40px;
-  flex-grow: 1;
+  flex: 1 1 100%;
 `;
 
 export { Tabs, TabList, Tab, TabPanel };

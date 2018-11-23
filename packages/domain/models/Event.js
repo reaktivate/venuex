@@ -15,7 +15,7 @@ class Event extends Entity {
     ...Entity.schema,
     venueId: DataTypes.string.required, // reference in fact
     name: DataTypes.string.required,
-    // type: DataTypes.string.required,
+    type: DataTypes.string.required,
     start: DataTypes.date.required,
     end: DataTypes.date.required,
     payments: DataTypes.arrayOf(DataTypes.embed(Payment)),
@@ -25,7 +25,7 @@ class Event extends Entity {
     room: DataTypes.string, // reference to venue.room
     layout: DataTypes.string, // reference to venue.layout
     minimumGuests: DataTypes.int,
-    consultants: DataTypes.arrayOf(DataTypes.string), // references to staff
+    consultants: DataTypes.arrayOf(DataTypes.reference(Employee)), // references to staff
     ceremonyKind: DataTypes.string, // reference to venue.ceremonyKinds
     actualGuests: DataTypes.int,
     owner: DataTypes.reference(Employee)

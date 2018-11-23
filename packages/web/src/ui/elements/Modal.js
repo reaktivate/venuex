@@ -26,7 +26,6 @@ const Container = styled('div')({
 const Dialog = styled('div')({
   position: 'relative',
   maxWidth: 620,
-  padding: 20,
   background: '#fff',
   color: '#000',
   boxShadow: '0 5px 15px rgba(0,0,0,.5)',

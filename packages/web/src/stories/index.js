@@ -37,3 +37,4 @@ import './elements/Switcher.js';
 import './elements/YesNoStatus.js';
 import './icons/Icons.js';
 import './components/ManageStaff/StaffList';
+import './components/EventView';

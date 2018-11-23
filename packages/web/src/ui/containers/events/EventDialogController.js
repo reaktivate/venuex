@@ -5,6 +5,7 @@ import router from '@venuex/web/lib/router';
 import query from 'query-string';
 import Modal from '@venuex/web/ui/elements/Modal';
 import EventEditDialog from './EventEditDialog';
+import EventViewDialog from './EventViewDialog';
 
 const EventDialogController = ({ history, location: { pathname } }) => {
   const addMatch = router.match(pathname, 'venue.events.add');
@@ -16,6 +17,7 @@ const EventDialogController = ({ history, location: { pathname } }) => {
   const initialDate = addMatch && query.parse(document.location.search).date;
   const eventId = (editMatch && editMatch.params.id) || (viewMatch && viewMatch.params.id);
   const onRequestClose = () => history.replace(router.path('venue.events'));
+  const onSwitchToEdit = () => history.replace(router.path('venue.events.edit', { id: eventId }));
 
   return (
     <Fragment>
@@ -26,7 +28,7 @@ const EventDialogController = ({ history, location: { pathname } }) => {
         {() => <EventEditDialog eventId={eventId} />}
       </Modal>
       <Modal open={showViewDialog} onRequestClose={onRequestClose}>
-        {() => <div>Edit {eventId} edit dialog will be here.</div>}
+        {() => <EventViewDialog eventId={eventId} onSwitchToEdit={onSwitchToEdit} />}
       </Modal>
     </Fragment>
   );
