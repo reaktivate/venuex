@@ -15,7 +15,26 @@ import PropTypes from 'prop-types';
 
 const StyledEdit = styled(Edit)(
   css`
+    cursor: pointer;
     margin-right: 30px;
+    opacity: 0.5;
+    transition: 0.3s;
+
+    &:hover {
+      opacity: 1;
+    }
+  `
+);
+const StyledDelete = styled(Delete)(
+  css`
+    cursor: pointer;
+    margin-right: 30px;
+    opacity: 0.5;
+    transition: 0.3s;
+
+    &:hover {
+      opacity: 1;
+    }
   `
 );
 
@@ -45,8 +64,9 @@ const Column = styled.div`
   font-weight: 600;
   letter-spacing: 0.3px;
   color: #888888;
-  padding-left: 27px;
-
+  padding: 0 10px;
+  width: 100%;
+  box-sizing: border-box;
   &.permissions {
     justify-content: center;
   }
@@ -60,6 +80,21 @@ const Column = styled.div`
 const Name = styled.span`
   margin-left: 10px;
   color: #222222;
+  font-size: 15px;
+  font-weight: 300;
+  letter-spacing: -0.3px;
+`;
+const Email = styled.span`
+  font-size: 15px;
+  font-weight: 300;
+  letter-spacing: -0.3px;
+  color: #222222;
+`;
+const DateText = styled.span`
+  font-size: 15px;
+  font-weight: 300;
+  letter-spacing: -0.3px;
+  color: #7d7d7d;
 `;
 
 const PermissionBtn = styled((props) => {
@@ -91,7 +126,7 @@ const RowRender = (props) => {
 
   return (
     <Row>
-      <Column style={{ width: '50px' }}>
+      <Column style={{ maxWidth: '70px' }}>
         <Checkbox
           checked={selected.indexOf(id) === -1 ? 0 : 1}
           onCheck={() => {
@@ -100,16 +135,19 @@ const RowRender = (props) => {
           onUncheck={() => {
             rowUncheckHandler(props.data);
           }}
+          style={{ margin: '0 auto' }}
         />
       </Column>
-      <Column style={{ width: '20%' }}>
+      <Column style={{ maxWidth: 'calc((100% - 440px)/2.8)', minWidth: '100px' }}>
         <RoundIcon size="40" type="photo">
           <img src={picture} alt="avatar" />
         </RoundIcon>
         <Name>{displayName}</Name>
       </Column>
-      <Column style={{ width: '20%' }}>{email}</Column>
-      <Column className="permissions" style={{ width: '20%' }}>
+      <Column style={{ maxWidth: 'calc((100% - 440px)/2.2)', minWidth: '100px' }}>
+        <Email>{email}</Email>
+      </Column>
+      <Column className="permissions" style={{ maxWidth: '150px' }}>
         <PermissionBtn
           Icon={CalendarEdit}
           isActive={permissionStatus('createAndEditEvents', permissions)}
@@ -139,18 +177,24 @@ const RowRender = (props) => {
           }}
         />
       </Column>
-      <Column style={{ width: '104px' }}>{moment(dateAdded.toString()).format('L')}</Column>
-      <Column style={{ width: '80px' }}>{owner ? <Owner /> : ''}</Column>
-      <Column style={{ width: '20%' }}>
+      <Column style={{ maxWidth: '150px', justifyContent: 'center' }}>
+        <DateText>{moment(dateAdded.toString()).format('L')}</DateText>
+      </Column>
+      <Column style={{ maxWidth: '70px' }}>{owner ? <Owner /> : ''}</Column>
+      <Column
+        style={{ maxWidth: 'calc((100% - 440px)/5)', minWidth: '50px', justifyContent: 'center' }}
+      >
         <span className="staff-list-tools">
           <StyledEdit
-            color="#7d7d7d"
+            color="#222222"
+            size="24px"
             onClick={() => {
               rowEditHandler(props.data);
             }}
           />
-          <Delete
-            color="#7d7d7d"
+          <StyledDelete
+            color="#222222"
+            size="24px"
             onClick={() => {
               rowDeleteHandler(props.data);
             }}

@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Checkbox from '@venuex/web/ui/elements/form/Checkbox';
 import PermissionPopup from '@venuex/web/ui/components/PermissionPopup';
 import IconButton from '@venuex/web/ui/elements/buttons/IconButton.js';
@@ -7,6 +7,7 @@ import Delete from '@venuex/web/ui/icons/Delete.js';
 import PropTypes from 'prop-types';
 
 const HeaderColumn = styled.div`
+  cursor: pointer;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -19,20 +20,29 @@ const HeaderColumn = styled.div`
   opacity: 1;
   transition-timing-function: ease-in;
   transition: 0.2s opacity;
-  padding-left: 27px;
+  padding: 0 10px;
+  width: 100%;
+  box-sizing: border-box;
   &.name {
     justify-content: left;
   }
 
   &.name div {
-    margin-left: 48px;
+    margin: 0 auto;
   }
 
   &.buttons {
     justify-content: left;
   }
 `;
-
+const ColumnText = styled.span((props) => {
+  return css`
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 0.3px;
+    color: ${props.selected ? '#181818' : '#888888'};
+  `;
+});
 const getBtnColor = (props) => (props.active ? '#181818' : '#888888');
 const sortDerection = (props) =>
   props.active && props.sortDirection === 'asc' ? '135deg' : '-45deg';
@@ -44,6 +54,7 @@ const SortBtn = styled.div`
   letter-spacing: 0.3px;
   color: ${getBtnColor};
   display: flex;
+  align-items: center;
 
   &:after {
     position: relative;
@@ -66,7 +77,7 @@ const CheckedHeader = (props) => {
   let lexForm = 'Member' + (count > 1 ? 's' : '');
 
   return (
-    <HeaderColumn className="buttons" style={{ width: '80%' }}>
+    <HeaderColumn className="buttons" style={{ width: 'calc(100% - 70px)' }}>
       <PermissionPopup checked={permissionList} />
 
       <IconButton
@@ -87,7 +98,10 @@ const DefaultHeader = (props) => {
 
   return (
     <React.Fragment>
-      <HeaderColumn className="name" style={{ width: '20%' }}>
+      <HeaderColumn
+        className="name"
+        style={{ maxWidth: 'calc((100% - 440px)/2.8)', minWidth: '100px' }}
+      >
         <SortBtn
           active={sort === 'name'}
           sortDirection={sortDirection}
@@ -95,10 +109,10 @@ const DefaultHeader = (props) => {
             headerClickHandler('name');
           }}
         >
-          Name
+          <ColumnText selected={true}>Name</ColumnText>
         </SortBtn>
       </HeaderColumn>
-      <HeaderColumn style={{ width: '20%' }}>
+      <HeaderColumn style={{ maxWidth: 'calc((100% - 440px)/2.2)', minWidth: '100px' }}>
         <SortBtn
           active={sort === 'email'}
           sortDirection={sortDirection}
@@ -106,11 +120,13 @@ const DefaultHeader = (props) => {
             headerClickHandler('email');
           }}
         >
-          Email
+          <ColumnText>Email</ColumnText>
         </SortBtn>
       </HeaderColumn>
-      <HeaderColumn style={{ width: '20%' }}>PERMISSION</HeaderColumn>
-      <HeaderColumn style={{ width: '104px' }}>
+      <HeaderColumn style={{ maxWidth: '150px' }}>
+        <ColumnText>PERMISSION</ColumnText>
+      </HeaderColumn>
+      <HeaderColumn style={{ maxWidth: '150px' }}>
         <SortBtn
           active={sort === 'date'}
           sortDirection={sortDirection}
@@ -118,11 +134,11 @@ const DefaultHeader = (props) => {
             headerClickHandler('date');
           }}
         >
-          date added
+          <ColumnText>date added</ColumnText>
         </SortBtn>
       </HeaderColumn>
-      <HeaderColumn style={{ width: '80px' }} />
-      <HeaderColumn style={{ width: '20%' }} />
+      <HeaderColumn style={{ maxWidth: '70px' }} />
+      <HeaderColumn style={{ maxWidth: 'calc((100% - 440px)/5)', minWidth: '50px' }} />
     </React.Fragment>
   );
 };
@@ -132,11 +148,12 @@ const GridHeader = (props) => {
 
   return (
     <React.Fragment>
-      <HeaderColumn style={{ width: '50px' }}>
+      <HeaderColumn style={{ maxWidth: '70px' }}>
         <Checkbox
           checked={checkAllChecked}
           onCheck={checkAllHandler}
           onUncheck={uncheckAllHandler}
+          style={{ margin: 'auto' }}
         />
       </HeaderColumn>
       {selected.length ? <CheckedHeader {...props} /> : <DefaultHeader {...props} />}
