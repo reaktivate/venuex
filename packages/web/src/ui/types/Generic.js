@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 
 const StringOrNumberPropType = PropTypes.oneOfType([PropTypes.string, PropTypes.number]);
+const ComponentType = PropTypes.oneOfType([PropTypes.element, PropTypes.func]);
 
 export default {
   stringOrNumber: StringOrNumberPropType,
@@ -10,5 +11,6 @@ export default {
     PropTypes.instanceOf(Date),
     PropTypes.instanceOf(moment)
   ]),
-  renderer: PropTypes.oneOfType([PropTypes.node, PropTypes.func])
+  component: ComponentType,
+  renderer: PropTypes.oneOfType([ComponentType, PropTypes.func])
 };
