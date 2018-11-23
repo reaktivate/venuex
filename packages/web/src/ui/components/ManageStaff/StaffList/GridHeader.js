@@ -17,7 +17,6 @@ const HeaderColumn = styled.div`
   transition-timing-function: ease-in;
   transition: 0.2s opacity;
   padding-left: 27px;
-
   &.name {
     justify-content: left;
   }

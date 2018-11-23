@@ -113,12 +113,12 @@ class UserPopup extends Component {
     });
   };
   render() {
-    const { userName, handleChangePassword, handleEditProfile, handleLogOut } = this.props;
+    const { userName, handleChangePassword, handleEditProfile, handleLogOut, photo } = this.props;
 
     return (
       <Container>
         <UserButton
-          photo="https://api.adorable.io/avatars/40/1.png"
+          photo={photo}
           handleClick={this.togglePopup}
           isOpen={this.state.isOpen}
           style={{ pointerEvents: this.state.isOpen ? 'none' : 'auto' }}
@@ -146,6 +146,7 @@ class UserPopup extends Component {
 }
 UserPopup.propTypes = {
   userName: PropTypes.string,
+  photo: PropTypes.string,
   handleEditProfile: PropTypes.func.isRequire,
   handleChangePassword: PropTypes.func.isRequire,
   handleLogOut: PropTypes.func.isRequire

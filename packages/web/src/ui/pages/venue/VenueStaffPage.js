@@ -70,7 +70,7 @@ class VenueStaffPage extends Component {
         <Header>
           <div style={{ width: '100%' }}>Staff</div>
           <RoundButton handleClick={() => this.handleAddUser()}>
-            <Plus color={'white'} />
+            <Plus color={'white'} size="16px" />
           </RoundButton>
         </Header>
         <StaffList

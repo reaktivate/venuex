@@ -40,16 +40,25 @@ DateHeader.propTypes = {
 };
 
 const EventWrapper = styled.div`
+  padding: 0 4px 0 0;
   & > button {
     pointer-events: all;
+    font-family: Montserrat;
     font-size: 12px;
-    font-weight: bold;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
+    font-weight: 300;
+    letter-spacing: -0.1px;
     color: #ffffff;
     border-radius: 2px;
     background-color: #c0b69b;
+    outline: none !important;
+    &.rbc-event {
+      &:focus {
+        background-color: #c0b69b;
+      }
+      &.rbc-selected {
+        background-color: #c0b69b;
+      }
+    }
   }
 `;
 
@@ -90,7 +99,7 @@ const StyledBigCalendar = styled(BigCalendar)`
         }
       }
       .rbc-row-segment {
-        padding: 0 0 2px 0;
+        padding: 0 0 2px 0 !important;
       }
     }
     .rbc-row-content {
@@ -119,6 +128,24 @@ const StyledBigCalendar = styled(BigCalendar)`
           color: #888888;
         }
       }
+    }
+  }
+  .rbc-month-view {
+    height: 1000px;
+  }
+  @media screen and (max-width: 1300px) {
+    .rbc-month-view {
+      height: 800px;
+    }
+  }
+  @media screen and (max-width: 1100px) {
+    .rbc-month-view {
+      height: 700px;
+    }
+  }
+  @media screen and (max-width: 900px) {
+    .rbc-month-view {
+      height: 600px;
     }
   }
 `;

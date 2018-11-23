@@ -10,6 +10,7 @@ const Row = styled.div`
   border-bottom: 1px solid #ededed;
   transition-timing-function: ease-in;
   transition: 0.2s background-color;
+  border-top: 1px solid #eeeeee;
 
   &:hover {
     background-color: #fafafa;

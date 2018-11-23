@@ -23,10 +23,10 @@ const Row = styled.div`
   display: flex;
   width: 100%;
   height: 65px;
-  border-bottom: 1px solid #ededed;
   transition-timing-function: ease-in;
   transition: 0.2s background-color;
-
+  box-sizing: border-box;
+  border-top: 1px solid #eeeeee;
   &:hover {
     background-color: #fafafa;
 
