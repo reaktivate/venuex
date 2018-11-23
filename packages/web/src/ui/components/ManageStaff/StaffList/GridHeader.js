@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import Checkbox from '@venuex/web/ui/elements/form/Checkbox';
+import PermissionPopup from '@venuex/web/ui/components/PermissionPopup';
+import IconButton from '@venuex/web/ui/elements/buttons/IconButton.js';
+import Delete from '@venuex/web/ui/icons/Delete.js';
 import PropTypes from 'prop-types';
 
 const HeaderColumn = styled.div`
@@ -23,6 +26,10 @@ const HeaderColumn = styled.div`
 
   &.name div {
     margin-left: 48px;
+  }
+
+  &.buttons {
+    justify-content: left;
   }
 `;
 
@@ -52,25 +59,34 @@ const SortBtn = styled.div`
   }
 `;
 
-const GridHeader = (props) => {
-  const {
-    sort,
-    sortDirection,
-    checkAllHandler,
-    uncheckAllHandler,
-    checkAllChecked,
-    headerClickHandler
-  } = props;
+const CheckedHeader = (props) => {
+  const { permissionList, selected } = props;
+  let count = selected.length;
+
+  let lexForm = 'Member' + (count > 1 ? 's' : '');
+
+  return (
+    <HeaderColumn className="buttons" style={{ width: '80%' }}>
+      <PermissionPopup checked={permissionList} />
+
+      <IconButton
+        ready={true}
+        text={`Delete ${count} Staff ${lexForm}`}
+        textColor="red"
+        buttonColor="white"
+        mode="border"
+      >
+        <Delete color="#c02026" />
+      </IconButton>
+    </HeaderColumn>
+  );
+};
+
+const DefaultHeader = (props) => {
+  const { sort, sortDirection, headerClickHandler } = props;
 
   return (
     <React.Fragment>
-      <HeaderColumn style={{ width: '50px' }}>
-        <Checkbox
-          checked={checkAllChecked}
-          onCheck={checkAllHandler}
-          onUncheck={uncheckAllHandler}
-        />
-      </HeaderColumn>
       <HeaderColumn className="name" style={{ width: '20%' }}>
         <SortBtn
           active={sort === 'name'}
@@ -107,6 +123,23 @@ const GridHeader = (props) => {
       </HeaderColumn>
       <HeaderColumn style={{ width: '80px' }} />
       <HeaderColumn style={{ width: '20%' }} />
+    </React.Fragment>
+  );
+};
+
+const GridHeader = (props) => {
+  const { checkAllHandler, uncheckAllHandler, checkAllChecked, selected } = props;
+
+  return (
+    <React.Fragment>
+      <HeaderColumn style={{ width: '50px' }}>
+        <Checkbox
+          checked={checkAllChecked}
+          onCheck={checkAllHandler}
+          onUncheck={uncheckAllHandler}
+        />
+      </HeaderColumn>
+      {selected.length ? <CheckedHeader {...props} /> : <DefaultHeader {...props} />}
     </React.Fragment>
   );
 };

@@ -33,7 +33,7 @@ const StyledDateHeader = styled.div`
   color: #7d7d7d;
 `;
 
-const DateHeader = ({ label }) => <StyledDateHeader>{label}</StyledDateHeader>;
+const DateHeader = ({ label }) => <StyledDateHeader>{parseInt(label)}</StyledDateHeader>;
 
 DateHeader.propTypes = {
   label: PropTypes.string.isRequired
@@ -117,7 +117,7 @@ const StyledBigCalendar = styled(BigCalendar)`
           align-items: center;
           border-radius: 50%;
         }
-        &.rbc-current {
+        &.rbc-now {
           & ${StyledDateHeader} {
             background-color: black;
             color: #ffffff;
