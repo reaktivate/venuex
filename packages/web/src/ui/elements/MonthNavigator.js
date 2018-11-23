@@ -36,7 +36,7 @@ const Title = styled.div`
   margin-right: 25px;
 `;
 
-class MonthPicker extends PureComponent {
+class MonthNavigator extends PureComponent {
   notifyChange(delta) {
     const { date, onChange } = this.props;
 
@@ -66,9 +66,9 @@ class MonthPicker extends PureComponent {
   }
 }
 
-MonthPicker.propTypes = {
+MonthNavigator.propTypes = {
   onChange: PropTypes.func.isRequired,
   date: GenericPropTypes.date.isRequired
 };
 
-export default MonthPicker;
+export default MonthNavigator;

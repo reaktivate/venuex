@@ -9,7 +9,7 @@ import EventService from '@venuex/domain/services/EventService';
 import Calendar from '@venuex/web/ui/components/Calendar';
 import EventDialogController from '@venuex/web/ui/containers/events/EventDialogController';
 import Header from '@venuex/web/ui/containers/Header';
-import MonthPicker from '@venuex/web/ui/components/events/MonthPicker';
+import MonthNavigator from '@venuex/web/ui/elements/MonthNavigator';
 import RoundButton from '@venuex/web/ui/elements/buttons/RoundButton';
 import Plus from '@venuex/web/ui/icons/Plus';
 
@@ -81,7 +81,7 @@ class VenueEventsPage extends Component {
     return (
       <Fragment>
         <Header>
-          <MonthPicker date={date} onChange={this.handleMonthChange} />
+          <MonthNavigator date={date} onChange={this.handleMonthChange} />
           <RoundButton handleClick={this.handleAddEvent}>
             <Plus color={'white'} size="16px" />
           </RoundButton>

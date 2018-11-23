@@ -12,7 +12,7 @@ import Header from '@venuex/web/ui/containers/Header';
 import SummaryItem from '@venuex/web/ui/elements/Summary';
 import Summary from '@venuex/web/ui/containers/Summary';
 import Button from '@venuex/web/ui/elements/buttons/Button';
-import MonthPicker from '@venuex/web/ui/components/events/MonthPicker';
+import MonthNavigator from '@venuex/web/ui/elements/MonthNavigator';
 import moment from 'moment';
 
 @connect(({ domain }) => {
@@ -87,7 +87,7 @@ class VenueEventsPage extends Component {
     return (
       <React.Fragment>
         <Header>
-          <MonthPicker date={date} onChange={this.handleMonthChange} />
+          <MonthNavigator date={date} onChange={this.handleMonthChange} />
         </Header>
 
         <Summary>
