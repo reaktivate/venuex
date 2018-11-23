@@ -15,6 +15,8 @@ const Container = styled.div`
   font-family: Montserrat;
   position: relative;
   display: inline-block;
+
+  margin-right: 15px;
 `;
 const PopupWrap = styled.div(
   css`

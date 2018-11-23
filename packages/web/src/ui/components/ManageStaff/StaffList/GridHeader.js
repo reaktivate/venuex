@@ -27,6 +27,10 @@ const HeaderColumn = styled.div`
   &.name div {
     margin-left: 48px;
   }
+
+  &.buttons {
+    justify-content: left;
+  }
 `;
 
 const getBtnColor = (props) => (props.active ? '#181818' : '#888888');
@@ -55,36 +59,34 @@ const SortBtn = styled.div`
   }
 `;
 
-const CheckedHeader = () => (
-  <HeaderColumn style={{ width: '80%' }}>
-    <PermissionPopup checked={[1, 2]} />
+const CheckedHeader = (props) => {
+  const { permissionList, selected } = props;
+  let count = selected.length;
 
-    <IconButton ready={true} text="Delete Staff Members" textColor="red" mode="border">
-      <Delete color="#c02026" />
-    </IconButton>
-  </HeaderColumn>
-);
+  let lexForm = 'Member' + (count > 1 ? 's' : '');
 
-const GridHeader = (props) => {
-  const {
-    sort,
-    sortDirection,
-    checkAllHandler,
-    uncheckAllHandler,
-    checkAllChecked,
-    headerClickHandler
-  } = props;
+  return (
+    <HeaderColumn className="buttons" style={{ width: '80%' }}>
+      <PermissionPopup checked={permissionList} />
+
+      <IconButton
+        ready={true}
+        text={`Delete ${count} Staff ${lexForm}`}
+        textColor="red"
+        buttonColor="white"
+        mode="border"
+      >
+        <Delete color="#c02026" />
+      </IconButton>
+    </HeaderColumn>
+  );
+};
+
+const DefaultHeader = (props) => {
+  const { sort, sortDirection, headerClickHandler } = props;
 
   return (
     <React.Fragment>
-      <CheckedHeader />
-      <HeaderColumn style={{ width: '50px' }}>
-        <Checkbox
-          checked={checkAllChecked}
-          onCheck={checkAllHandler}
-          onUncheck={uncheckAllHandler}
-        />
-      </HeaderColumn>
       <HeaderColumn className="name" style={{ width: '20%' }}>
         <SortBtn
           active={sort === 'name'}
@@ -121,6 +123,23 @@ const GridHeader = (props) => {
       </HeaderColumn>
       <HeaderColumn style={{ width: '80px' }} />
       <HeaderColumn style={{ width: '20%' }} />
+    </React.Fragment>
+  );
+};
+
+const GridHeader = (props) => {
+  const { checkAllHandler, uncheckAllHandler, checkAllChecked, selected } = props;
+
+  return (
+    <React.Fragment>
+      <HeaderColumn style={{ width: '50px' }}>
+        <Checkbox
+          checked={checkAllChecked}
+          onCheck={checkAllHandler}
+          onUncheck={uncheckAllHandler}
+        />
+      </HeaderColumn>
+      {selected.length ? <CheckedHeader {...props} /> : <DefaultHeader {...props} />}
     </React.Fragment>
   );
 };

@@ -25,17 +25,34 @@ const staff = [
 
 const selected = [1];
 
-storiesOf('components/StaffList', module).add('default', () => (
-  <StaffList
-    data={staff}
-    selected={selected}
-    sort="name"
-    headerClickHandler={action('Sort')}
-    checkAllHandler={action('check all')}
-    uncheckAllHandler={action('uncheck all')}
-    rowCheckHandler={action('check')}
-    rowUncheckHandler={action('uncheck')}
-    rowEditHandler={action('edit')}
-    rowDeleteHandler={action('delete')}
-  />
-));
+storiesOf('components/StaffList', module)
+  .add('default', () => (
+    <StaffList
+      data={staff}
+      selected={[]}
+      sort="name"
+      headerClickHandler={action('Sort')}
+      checkAllHandler={action('check all')}
+      uncheckAllHandler={action('uncheck all')}
+      rowCheckHandler={action('check')}
+      rowUncheckHandler={action('uncheck')}
+      rowEditHandler={action('edit')}
+      rowDeleteHandler={action('delete')}
+      permissionList={[1, 2]}
+    />
+  ))
+  .add('checked', () => (
+    <StaffList
+      data={staff}
+      selected={selected}
+      sort="name"
+      headerClickHandler={action('Sort')}
+      checkAllHandler={action('check all')}
+      uncheckAllHandler={action('uncheck all')}
+      rowCheckHandler={action('check')}
+      rowUncheckHandler={action('uncheck')}
+      rowEditHandler={action('edit')}
+      rowDeleteHandler={action('delete')}
+      permissionList={[1, 2]}
+    />
+  ));
