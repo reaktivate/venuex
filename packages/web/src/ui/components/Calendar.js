@@ -156,15 +156,17 @@ class Calendar extends Component {
     }
   };
 
+  handleNavigate = () => {};
+
   render() {
-    const { events, date, onShowMoreClick, onEventClick } = this.props;
+    const { events, date, onEventClick, onShowMoreClick } = this.props;
 
     return (
       <StyledBigCalendar
         localizer={calendarLocalizer}
         defaultView="month"
         events={events}
-        date={date.toDate()}
+        date={date}
         step={60}
         showMultiDayTimes
         toolbar={false}
@@ -172,6 +174,7 @@ class Calendar extends Component {
         resizable={false}
         onSelectEvent={onEventClick}
         onDrillDown={onShowMoreClick}
+        onNavigate={this.handleNavigate}
         components={{
           header: Header,
           dateCellWrapper: this.DateCellWrapper,

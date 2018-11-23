@@ -39,7 +39,7 @@ class Header extends Component {
 }
 
 Header.propTypes = {
-  children: PropTypes.element.isRequire
+  children: PropTypes.oneOfType([PropTypes.element, PropTypes.arrayOf(PropTypes.element)])
 };
 
 export default Header;

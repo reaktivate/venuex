@@ -4,6 +4,7 @@ import GenericPropTypes from '@venuex/web/ui/types/Generic';
 import IconRight from '@venuex/web/ui/icons/CaretRight.js';
 import IconLeft from '@venuex/web/ui/icons/CaretLeft.js';
 import styled from 'styled-components';
+import moment from 'moment';
 
 const Container = styled.div`
   display: flex;
@@ -41,7 +42,11 @@ class MonthNavigator extends PureComponent {
     const { date, onChange } = this.props;
 
     if (onChange) {
-      onChange(date.clone().add(delta, 'month'));
+      onChange(
+        moment(date)
+          .add(delta, 'month')
+          .toDate()
+      );
     }
   }
 
@@ -59,7 +64,7 @@ class MonthNavigator extends PureComponent {
     return (
       <Container>
         <Prev color="#c0b69b" onClick={this.handlePrevClick} />
-        <Title>{date.format('MMMM YYYY')}</Title>
+        <Title>{moment(date).format('MMMM YYYY')}</Title>
         <Next color="#c0b69b" onClick={this.handleNextClick} />
       </Container>
     );

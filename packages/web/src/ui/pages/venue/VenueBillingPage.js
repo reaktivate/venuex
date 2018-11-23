@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from '@venuex/ddd/react';
-import compose from 'lodash/fp/compose';
-import withVenue from '@venuex/web/ui/hocs/withVenue';
 import VenueBillingStore from '@venuex/domain/stores/VenueBillingStore';
 import VenueBillingService from '@venuex/domain/services/VenueBillingService';
 import VenueStore from '@venuex/domain/stores/VenueStore';
@@ -43,8 +41,9 @@ import moment from 'moment';
 class VenueEventsPage extends Component {
   state = {
     selected: [],
-    date: moment(new Date())
+    date: new Date()
   };
+
   componentDidMount() {
     this.props.fetchCurrentVenueEvents();
     this.props.fetchPayments();
@@ -114,7 +113,7 @@ class VenueEventsPage extends Component {
           />
           <SummaryItem
             name="Due Date: in 18 days"
-            count={date.format('MMM d, Y')}
+            count={moment(date).format('MMM D, Y')}
             color="gray"
             mode="line-before"
             style={{ paddingLeft: '30px', marginRight: 'auto' }}

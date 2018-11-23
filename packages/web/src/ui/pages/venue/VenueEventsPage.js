@@ -47,7 +47,7 @@ function generateEventViewPath(id) {
 })
 class VenueEventsPage extends Component {
   state = {
-    date: moment(new Date())
+    date: new Date()
   };
 
   componentDidMount() {
