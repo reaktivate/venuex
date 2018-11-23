@@ -4,6 +4,9 @@ import styled from 'styled-components';
 import RoundIcon from '@venuex/web/ui/elements/RoundIcon';
 import Button from '@venuex/web/ui/elements/buttons/Button';
 import Icon from '@venuex/web/ui/icons/ImportFile';
+import SideTabs from '@venuex/web/ui/components/SideTabs';
+import LazyUserName from '@venuex/web/ui/components/billing/LazyUserName';
+import CalendarIcon from '@venuex/web/ui/icons/Calendar';
 
 const Container = styled.div`
   display: flex;
@@ -65,14 +68,18 @@ class Header extends Component {
 
 const ContentContainer = styled.div`
   width: 100%;
-  padding: 30px 15px;
+  padding: 30px 20px;
 `;
 
-const DetailsContainer = styled.div`
+const Details = styled.div`
+  padding: 0 40px;
+  font-size: 15px;
+`;
+const DetailsLineContainer = styled.div`
   display: flex;
   flex-flow: row;
-  font-family: Montserrat-Regular,
-  font-size: 15px;
+  height: 40px;
+  align-items: center;
 `;
 const DetailsName = styled.div`
   color: #7d7d7d;
@@ -81,21 +88,24 @@ const DetailsName = styled.div`
 const DetailsValue = styled.div`
   color: #222222;
 `;
+const DetailsSimpleText = styled.div`
+  padding: 10px 0;
+`;
 
 class DetailsLine extends Component {
   static propTypes = {
-    name: PropTypes.string.isRequired,
-    value: PropTypes.string
+    name: PropTypes.string,
+    value: PropTypes.object
   };
 
   render() {
     const { name, value } = this.props;
 
     return (
-      <DetailsContainer>
-        <DetailsName>{name}:</DetailsName>
+      <DetailsLineContainer>
+        {name && <DetailsName>{name}:</DetailsName>}
         <DetailsValue>{value}</DetailsValue>
-      </DetailsContainer>
+      </DetailsLineContainer>
     );
   }
 }
@@ -110,14 +120,76 @@ class Content extends Component {
 
     return (
       <ContentContainer>
-        <DetailsLine name="Consultant" value={event.consultant.name} />
-        <DetailsLine name="Event Type" value={event.type} />
-        <DetailsLine name="Start Time" value={event.start.format('LT')} />
-        <DetailsLine name="End Time" value={event.end.format('LT')} />
+        <SideTabs
+          tabs={[
+            {
+              title: 'Event Overview',
+              icon: <CalendarIcon color="#c0b69b" size="20" />,
+              content: (
+                <Details>
+                  {event.consultants.map((consultant) => (
+                    <DetailsLine
+                      key={consultant.id}
+                      name="Consultant"
+                      value={<LazyUserName user={consultant} />}
+                    />
+                  ))}
+                  {event.type && <DetailsLine name="Event Type" value={event.type} />}
+                  {event.ceremony && <DetailsLine name="Ceremony" value={event.ceremony} />}
+                  <DetailsLine name="Start Time" value={event.start.format('LT')} />
+                  <DetailsLine name="End Time" value={event.end.format('LT')} />
+                </Details>
+              )
+            },
+            {
+              title: 'Client Details',
+              icon: <CalendarIcon color="#c0b69b" size="20" />,
+              content: (
+                <Details>
+                  <DetailsLine name="Name" value={event.clientName} />
+                </Details>
+              )
+            },
+            {
+              title: 'Room & Layout',
+              icon: <CalendarIcon color="#c0b69b" size="20" />,
+              content: (
+                <Details>
+                  <DetailsLine name="Room" value={event.room} />
+                  <DetailsLine name="Layout" value={event.layout} />
+                </Details>
+              )
+            },
+            {
+              title: 'Notes',
+              icon: <CalendarIcon color="#c0b69b" size="20" />,
+              content: (
+                <Details>
+                  <DetailsSimpleText>{event.notes}</DetailsSimpleText>
+                </Details>
+              )
+            }
+          ]}
+        />
       </ContentContainer>
     );
   }
 }
+
+const FooterContainer = styled.div`
+  display: flex;
+  border-top: solid 1px #d8d8d8;
+  padding: 13px 15px;
+`;
+
+const FooterRight = styled.div`
+  display: flex;
+  justify-content: flex-end;
+
+  > * {
+    margin-left: 10px;
+  }
+`;
 
 class Footer extends Component {
   onDownloadSeatingChart = (e) => {
@@ -134,24 +206,21 @@ class Footer extends Component {
 
   render() {
     return (
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          borderTop: 'solid 1px #d8d8d8',
-          width: '100%'
-        }}
-      >
-        <Button mode="whiteBg" onClick={this.onDownloadSeatingChart}>
-          Download seating chart
-        </Button>
-        <Button mode="danger" onClick={this.onDelete}>
-          Delete
-        </Button>
-        <Button mode="whiteBg" onClick={this.onEdit}>
-          Edit
-        </Button>
-      </div>
+      <FooterContainer>
+        <div style={{ flex: 1 }}>
+          <Button mode="whiteBg" onClick={this.onDownloadSeatingChart}>
+            Download seating chart
+          </Button>
+        </div>
+        <FooterRight>
+          <Button mode="danger" onClick={this.onDelete}>
+            Delete
+          </Button>
+          <Button mode="whiteBg" onClick={this.onEdit}>
+            Edit
+          </Button>
+        </FooterRight>
+      </FooterContainer>
     );
   }
 }
@@ -161,10 +230,15 @@ class EventView extends Component {
     event: PropTypes.object.isRequired
   };
 
-  render() {
+  componentDidMount() {
     const { event } = this.props;
 
-    if (!event.consultant) event.consultant = { name: 'Ivan Drago' };
+    event.owner.load();
+    event.consultants.forEach((c) => c.load());
+  }
+
+  render() {
+    const { event } = this.props;
 
     return (
       <Container>
