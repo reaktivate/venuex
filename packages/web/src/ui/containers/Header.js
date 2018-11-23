@@ -37,7 +37,9 @@ class Header extends Component {
     );
   }
 }
+
 Header.propTypes = {
   children: PropTypes.element.isRequire
 };
+
 export default Header;

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import BaseInput from '@venuex/web/ui/elements/form/BaseInput';
+import FormField from '@venuex/web/ui/elements/form/FormField';
 
 const StyledTextField = styled.input`
   border: none;
@@ -27,9 +27,9 @@ const StyledTextField = styled.input`
 `;
 
 const Password = (props) => (
-  <BaseInput {...props} label={props.label}>
+  <FormField {...props} label={props.label}>
     <StyledTextField {...props} type="password" />
-  </BaseInput>
+  </FormField>
 );
 
 export default Password;

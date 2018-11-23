@@ -1,35 +1,40 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import FormField from './FormField';
 import styled, { css } from 'styled-components';
-import BaseInput from '@venuex/web/ui/elements/form/BaseInput';
+import omit from 'lodash/omit';
 
-const StyledTextField = styled.input`
-  border: none;
-  border-bottom: solid 1px #d8d8d8;
-  display: block;
-  width: 100%;
-  padding: 5px;
-  transition-duration: 0.3s;
-  color: #7d7d7d;
-  font-size: 15px;
+const StyledInput = styled.input(
+  ({ theme }) => css`
+    border: none;
+    border-bottom: solid 1px #d8d8d8;
+    display: block;
+    width: 100%;
+    padding: 5px;
+    transition-duration: 0.3s;
+    color: #7d7d7d;
+    font-size: 15px;
 
-  &:focus {
-    outline: none;
-    border-bottom: solid 1px ${(props) => props.theme.colors && props.theme.colors.primary};
-  }
+    &:focus {
+      outline: none;
+      border-bottom: solid 1px ${theme.colors.primary};
+    }
 
-  ${(props) =>
-    props.meta &&
-    props.meta.error &&
-    props.meta.touched &&
-    css`
+    ${FormField.Container}.error & {
       border-bottom: solid 1px #c02026;
-    `}
-`;
+    }
+  `
+);
 
 const Input = (props) => (
-  <BaseInput {...props} label={props.label}>
-    <StyledTextField {...props} />
-  </BaseInput>
+  <FormField {...props}>
+    <Fragment>
+      <StyledInput {...props.field} {...omit(props, ['form', 'field', 'children'])} />
+    </Fragment>
+  </FormField>
 );
+
+Input.propTypes = {
+  field: FormField.propTypes.field
+};
 
 export default Input;

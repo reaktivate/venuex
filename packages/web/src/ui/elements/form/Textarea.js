@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import BaseInput from '@venuex/web/ui/elements/form/BaseInput';
+import FormField from '@venuex/web/ui/elements/form/FormField';
 
 const StyledTextarea = styled.textarea`
   border: solid 1px #d8d8d8;
@@ -29,9 +29,9 @@ const Textarea = (props) => {
   const { input } = props;
 
   return (
-    <BaseInput {...props} alignItems="flex-start">
+    <FormField {...props} alignItems="flex-start">
       <StyledTextarea {...props} {...input} rows={6} />
-    </BaseInput>
+    </FormField>
   );
 };
 

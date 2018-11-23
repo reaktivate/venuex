@@ -18,6 +18,18 @@ class AbstractService extends DomainManagerAware {
   updateEntity(entity, attrs) {
     return this.modelFactory.patch(entity, attrs);
   }
+
+  createOrUpdateEntity(Class, entities, attrs) {
+    const { id } = attrs;
+
+    if (entities.has(id)) {
+      this.updateEntity(entities.get(id), attrs);
+    } else {
+      entities.set(id, this.createEntity(Class, attrs));
+    }
+
+    return entities.get(id);
+  }
 }
 
 export default AbstractService;

@@ -7,7 +7,7 @@ const domain = createDomain();
 
 makeHotReloadable(module, domain);
 
-const withDomain = (WrappedComponent) => {
+const provideDomain = (WrappedComponent) => {
   const WithDomain = (props) => (
     <DomainProvider domain={domain}>
       <WrappedComponent {...props} />
@@ -17,4 +17,4 @@ const withDomain = (WrappedComponent) => {
   return WithDomain;
 };
 
-export default withDomain;
+export default provideDomain;

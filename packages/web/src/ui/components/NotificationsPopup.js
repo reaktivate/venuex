@@ -127,6 +127,7 @@ class ItemRender extends PureComponent {
     );
   }
 }
+
 ItemRender.propTypes = {
   handleClickItem: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,

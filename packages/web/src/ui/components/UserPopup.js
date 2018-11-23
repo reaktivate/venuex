@@ -144,6 +144,7 @@ class UserPopup extends Component {
     );
   }
 }
+
 UserPopup.propTypes = {
   userName: PropTypes.string,
   photo: PropTypes.string,
@@ -151,4 +152,5 @@ UserPopup.propTypes = {
   handleChangePassword: PropTypes.func.isRequire,
   handleLogOut: PropTypes.func.isRequire
 };
+
 export default UserPopup;

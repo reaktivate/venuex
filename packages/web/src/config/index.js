@@ -15,7 +15,8 @@ const config = {
       venue: '/venue',
       'venue.events': '/venue/events',
       'venue.events.add': '/venue/events/add',
-      'venue.events.view': '/venue/events/:id',
+      'venue.events.view': '/venue/events/:id/view',
+      'venue.events.edit': '/venue/events/:id/edit',
       'venue.staff': '/venue/staff',
       'venue.billing': '/venue/billing',
       host: '/host'

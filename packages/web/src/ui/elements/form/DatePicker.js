@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import BaseInput from '@venuex/web/ui/elements/form/BaseInput';
+import FormField from '@venuex/web/ui/elements/form/FormField';
 import PropTypes from 'prop-types';
 
 const DatePickerWrapper = styled.div`
@@ -181,9 +181,9 @@ const DatePickerRender = (props) => {
   const { onChange } = props;
 
   return (
-    <BaseInput {...props}>
+    <FormField {...props}>
       <DatePickerElement {...props} onChange={onChange} placeholder="Date" />
-    </BaseInput>
+    </FormField>
   );
 };
 
