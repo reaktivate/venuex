@@ -20,6 +20,7 @@
     "history": "^4.7.2",
     "lodash": "^4.17.11",
     "moment": "^2.22.2",
+    "parse-domain": "^2.1.6",
     "polished": "^2.3.0",
     "prop-types": "^15.6.2",
     "query-string": "^6.2.0",
