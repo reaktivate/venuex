@@ -8,7 +8,12 @@ export default createGlobalStyle`
   
   body {
     font-family: 'Montserrat';
-    font-smoothing: antialiased;
     font-weight: 400;
+  }
+  
+  * {
+   font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 `;
