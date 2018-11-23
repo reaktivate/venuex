@@ -65,6 +65,8 @@ const ItemWrap = styled.div`
   height: 228px;
 `;
 
+const items = [];
+
 class Popup extends PureComponent {
   constructor(props) {
     super(props);
@@ -86,7 +88,8 @@ class Popup extends PureComponent {
     this.setState({ checked: [...checked] });
   };
   handleSave = () => {
-    alert('Save');
+    this.props.saveHandler(this.state.checked);
+
     this.setState({
       isOpen: false
     });
@@ -102,11 +105,15 @@ class Popup extends PureComponent {
     });
   };
   render() {
+    const { count } = this.props;
+
+    let lexForm = 'Member' + (count > 1 ? 's' : '');
+
     return (
       <Container>
         <Button
           ready={true}
-          text="Edit permission for 2 staff members"
+          text={`Edit permission for ${count} staff ${lexForm}`}
           textColor={this.state.isOpen ? 'gold' : 'gray'}
           buttonColor="white"
           mode="border"
@@ -118,32 +125,32 @@ class Popup extends PureComponent {
           <PopupWrap isOpen={this.state.isOpen}>
             <ItemWrap>
               <Item
-                handleClickItem={this.handleClickItem.bind(this, 1)}
+                handleClickItem={this.handleClickItem.bind(this, 'createAndEditEvents')}
                 name="Create & Edit Events"
                 icon={<CalendarEdit color="#222222" size="24px" style={{ marginRight: '10px' }} />}
-                checked={this.state.checked.indexOf(1) !== -1}
+                checked={this.state.checked.indexOf('createAndEditEvents') !== -1}
               />
               <Item
-                handleClickItem={this.handleClickItem.bind(this, 2)}
+                handleClickItem={this.handleClickItem.bind(this, 'deleteEvents')}
                 name="Delete Events"
                 icon={
                   <CalendarDelete color="#222222" size="24px" style={{ marginRight: '10px' }} />
                 }
-                checked={this.state.checked.indexOf(2) !== -1}
+                checked={this.state.checked.indexOf('deleteEvents') !== -1}
               />
               <Item
-                handleClickItem={this.handleClickItem.bind(this, 3)}
+                handleClickItem={this.handleClickItem.bind(this, 'viewBilling')}
                 name="View Billing"
                 icon={<Billing color="#222222" size="24px" style={{ marginRight: '10px' }} />}
-                checked={this.state.checked.indexOf(3) !== -1}
+                checked={this.state.checked.indexOf('viewBilling') !== -1}
               />
               <Item
-                handleClickItem={this.handleClickItem.bind(this, 4)}
+                handleClickItem={this.handleClickItem.bind(this, 'manageStaffPermissions')}
                 name="Manage Staff Permissions"
                 icon={
                   <ManageStaffIcon color="#222222" size="24px" style={{ marginRight: '10px' }} />
                 }
-                checked={this.state.checked.indexOf(4) !== -1}
+                checked={this.state.checked.indexOf('manageStaffPermissions') !== -1}
               />
             </ItemWrap>
             <PopupSubmit onClick={this.handleSave}>Save</PopupSubmit>
@@ -153,8 +160,13 @@ class Popup extends PureComponent {
     );
   }
 }
+
 Popup.propTypes = {
-  items: PropTypes.array,
   checked: PropTypes.array
 };
+
+Popup.defaultProps = {
+  checked: []
+};
+
 export default Popup;
