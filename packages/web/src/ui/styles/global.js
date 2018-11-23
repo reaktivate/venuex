@@ -1,12 +1,18 @@
 import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
-  html, body {
-    min-height: 100%;
-    min-width: 100%;
+  html {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
   }
   
   body {
+    height: 100%;
+    padding: 0;
+    overflow: auto;
+    margin: 0;
+    -webkit-overflow-scrolling: touch;
     font-family: 'Montserrat';
     font-weight: 400;
   }
