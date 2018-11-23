@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import compose from 'lodash/fp/compose';
-import withDomain from './hocs/withDomain';
+import provideDomain from './hocs/provideDomain';
 import withVenue from './hocs/withVenue';
 import withAuth from './hocs/withAuth';
 import createBrowserHistory from 'history/createBrowserHistory';
@@ -15,7 +15,7 @@ class App extends Component {
 }
 
 export default compose(
-  withDomain,
+  provideDomain,
   withVenue,
   withAuth
 )(App);
