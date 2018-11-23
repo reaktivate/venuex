@@ -1,11 +1,11 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
+import GenericPropTypes from '@venuex/web/ui/types/Generic';
 import IconRight from '@venuex/web/ui/icons/CaretRight.js';
 import IconLeft from '@venuex/web/ui/icons/CaretLeft.js';
-import PropTypes from 'prop-types';
-import moment from 'moment';
+import styled from 'styled-components';
 
-const MonthPicker = styled.div`
+const Container = styled.div`
   display: flex;
   font-size: 20px;
   color: #222222;
@@ -15,19 +15,19 @@ const MonthPicker = styled.div`
   user-select: none;
 `;
 
-const StyledIconLeft = styled(IconLeft)`
+const Prev = styled(IconLeft)`
   width: 10px;
   height: 17px;
   cursor: pointer;
 `;
 
-const StyledIconRight = styled(IconRight)`
+const Next = styled(IconRight)`
   width: 10px;
   height: 17px;
   cursor: pointer;
 `;
 
-const CalTitle = styled.div`
+const Title = styled.div`
   font-family: Lora;
   font-size: 20px;
   width: 150px;
@@ -36,18 +36,39 @@ const CalTitle = styled.div`
   margin-right: 25px;
 `;
 
-const MonthPickerRender = ({ onPreviousMonth, onNextMonth, date }) => (
-  <MonthPicker>
-    <StyledIconLeft color="#c0b69b" onClick={onPreviousMonth} />
-    <CalTitle>{date.format('MMMM YYYY')}</CalTitle>
-    <StyledIconRight color="#c0b69b" onClick={onNextMonth} />
-  </MonthPicker>
-);
+class MonthPicker extends PureComponent {
+  notifyChange(delta) {
+    const { date, onChange } = this.props;
 
-MonthPickerRender.propTypes = {
-  onPreviousMonth: PropTypes.func.isRequired,
-  onNextMonth: PropTypes.func.isRequired,
-  date: PropTypes.instanceOf(moment)
+    if (onChange) {
+      onChange(date.clone().add(delta, 'month'));
+    }
+  }
+
+  handlePrevClick = () => {
+    this.notifyChange(-1);
+  };
+
+  handleNextClick = () => {
+    this.notifyChange(+1);
+  };
+
+  render() {
+    const { date } = this.props;
+
+    return (
+      <Container>
+        <Prev color="#c0b69b" onClick={this.handlePrevClick} />
+        <Title>{date.format('MMMM YYYY')}</Title>
+        <Next color="#c0b69b" onClick={this.handleNextClick} />
+      </Container>
+    );
+  }
+}
+
+MonthPicker.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  date: GenericPropTypes.date.isRequired
 };
 
-export default MonthPickerRender;
+export default MonthPicker;

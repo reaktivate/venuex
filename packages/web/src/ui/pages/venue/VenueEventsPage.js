@@ -9,7 +9,7 @@ import EventService from '@venuex/domain/services/EventService';
 import Calendar from '@venuex/web/ui/components/Calendar';
 import EventDialogController from '@venuex/web/ui/containers/events/EventDialogController';
 import Header from '@venuex/web/ui/containers/Header';
-import MonthPickerRender from '@venuex/web/ui/components/events/MonthPicker';
+import MonthPicker from '@venuex/web/ui/components/events/MonthPicker';
 import RoundButton from '@venuex/web/ui/elements/buttons/RoundButton';
 import Plus from '@venuex/web/ui/icons/Plus';
 
@@ -49,6 +49,7 @@ class VenueEventsPage extends Component {
   state = {
     date: moment(new Date())
   };
+
   componentDidMount() {
     this.props.fetchCurrentVenueEvents();
   }
@@ -65,9 +66,9 @@ class VenueEventsPage extends Component {
     this.props.openEventViewDialog(id);
   };
 
-  handleMonthChange(delta) {
-    this.setState({ date: this.state.date.add(delta, 'month') });
-  }
+  handleMonthChange = (date) => {
+    this.setState({ date });
+  };
 
   render() {
     const { events } = this.props;
@@ -80,12 +81,8 @@ class VenueEventsPage extends Component {
     return (
       <Fragment>
         <Header>
-          <MonthPickerRender
-            date={date}
-            onNextMonth={() => this.handleMonthChange(1)}
-            onPreviousMonth={() => this.handleMonthChange(-1)}
-          />
-          <RoundButton handleClick={() => this.handleAddEvent()}>
+          <MonthPicker date={date} onChange={this.handleMonthChange} />
+          <RoundButton handleClick={this.handleAddEvent}>
             <Plus color={'white'} size="16px" />
           </RoundButton>
         </Header>
