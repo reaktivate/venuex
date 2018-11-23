@@ -5,9 +5,11 @@ import PropTypes from 'prop-types';
 const Button = styled.button`
   user-select: none;
   cursor: pointer;
-  height: 50px;
+  min-height: 50px;
+  min-width: 50px;
+  max-height: 50px;
+  max-width: 50px;
   padding: 0;
-  width: 50px;
   border-radius: 50%;
   overflow: hidden;
   display: flex;

@@ -1,9 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import Checkbox from '@venuex/web/ui/elements/form/Checkbox';
-import PermissionPopup from '@venuex/web/ui/components/PermissionPopup';
-import IconButton from '@venuex/web/ui/elements/buttons/IconButton.js';
-import Delete from '@venuex/web/ui/icons/Delete.js';
 import PropTypes from 'prop-types';
 
 const HeaderColumn = styled.div`
@@ -20,6 +17,7 @@ const HeaderColumn = styled.div`
   transition-timing-function: ease-in;
   transition: 0.2s opacity;
   padding-left: 27px;
+
   &.name {
     justify-content: left;
   }
@@ -55,16 +53,6 @@ const SortBtn = styled.div`
   }
 `;
 
-const CheckedHeader = () => (
-  <HeaderColumn style={{ width: '80%' }}>
-    <PermissionPopup checked={[1, 2]} />
-
-    <IconButton ready={true} text="Delete Staff Members" textColor="red" mode="border">
-      <Delete color="#c02026" />
-    </IconButton>
-  </HeaderColumn>
-);
-
 const GridHeader = (props) => {
   const {
     sort,
@@ -77,15 +65,18 @@ const GridHeader = (props) => {
 
   return (
     <React.Fragment>
-      <CheckedHeader />
-      <HeaderColumn style={{ width: '50px' }}>
-        <Checkbox
-          checked={checkAllChecked}
-          onCheck={checkAllHandler}
-          onUncheck={uncheckAllHandler}
-        />
-      </HeaderColumn>
       <HeaderColumn className="name" style={{ width: '20%' }}>
+        <SortBtn
+          active={sort === 'clientName'}
+          sortDirection={sortDirection}
+          onClick={() => {
+            headerClickHandler('clientName');
+          }}
+        >
+          Client
+        </SortBtn>
+      </HeaderColumn>
+      <HeaderColumn style={{ width: '20%' }}>
         <SortBtn
           active={sort === 'name'}
           sortDirection={sortDirection}
@@ -93,34 +84,53 @@ const GridHeader = (props) => {
             headerClickHandler('name');
           }}
         >
-          Name
+          Event name
         </SortBtn>
       </HeaderColumn>
       <HeaderColumn style={{ width: '20%' }}>
         <SortBtn
-          active={sort === 'email'}
+          active={sort === 'ceremonyKind'}
           sortDirection={sortDirection}
           onClick={() => {
-            headerClickHandler('email');
+            headerClickHandler('ceremonyKind');
           }}
         >
-          Email
+          Event type
         </SortBtn>
       </HeaderColumn>
-      <HeaderColumn style={{ width: '20%' }}>PERMISSION</HeaderColumn>
-      <HeaderColumn style={{ width: '104px' }}>
+      <HeaderColumn style={{ width: '20%' }}>
         <SortBtn
-          active={sort === 'date'}
+          active={sort === 'actualGuests'}
           sortDirection={sortDirection}
           onClick={() => {
-            headerClickHandler('date');
+            headerClickHandler('actualGuests');
           }}
         >
-          date added
+          Guests
         </SortBtn>
       </HeaderColumn>
-      <HeaderColumn style={{ width: '80px' }} />
-      <HeaderColumn style={{ width: '20%' }} />
+      <HeaderColumn style={{ width: '20%' }}>
+        <SortBtn
+          active={sort === 'start'}
+          sortDirection={sortDirection}
+          onClick={() => {
+            headerClickHandler('start');
+          }}
+        >
+          Event date
+        </SortBtn>
+      </HeaderColumn>
+      <HeaderColumn style={{ width: '20%' }}>
+        <SortBtn
+          active={sort === 'owner'}
+          sortDirection={sortDirection}
+          onClick={() => {
+            headerClickHandler('owner');
+          }}
+        >
+          Owner
+        </SortBtn>
+      </HeaderColumn>
     </React.Fragment>
   );
 };

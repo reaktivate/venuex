@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
-
 import ClickAway from '../../ui/utils/ClickAwayListener.js';
 import UserButton from '../../ui/elements/buttons/UserButton.js';
 import Camera from '../../ui/icons/Camera.js';
@@ -14,6 +13,7 @@ const Container = styled.div`
   position: relative;
   display: inline-block;
   cursor: pointer;
+  margin-left: 15px;
 `;
 
 const PopupWrap = styled.div((props) => {
@@ -32,6 +32,8 @@ const PopupWrap = styled.div((props) => {
     transition-timing-function: ease-in;
     transition: 0.2s opacity;
     pointer-events: ${props.isOpen ? 'auto' : 'none'};
+    z-index: 100;
+    background: white;
   `;
 });
 
@@ -111,12 +113,12 @@ class UserPopup extends Component {
     });
   };
   render() {
-    const { userName } = this.props;
+    const { userName, handleChangePassword, handleEditProfile, handleLogOut, photo } = this.props;
 
     return (
       <Container>
         <UserButton
-          photo="https://api.adorable.io/avatars/40/1.png"
+          photo={photo}
           handleClick={this.togglePopup}
           isOpen={this.state.isOpen}
           style={{ pointerEvents: this.state.isOpen ? 'none' : 'auto' }}
@@ -124,15 +126,15 @@ class UserPopup extends Component {
         <ClickAway onClickAway={this.onClickAway}>
           <PopupWrap isOpen={this.state.isOpen}>
             <PopupTitle>Hi, {userName}!</PopupTitle>
-            <Item onClick={this.handleEditProfile}>
+            <Item onClick={handleEditProfile}>
               <Camera color="#c0b69b" size="24px" />
               <ItemName>Edit profile image</ItemName>
             </Item>
-            <Item onClick={this.handleChangePassword}>
+            <Item onClick={handleChangePassword}>
               <Key color="#c0b69b" size="24px" />
               <ItemName>Change password</ItemName>
             </Item>
-            <Item onClick={this.handleLogOut} grayscale={true}>
+            <Item onClick={handleLogOut} grayscale={true}>
               <LogOut color="#c0b69b" size="24px" />
               <ItemName>log out</ItemName>
             </Item>
@@ -143,6 +145,10 @@ class UserPopup extends Component {
   }
 }
 UserPopup.propTypes = {
-  userName: PropTypes.string
+  userName: PropTypes.string,
+  photo: PropTypes.string,
+  handleEditProfile: PropTypes.func.isRequire,
+  handleChangePassword: PropTypes.func.isRequire,
+  handleLogOut: PropTypes.func.isRequire
 };
 export default UserPopup;

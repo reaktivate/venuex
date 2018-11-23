@@ -12,16 +12,19 @@ const MonthPicker = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
+  user-select: none;
 `;
 
 const StyledIconLeft = styled(IconLeft)`
   width: 10px;
   height: 17px;
+  cursor: pointer;
 `;
 
 const StyledIconRight = styled(IconRight)`
   width: 10px;
   height: 17px;
+  cursor: pointer;
 `;
 
 const CalTitle = styled.div`
