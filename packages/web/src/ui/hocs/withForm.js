@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Formik } from 'formik';
 import merge from 'lodash/merge';
 
@@ -17,7 +17,7 @@ const withForm = (config) => (Component) => {
     );
   };
 
-  return WithForm;
+  return memo(WithForm);
 };
 
 export default withForm;

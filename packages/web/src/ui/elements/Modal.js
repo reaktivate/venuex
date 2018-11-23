@@ -4,6 +4,7 @@ import GenericPropTypes from '../types/Generic';
 import Portal from './Portal';
 import Transition from 'react-transition-group/Transition';
 import ClickAwayListener from '../utils/ClickAwayListener';
+import StaticContainer from 'react-static-container';
 import styled from 'styled-components';
 
 const Container = styled('div')({
@@ -95,7 +96,9 @@ class Modal extends Component {
               <Container>
                 <ClickAwayListener onClickAway={this.handleClickAway}>
                   <Dialog className={className} style={windowTransitionStyles[state]}>
-                    {this.renderContent()}
+                    <StaticContainer shouldUpdate={state === 'entered'}>
+                      {this.renderContent()}
+                    </StaticContainer>
                   </Dialog>
                 </ClickAwayListener>
               </Container>

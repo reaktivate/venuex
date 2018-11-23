@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import { PureComponent, createElement } from 'react';
 import PropTypes from 'prop-types';
 import GenericPropTypes from '@venuex/web/ui/types/Generic';
 import merge from 'lodash/merge';
 
-class Form extends Component {
+class Form extends PureComponent {
   static propTypes = {
-    component: GenericPropTypes.component.isRequired,
+    component: GenericPropTypes.renderer.isRequired,
     entityId: PropTypes.string,
     entity: PropTypes.object,
     initialValues: PropTypes.object,
@@ -50,16 +50,20 @@ class Form extends Component {
   };
 
   render() {
-    const { component: FormComponent, entity, validate } = this.props;
+    const { component, entity, validate } = this.props;
 
-    return (
-      <FormComponent
-        initialValues={this.getInitialValues()}
-        isInitialValid={!!entity}
-        validate={validate || undefined}
-        onSubmit={this.handleSubmit}
-      />
-    );
+    const props = {
+      initialValues: this.getInitialValues(),
+      isInitialValid: !!entity,
+      onSubmit: this.handleSubmit,
+      validate
+    };
+
+    if (typeof component === 'function') {
+      return component(props);
+    }
+
+    return createElement(component, props);
   }
 }
 
