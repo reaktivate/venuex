@@ -16,7 +16,7 @@ import Plus from '@venuex/web/ui/icons/Plus';
 function generateEventAddPath(date) {
   let path = router.path('venue.events.add');
 
-  if (date) {
+  if (date instanceof Date) {
     date = moment(date).format('YYYY-MM-DD');
     path += '?' + query.stringify({ date });
   }
