@@ -24,13 +24,15 @@ const ItemTitle = styled.span`
   color: #222222;
 `;
 
+const dummy = () => {};
+
 class PermissionItem extends PureComponent {
   render() {
     const { handleClickItem, name, icon, checked } = this.props;
 
     return (
       <Item onClick={handleClickItem}>
-        <CheckBox checked={checked} />
+        <CheckBox checked={checked} onCheck={dummy} onUncheck={dummy} />
         {icon}
         <ItemTitle>{name}</ItemTitle>
       </Item>
