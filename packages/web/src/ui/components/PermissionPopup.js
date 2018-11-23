@@ -68,7 +68,7 @@ const ItemWrap = styled.div`
 class Popup extends PureComponent {
   constructor(props) {
     super(props);
-    console.log('----', props);
+
     this.state = {
       isOpen: false,
       checked: props.checked
