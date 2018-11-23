@@ -73,7 +73,7 @@ class VenueEventsPage extends Component {
         />
 
         {event && (
-          <div style={{ position: 'absolute', bottom: 0, background: 'white', zIndex: 10 }}>
+          <div style={{ position: 'fixed', bottom: 0, background: 'white', zIndex: 10 }}>
             <EventView event={event} />
           </div>
         )}
