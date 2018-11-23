@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import Checkbox from '@venuex/web/ui/elements/form/Checkbox';
 import PermissionPopup from '@venuex/web/ui/components/PermissionPopup';
+import IconButton from '@venuex/web/ui/elements/buttons/IconButton.js';
+import Delete from '@venuex/web/ui/icons/Delete.js';
 import PropTypes from 'prop-types';
 
 const HeaderColumn = styled.div`
@@ -55,8 +57,12 @@ const SortBtn = styled.div`
 `;
 
 const CheckedHeader = () => (
-  <HeaderColumn>
-    <PermissionPopup />
+  <HeaderColumn style={{ width: '80%' }}>
+    <PermissionPopup checked={[1, 2]} />
+
+    <IconButton ready={true} text="Delete Staff Members" textColor="red" mode="border">
+      <Delete color="#c02026" />
+    </IconButton>
   </HeaderColumn>
 );
 
