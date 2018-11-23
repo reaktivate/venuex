@@ -20,6 +20,7 @@ const dynamic = (Component) => {
 const LandingPage = lazy(() => import('./pages/LandingPage'));
 const VenueEventsPage = lazy(() => import('./pages/venue/VenueEventsPage'));
 const VenueStaffPage = lazy(() => import('./pages/venue/VenueStaffPage'));
+const VenueBillingPage = lazy(() => import('./pages/venue/VenueBillingPage'));
 
 const VenueWebsite = () => (
   <VenueLayout>
@@ -27,6 +28,9 @@ const VenueWebsite = () => (
       <Route path={router.path('venue.events')}>{dynamic(VenueEventsPage)}</Route>
       <Route path={router.path('venue.staff')} exact>
         {dynamic(VenueStaffPage)}
+      </Route>
+      <Route path={router.path('venue.billing')} exact>
+        {dynamic(VenueBillingPage)}
       </Route>
       {/*<Route path={router.path('venue.billing')} exact />*/}
       <Redirect from={router.path('venue')} exact to="venue.events" />

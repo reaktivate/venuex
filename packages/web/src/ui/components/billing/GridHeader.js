@@ -1,9 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import Checkbox from '@venuex/web/ui/elements/form/Checkbox';
-import PermissionPopup from '@venuex/web/ui/components/PermissionPopup';
-import IconButton from '@venuex/web/ui/elements/buttons/IconButton.js';
-import Delete from '@venuex/web/ui/icons/Delete.js';
 import PropTypes from 'prop-types';
 
 const HeaderColumn = styled.div`
@@ -20,16 +17,22 @@ const HeaderColumn = styled.div`
   transition-timing-function: ease-in;
   transition: 0.2s opacity;
   padding-left: 27px;
+
   &.name {
     justify-content: left;
   }
 
   &.name div {
-    margin-left: 48px;
+    margin-left: 28px;
   }
 
-  &.buttons {
+  &.type {
     justify-content: left;
+  }
+
+  &.owner {
+    justify-content: left;
+    padding-left: 60px;
   }
 `;
 
@@ -59,35 +62,30 @@ const SortBtn = styled.div`
   }
 `;
 
-const CheckedHeader = (props) => {
-  const { permissionList, selected, saveHandler } = props;
-  let count = selected.length;
-
-  let lexForm = 'Member' + (count > 1 ? 's' : '');
-
-  return (
-    <HeaderColumn className="buttons" style={{ width: '80%' }}>
-      <PermissionPopup checked={permissionList} saveHandler={saveHandler} count={count} />
-
-      <IconButton
-        ready={true}
-        text={`Delete ${count} Staff ${lexForm}`}
-        textColor="red"
-        buttonColor="white"
-        mode="border"
-      >
-        <Delete color="#c02026" />
-      </IconButton>
-    </HeaderColumn>
-  );
-};
-
-const DefaultHeader = (props) => {
-  const { sort, sortDirection, headerClickHandler } = props;
+const GridHeader = (props) => {
+  const {
+    sort,
+    sortDirection,
+    checkAllHandler,
+    uncheckAllHandler,
+    checkAllChecked,
+    headerClickHandler
+  } = props;
 
   return (
     <React.Fragment>
-      <HeaderColumn className="name" style={{ width: '20%' }}>
+      <HeaderColumn className="name" style={{ width: '15%' }}>
+        <SortBtn
+          active={sort === 'clientName'}
+          sortDirection={sortDirection}
+          onClick={() => {
+            headerClickHandler('clientName');
+          }}
+        >
+          Client
+        </SortBtn>
+      </HeaderColumn>
+      <HeaderColumn style={{ width: '20%' }}>
         <SortBtn
           active={sort === 'name'}
           sortDirection={sortDirection}
@@ -95,51 +93,53 @@ const DefaultHeader = (props) => {
             headerClickHandler('name');
           }}
         >
-          Name
+          Event name
         </SortBtn>
       </HeaderColumn>
-      <HeaderColumn style={{ width: '20%' }}>
+      <HeaderColumn className="type" style={{ width: '120px' }}>
         <SortBtn
-          active={sort === 'email'}
+          active={sort === 'ceremonyKind'}
           sortDirection={sortDirection}
           onClick={() => {
-            headerClickHandler('email');
+            headerClickHandler('ceremonyKind');
           }}
         >
-          Email
+          Event type
         </SortBtn>
       </HeaderColumn>
-      <HeaderColumn style={{ width: '20%' }}>PERMISSION</HeaderColumn>
+      <HeaderColumn style={{ width: '65px' }}>
+        <SortBtn
+          active={sort === 'actualGuests'}
+          sortDirection={sortDirection}
+          onClick={() => {
+            headerClickHandler('actualGuests');
+          }}
+        >
+          Guests
+        </SortBtn>
+      </HeaderColumn>
       <HeaderColumn style={{ width: '104px' }}>
         <SortBtn
-          active={sort === 'date'}
+          active={sort === 'start'}
           sortDirection={sortDirection}
           onClick={() => {
-            headerClickHandler('date');
+            headerClickHandler('start');
           }}
         >
-          date added
+          Event date
         </SortBtn>
       </HeaderColumn>
-      <HeaderColumn style={{ width: '80px' }} />
-      <HeaderColumn style={{ width: '20%' }} />
-    </React.Fragment>
-  );
-};
-
-const GridHeader = (props) => {
-  const { checkAllHandler, uncheckAllHandler, checkAllChecked, selected } = props;
-
-  return (
-    <React.Fragment>
-      <HeaderColumn style={{ width: '50px' }}>
-        <Checkbox
-          checked={checkAllChecked}
-          onCheck={checkAllHandler}
-          onUncheck={uncheckAllHandler}
-        />
+      <HeaderColumn className="owner" style={{ width: '20%' }}>
+        <SortBtn
+          active={sort === 'owner'}
+          sortDirection={sortDirection}
+          onClick={() => {
+            headerClickHandler('owner');
+          }}
+        >
+          Created By
+        </SortBtn>
       </HeaderColumn>
-      {selected.length ? <CheckedHeader {...props} /> : <DefaultHeader {...props} />}
     </React.Fragment>
   );
 };

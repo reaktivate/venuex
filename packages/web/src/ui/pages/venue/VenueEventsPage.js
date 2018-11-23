@@ -3,11 +3,15 @@ import { connect } from '@venuex/ddd/react';
 import { withRouter } from 'react-router';
 import router from '@venuex/web/lib/router';
 import query from 'query-string';
+import moment from 'moment';
 import EventStore from '@venuex/domain/stores/EventStore';
 import EventService from '@venuex/domain/services/EventService';
 import Calendar from '@venuex/web/ui/components/Calendar';
 import EventDialogController from '@venuex/web/ui/containers/events/EventDialogController';
-import moment from 'moment';
+import Header from '@venuex/web/ui/containers/Header';
+import MonthPickerRender from '@venuex/web/ui/components/events/MonthPicker';
+import RoundButton from '@venuex/web/ui/elements/buttons/RoundButton';
+import Plus from '@venuex/web/ui/icons/Plus';
 
 function generateEventAddPath(date) {
   let path = router.path('venue.events.add');
@@ -42,6 +46,9 @@ function generateEventViewPath(id) {
   };
 })
 class VenueEventsPage extends Component {
+  state = {
+    date: moment(new Date())
+  };
   componentDidMount() {
     this.props.fetchCurrentVenueEvents();
   }
@@ -58,8 +65,13 @@ class VenueEventsPage extends Component {
     this.props.openEventViewDialog(id);
   };
 
+  handleMonthChange(delta) {
+    this.setState({ date: this.state.date.add(delta, 'month') });
+  }
+
   render() {
     const { events } = this.props;
+    const { date } = this.state;
 
     // if (!events.length) {
     //   return <div>Loading...</div>;
@@ -67,10 +79,21 @@ class VenueEventsPage extends Component {
 
     return (
       <Fragment>
+        <Header>
+          <MonthPickerRender
+            date={date}
+            onNextMonth={() => this.handleMonthChange(1)}
+            onPreviousMonth={() => this.handleMonthChange(-1)}
+          />
+          <RoundButton handleClick={() => this.handleAddEvent()}>
+            <Plus color={'white'} size="16px" />
+          </RoundButton>
+        </Header>
         <Calendar
+          date={date}
+          events={events}
           onEventClick={this.handleEditEvent}
           onCellClick={this.handleAddEvent}
-          events={events}
         />
         <EventDialogController />
       </Fragment>

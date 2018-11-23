@@ -1,10 +1,11 @@
-import { action, runInAction } from 'mobx';
+import { action } from 'mobx';
 import { service } from '@venuex/ddd/decorators';
 import { AbstractService } from '@venuex/ddd';
 import VenueStaffStore from '../stores/VenueStaffStore';
 import Employee from '../models/Employee';
-// import User from '../models/User';
 import firebaseQuery, { prepareCollectionSnapshot } from '../utils/firebase-query';
+
+const USERS_COLLECTION = 'users';
 
 @service('VenueStaffService')
 class VenueStaffService extends AbstractService {
@@ -15,28 +16,30 @@ class VenueStaffService extends AbstractService {
   }
 
   @action.bound
-  fetchCurrentVenueStaff() {
-    const { firebase, staffStore, venueId } = this;
-    const { loadRequest } = staffStore;
+  updatePermissions(memberId, permissions) {
+    const { firebase } = this;
 
     const query = firebaseQuery(firebase)
-      .collection('users')
+      .collection(USERS_COLLECTION)
+      .doc(memberId)
+      .update({ permissions });
+
+    query.catch(() => {
+      //rise error to user
+    });
+  }
+
+  @action.bound
+  fetchCurrentVenueStaff() {
+    const { firebase, staffStore, venueId } = this;
+    const { entities } = staffStore;
+
+    return firebaseQuery(firebase)
+      .collection(USERS_COLLECTION)
       .where('venueId', '==', venueId)
       .where('userType', '==', 'staff')
-      .get()
-      .then(prepareCollectionSnapshot)
-      .then((list) =>
-        list.map((entry) => ({
-          ...entry,
-          dateAdded: entry.dateAdded.toDate()
-        }))
-      );
-
-    loadRequest.send(query).then((list) => {
-      const { entities } = staffStore;
-
-      runInAction(() => {
-        list.forEach((entry) => {
+      .onSnapshot((snapshot) => {
+        prepareCollectionSnapshot(snapshot).forEach((entry) => {
           const { id } = entry;
 
           if (entities.has(id)) {
@@ -46,10 +49,33 @@ class VenueStaffService extends AbstractService {
           }
         });
       });
-    });
   }
 
-  subscribeToNewEvents() {}
+  findOrCreate(id, attrs) {
+    const {
+      staffStore: { entities }
+    } = this;
+
+    if (!entities.has(id)) {
+      entities.set(id, this.createEntity(Employee, { id, ...attrs }));
+    }
+
+    return entities.get(id);
+  }
+
+  async fetchById(id) {
+    const { firebase } = this;
+
+    return firebaseQuery(firebase)
+      .collection(USERS_COLLECTION)
+      .doc(id)
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          return doc.data();
+        }
+      });
+  }
 }
 
 export default VenueStaffService;

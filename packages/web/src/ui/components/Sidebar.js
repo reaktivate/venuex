@@ -7,10 +7,23 @@ import BillingIcon from '../icons/Billing';
 import styled from 'styled-components';
 
 const Container = styled.div`
-  width: 226px;
-  height: 100%;
+  font-family: 'Montserrat', sans-serif;
+  color: #ffffff;
+  max-width: 227px;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
   background-color: #000000;
-  color: #fff;
+  display: block;
+  flex-direction: column;
+  padding: 40px 0 30px 0;
+  z-index: 20;
+  overflow-y: auto;
+  @media screen and (max-width: 1100px) {
+    max-width: 160px;
+  }
 `;
 
 const Sidebar = ({ logo }) => (
