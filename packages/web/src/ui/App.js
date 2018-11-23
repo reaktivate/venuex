@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import compose from 'lodash/fp/compose';
 import provideDomain from './hocs/provideDomain';
-import withVenue from './hocs/withVenue';
-import withAuth from './hocs/withAuth';
+import loadVenue from './hocs/loadVenue';
+import checkAuth from './hocs/checkAuth';
 import createBrowserHistory from 'history/createBrowserHistory';
 import Router from './Router';
 
@@ -16,6 +16,6 @@ class App extends Component {
 
 export default compose(
   provideDomain,
-  withVenue,
-  withAuth
+  loadVenue,
+  checkAuth
 )(App);

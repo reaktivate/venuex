@@ -3,7 +3,7 @@ import { connect } from '@venuex/ddd/react';
 import AuthService from '@venuex/domain/services/AuthService';
 import AuthStore from '@venuex/domain/stores/AuthStore';
 
-const withAuth = (WrappedComponent) => {
+const checkAuth = (WrappedComponent) => {
   @connect(({ domain }) => {
     const authStore = domain.get(AuthStore);
     const authService = domain.get(AuthService);
@@ -15,7 +15,7 @@ const withAuth = (WrappedComponent) => {
       subscribeToAuthStateChanges: authService.subscribeToAuthStateChanges
     };
   })
-  class WithAuth extends Component {
+  class CheckAuth extends Component {
     componentDidMount() {
       this.props.syncAuthenticatedUser();
       this.unsubscribe = this.props.subscribeToAuthStateChanges();
@@ -34,7 +34,7 @@ const withAuth = (WrappedComponent) => {
     }
   }
 
-  return WithAuth;
+  return CheckAuth;
 };
 
-export default withAuth;
+export default checkAuth;

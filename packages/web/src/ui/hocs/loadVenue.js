@@ -6,7 +6,7 @@ import { ThemeProvider } from 'styled-components';
 import theme from '@venuex/web/ui/styles/theme';
 import merge from 'lodash/merge';
 
-const withVenue = (WrappedComponent) => {
+const loadVenue = (WrappedComponent) => {
   @connect(({ domain }) => {
     const venueStore = domain.get(VenueStore);
     const venueService = domain.get(VenueService);
@@ -19,7 +19,7 @@ const withVenue = (WrappedComponent) => {
       subscribeToCurrentVenueChanges
     };
   })
-  class WithVenue extends Component {
+  class LoadVenue extends Component {
     componentDidMount() {
       this.unsubscribe = this.props.subscribeToCurrentVenueChanges();
     }
@@ -46,7 +46,7 @@ const withVenue = (WrappedComponent) => {
     }
   }
 
-  return WithVenue;
+  return LoadVenue;
 };
 
-export default withVenue;
+export default loadVenue;
