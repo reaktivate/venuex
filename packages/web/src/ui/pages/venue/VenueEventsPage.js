@@ -6,8 +6,9 @@ import query from 'query-string';
 import moment from 'moment';
 import EventStore from '@venuex/domain/stores/EventStore';
 import EventService from '@venuex/domain/services/EventService';
-import Calendar from '@venuex/web/ui/components/Calendar';
 import EventDialogController from '@venuex/web/ui/containers/events/EventDialogController';
+import Calendar from '@venuex/web/ui/components/Calendar';
+import LegendItem from '@venuex/web/ui/elements/LegendItem';
 import Header from '@venuex/web/ui/containers/Header';
 import MonthNavigator from '@venuex/web/ui/elements/MonthNavigator';
 import RoundButton from '@venuex/web/ui/elements/buttons/RoundButton';
@@ -92,6 +93,17 @@ class VenueEventsPage extends Component {
           onEventClick={this.handleEditEvent}
           onCellClick={this.handleAddEvent}
         />
+        <div>
+          <LegendItem opacity="FF">
+            <div /> = 1st payment
+          </LegendItem>
+          <LegendItem opacity="A6">
+            <div /> = 2nd payment
+          </LegendItem>
+          <LegendItem opacity="59">
+            <div /> = 3rd payment
+          </LegendItem>
+        </div>
         <EventDialogController />
       </Fragment>
     );
