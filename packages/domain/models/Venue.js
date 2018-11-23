@@ -39,11 +39,13 @@ class Venue extends Entity {
     theme: DataTypes.object,
     logo: DataTypes.string,
     rooms: DataTypes.arrayOf(Room),
-    paymentTerms: DataTypes.int
+    paymentTerms: DataTypes.int,
+    balance: DataTypes.int
   };
 
   @observable name;
   @observable theme;
+  @observable balance;
 }
 
 export default Venue;
