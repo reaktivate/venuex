@@ -37,6 +37,7 @@ class PermissionItem extends PureComponent {
     );
   }
 }
+
 PermissionItem.propTypes = {
   handleClickItem: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,

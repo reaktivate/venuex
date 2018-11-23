@@ -1,15 +1,15 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import BaseInput from '@venuex/web/ui/elements/form/BaseInput';
+import FormField from '@venuex/web/ui/elements/form/FormField';
 
 storiesOf('elements/form/BaseInput', module)
   .add('default', () => (
-    <BaseInput label="some label">
+    <FormField label="some label">
       <input />
-    </BaseInput>
+    </FormField>
   ))
   .add('error', () => (
-    <BaseInput label="some label" meta={{ error: 'some error', touched: true }}>
+    <FormField label="some label" meta={{ error: 'some error', touched: true }}>
       <input />
-    </BaseInput>
+    </FormField>
   ));

@@ -4,14 +4,17 @@ import { withRouter } from 'react-router';
 import { createLocation } from 'history';
 import { NavLink as RouterNavLink } from 'react-router-dom';
 import router from '@venuex/web/lib/router';
+import omit from 'lodash/omit';
 
 class NavLink extends Component {
   render() {
-    let { to, params, location, ...rest } = this.props;
-    let { staticContext, ...props } = rest;
+    let { to, params, location, ...props } = this.props;
 
     return (
-      <RouterNavLink {...props} to={createLocation(router.path(to, params), null, to, location)} />
+      <RouterNavLink
+        {...omit(props, ['staticContext'])}
+        to={createLocation(router.path(to, params), null, null, location)}
+      />
     );
   }
 }

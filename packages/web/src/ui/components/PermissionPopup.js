@@ -151,8 +151,10 @@ class Popup extends PureComponent {
     );
   }
 }
+
 Popup.propTypes = {
   items: PropTypes.array,
   checked: PropTypes.array
 };
+
 export default Popup;

@@ -96,4 +96,5 @@ IconButton.propTypes = {
 IconButton.defaultProps = {
   ready: true
 };
+
 export default IconButton;

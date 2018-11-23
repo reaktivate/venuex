@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import BaseInput from '@venuex/web/ui/elements/form/BaseInput';
+import FormField from '@venuex/web/ui/elements/form/FormField';
 //import dropdownCaretDown from '@venuex/web/ui/icons/raw/caret-down-custom.svg';
 import PropTypes from 'prop-types';
 
@@ -49,7 +49,7 @@ const Select = (props) => {
   const { input, options } = props;
 
   return (
-    <BaseInput {...props}>
+    <FormField {...props}>
       <Container>
         <StyledSelect {...input} {...props}>
           <option value="">Select one</option>
@@ -58,7 +58,7 @@ const Select = (props) => {
           ))}
         </StyledSelect>
       </Container>
-    </BaseInput>
+    </FormField>
   );
 };
 

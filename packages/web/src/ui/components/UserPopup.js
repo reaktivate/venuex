@@ -142,10 +142,12 @@ class UserPopup extends Component {
     );
   }
 }
+
 UserPopup.propTypes = {
   userName: PropTypes.string,
   handleEditProfile: PropTypes.func.isRequire,
   handleChangePassword: PropTypes.func.isRequire,
   handleLogOut: PropTypes.func.isRequire
 };
+
 export default UserPopup;
