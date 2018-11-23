@@ -3,7 +3,7 @@ import { service } from '@venuex/ddd/decorators';
 import { AbstractService } from '@venuex/ddd';
 import VenueStaffStore from '../stores/VenueStaffStore';
 import Employee from '../models/Employee';
-import firebaseQuery, { prepareCollectionSnapshot } from '../utils/firebase-query';
+import firebaseQuery, { prepareCollectionSnapshot } from '../utils/firebaseQuery';
 
 const USERS_COLLECTION = 'users';
 

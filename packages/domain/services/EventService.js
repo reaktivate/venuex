@@ -6,7 +6,7 @@ import Event from '../models/Event';
 import firebaseQuery, {
   prepareDocumentSnapshot,
   prepareCollectionSnapshot
-} from '../utils/firebase-query';
+} from '../utils/firebaseQuery';
 
 @service('EventService')
 class EventService extends AbstractService {

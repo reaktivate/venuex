@@ -3,7 +3,7 @@ import { service } from '@venuex/ddd/decorators';
 import { AbstractService } from '@venuex/ddd';
 import VenueBillingStore from '../stores/VenueBillingStore';
 import VenuePayment from '../models/VenuePayment';
-import firebaseQuery, { prepareCollectionSnapshot } from '../utils/firebase-query';
+import firebaseQuery, { prepareCollectionSnapshot } from '../utils/firebaseQuery';
 
 @service('VenueBillingService')
 class EventService extends AbstractService {
