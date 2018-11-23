@@ -165,4 +165,8 @@ Popup.propTypes = {
   checked: PropTypes.array
 };
 
+Popup.defaultProps = {
+  checked: []
+};
+
 export default Popup;
