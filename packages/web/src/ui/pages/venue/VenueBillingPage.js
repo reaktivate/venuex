@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from '@venuex/ddd/react';
+import compose from 'lodash/fp/compose';
+import withVenue from '@venuex/web/ui/hocs/withVenue';
 import VenueBillingStore from '@venuex/domain/stores/VenueBillingStore';
 import VenueBillingService from '@venuex/domain/services/VenueBillingService';
+import VenueStore from '@venuex/domain/stores/VenueStore';
 import EventStore from '@venuex/domain/stores/EventStore';
 import EventService from '@venuex/domain/services/EventService';
 import BillingList from '@venuex/web/ui/components/billing/BillingList';
 import Header from '@venuex/web/ui/containers/Header';
-import RoundButton from '@venuex/web/ui/elements/buttons/RoundButton';
-import Plus from '@venuex/web/ui/icons/Plus';
 import SummaryItem from '@venuex/web/ui/elements/Summary';
 import Summary from '@venuex/web/ui/containers/Summary';
 import Button from '@venuex/web/ui/elements/buttons/Button';
@@ -26,13 +27,17 @@ import moment from 'moment';
   const { fetchCurrentVenueEvents } = eventService;
   const { loadEvents, list: events } = eventStore;
 
+  const venueStore = domain.get(VenueStore);
+  const { currentVenue } = venueStore;
+
   return {
     fetchPayments,
     loadRequestBills,
     bills,
     fetchCurrentVenueEvents,
     loadEvents,
-    events
+    events,
+    currentVenue
   };
 })
 class VenueEventsPage extends Component {
@@ -69,13 +74,11 @@ class VenueEventsPage extends Component {
   };
 
   render() {
-    const { events, bills } = this.props;
+    const { events, bills, currentVenue } = this.props;
     const action = this.action;
     const { date } = this.state;
 
     let summary = this.getSummary(events);
-
-    console.log(events);
 
     if (!events.length) {
       return <div>Loading...</div>;
@@ -108,7 +111,7 @@ class VenueEventsPage extends Component {
           />
           <SummaryItem
             name="Current Balance"
-            count="$ 5,000"
+            count={`$ ${currentVenue.balance}`}
             color="gray"
             mode="line-before"
             style={{ paddingLeft: '30px', paddingRight: '30px' }}
