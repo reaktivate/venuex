@@ -14,7 +14,7 @@ const Header = styled.div.attrs((props) => ({
 }))`
   & {
     font-size: 12px;
-    font-weight: 300;
+    font-weight: normal;
     letter-spacing: 0.3px;
     text-align: center;
     color: #888888;
@@ -24,7 +24,7 @@ const Header = styled.div.attrs((props) => ({
 
 const StyledDateHeader = styled.div`
   font-size: 14px;
-  font-weight: 300;
+  font-weight: normal;
   font-style: normal;
   font-stretch: normal;
   line-height: normal;
@@ -42,10 +42,12 @@ DateHeader.propTypes = {
 const EventWrapper = styled.div`
   padding: 0 4px 0 0;
   & > button {
+    height: 27px;
+    box-sizing: border-box;
     pointer-events: all;
     font-family: Montserrat;
     font-size: 12px;
-    font-weight: 300;
+    font-weight: normal;
     letter-spacing: -0.1px;
     color: #ffffff;
     border-radius: 2px;
@@ -89,7 +91,7 @@ const StyledBigCalendar = styled(BigCalendar)`
     }
   }
   .rbc-month-row {
-    min-height: 122px;
+    min-height: 121px;
     .rbc-row-bg {
       height: 122px;
       .rbc-day-bg {
@@ -101,17 +103,27 @@ const StyledBigCalendar = styled(BigCalendar)`
           background-color: #ffffff;
         }
       }
-      .rbc-row-segment {
-        padding: 0 0 2px 0 !important;
-      }
     }
     .rbc-row-content {
       pointer-events: none;
+      .rbc-show-more {
+        padding-top: 4px;
+        padding-left: 7px;
+        pointer-events: all;
+        text-decoration: none;
+        font-size: 12px;
+        font-weight: bold;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: -0.2px;
+        color: #c0b69b;
+      }
       .rbc-date-cell {
         padding: 8px 5px 4px 0;
         color: #7d7d7d;
         font-size: 14px;
-        font-weight: 300;
+        font-weight: normal;
         & ${StyledDateHeader} {
           width: 22px;
           height: 22px;
@@ -131,6 +143,36 @@ const StyledBigCalendar = styled(BigCalendar)`
           color: #888888;
         }
       }
+    }
+    .rbc-row-segment {
+      padding: 0 0 2px 0 !important;
+    }
+  }
+  .rbc-overlay {
+    min-width: 17% !important;
+    max-width: 17%;
+    transform: translate3d(-7%, -10%, 0);
+    padding: 10px;
+    border-radius: 2px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+    background-color: #ffffff;
+    & > div {
+      margin-top: 2px;
+      padding: 0;
+    }
+    &-header {
+      margin: 0 !important;
+      height: 30px;
+      display: flex !important;
+      align-items: center !important;
+      border: none;
+      font-size: 14px;
+      font-weight: 400;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      color: #7d7d7d;
     }
   }
 `;
@@ -163,6 +205,7 @@ class Calendar extends Component {
 
     return (
       <StyledBigCalendar
+        popup
         localizer={calendarLocalizer}
         defaultView="month"
         events={events}
