@@ -40,14 +40,14 @@ const Icon = styled(Crown)`
   max-width: 17px;
   max-height: 100%;
 `;
-const OwnewStatus = ({ handleClick, mode, text }) => (
-  <Button onClick={handleClick} mode={mode}>
+const OwnewStatus = ({ onClick, mode, text }) => (
+  <Button onClick={onClick} mode={mode}>
     {mode === 'owner' ? <Icon color="#ffffff" /> : ''} {text}
   </Button>
 );
 
 OwnewStatus.propTypes = {
-  handleClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
   mode: PropTypes.oneOf(['assign', 'owner', 'unassign']).isRequired
 };

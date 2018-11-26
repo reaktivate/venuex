@@ -24,14 +24,14 @@ const RadioButton = styled.button((props) => {
   `;
 });
 
-const PrimaryRadioButton = ({ active, handleClick }) => (
-  <RadioButton active={active} onClick={handleClick}>
+const PrimaryRadioButton = ({ active, onClick }) => (
+  <RadioButton active={active} onClick={onClick}>
     <Checkmark color="#ffffff" />
   </RadioButton>
 );
 
 PrimaryRadioButton.propTypes = {
-  handleClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
   active: PropTypes.bool
 };
 

@@ -7,12 +7,12 @@ import { action } from '@storybook/addon-actions';
 
 storiesOf('elements/buttons/RoundButton', module)
   .add('Default', () => (
-    <RoundIconButton handleClick={action('Click')}>
+    <RoundIconButton onClick={action('Click')}>
       <AddUser color="#ffffff" />
     </RoundIconButton>
   ))
   .add('NotificationButton', () => (
-    <NotificationButton handleClick={action('Click')} noti={true}>
+    <NotificationButton onClick={action('Click')} noti={true}>
       <Bell color="#c0b69b" />
     </NotificationButton>
   ));

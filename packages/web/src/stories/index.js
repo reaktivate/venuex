@@ -2,7 +2,7 @@ import './containers/Header';
 import './containers/BillingSummary';
 import './components/billing/BillingList';
 import './components/Calendar';
-import './components/events/LegendItem';
+// import './components/events/LegendItem';
 import './components/NotificationsPopup.js';
 import './components/FilterPopup';
 import './components/PermissionPopup.js';

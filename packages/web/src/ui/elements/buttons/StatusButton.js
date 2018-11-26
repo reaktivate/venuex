@@ -36,14 +36,14 @@ const Button = styled.button((props) => {
     }
   `;
 });
-const Statusbutton = ({ handleClick, color, text }) => (
-  <Button onClick={handleClick} color={color}>
+const Statusbutton = ({ onClick, color, text }) => (
+  <Button onClick={onClick} color={color}>
     {text}
   </Button>
 );
 
 Statusbutton.propTypes = {
-  handleClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
   color: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired
 };

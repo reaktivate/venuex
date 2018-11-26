@@ -70,8 +70,8 @@ const NoEventText = styled.div`
   padding: 10px;
   position: relative;
 `;
-const ItemRender = ({ event, date, checked, id, handleClickItem }) => (
-  <Item onClick={() => handleClickItem(id, event)} checked={checked}>
+const ItemRender = ({ event, date, checked, id, onClick }) => (
+  <Item onClick={() => onClick(id, event)} checked={checked}>
     <ItemIconWrap>
       <RadioButton color="gold" borderColor="gray" checked={checked} />
     </ItemIconWrap>
@@ -85,7 +85,7 @@ ItemRender.propTypes = {
   checked: PropTypes.bool,
   date: PropTypes.string,
   id: PropTypes.number,
-  handleClickItem: PropTypes.func
+  onClick: PropTypes.func
 };
 class FilterPopup extends Component {
   constructor(props) {
@@ -137,8 +137,8 @@ class FilterPopup extends Component {
         <FilterButton
           text="Filter"
           event={this.state.eventName}
-          handleClick={this.togglePopup}
-          handleClose={this.clearFilter}
+          onClick={this.togglePopup}
+          onClose={this.clearFilter}
         />
         <ClickAway onClickAway={this.closePopup}>
           <PopupWrap isOpen={this.state.isOpen}>
@@ -147,7 +147,7 @@ class FilterPopup extends Component {
                 event={event.event}
                 date={event.date}
                 checked={this.state.checked === event.id}
-                handleClickItem={this.handleClickItem}
+                onClick={this.handleClickItem}
                 id={event.id}
                 key={index}
               />
@@ -159,7 +159,9 @@ class FilterPopup extends Component {
     );
   }
 }
+
 FilterPopup.propTypes = {
   events: PropTypes.array
 };
+
 export default FilterPopup;

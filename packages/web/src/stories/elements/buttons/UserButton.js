@@ -6,5 +6,5 @@ import { action } from '@storybook/addon-actions';
 const photo = 'https://api.adorable.io/avatars/40/1.png';
 
 storiesOf('elements/buttons/UserButton', module).add('Default', () => (
-  <UserButton handleClick={action('Click on event')} photo={photo} />
+  <UserButton onClick={action('Click on event')} photo={photo} />
 ));

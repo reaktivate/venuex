@@ -53,8 +53,8 @@ const Name = styled.span`
   letter-spacing: -0.1px;
   color: #c0b69b;
 `;
-const ThirdButton = ({ text, children, active, handleClick }) => (
-  <Button active={active} onClick={handleClick}>
+const ThirdButton = ({ text, children, active, onClick }) => (
+  <Button active={active} onClick={onClick}>
     {children}
     <Name>{text}</Name>
   </Button>
@@ -62,7 +62,7 @@ const ThirdButton = ({ text, children, active, handleClick }) => (
 
 ThirdButton.propTypes = {
   text: PropTypes.string.isRequired,
-  handleClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
   children: PropTypes.element.isRequired,
   active: PropTypes.bool
 };

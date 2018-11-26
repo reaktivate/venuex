@@ -4,10 +4,8 @@ import OwnerStatus from '../../../ui/elements/buttons/OwnerStatus.js';
 import { action } from '@storybook/addon-actions';
 
 storiesOf('elements/buttons/OwnerStatus', module)
-  .add('Owner', () => <OwnerStatus text="owner" mode="owner" handleClick={action('Click')} />)
-  .add('Assign', () => (
-    <OwnerStatus text="Assign owner" mode="assign" handleClick={action('Click')} />
-  ))
+  .add('Owner', () => <OwnerStatus text="owner" mode="owner" onClick={action('Click')} />)
+  .add('Assign', () => <OwnerStatus text="Assign owner" mode="assign" onClick={action('Click')} />)
   .add('Unassign', () => (
-    <OwnerStatus text="Unassign owner" mode="unassign" handleClick={action('Click')} />
+    <OwnerStatus text="Unassign owner" mode="unassign" onClick={action('Click')} />
   ));

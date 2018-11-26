@@ -119,7 +119,7 @@ class UserPopup extends Component {
       <Container>
         <UserButton
           photo={photo}
-          handleClick={this.togglePopup}
+          onClick={this.togglePopup}
           isOpen={this.state.isOpen}
           style={{ pointerEvents: this.state.isOpen ? 'none' : 'auto' }}
         />

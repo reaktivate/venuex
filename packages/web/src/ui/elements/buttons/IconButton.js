@@ -70,13 +70,13 @@ const Name = styled.span((props) => {
   `;
 });
 
-const IconButton = ({ ready, children, text, buttonColor, textColor, mode, handleClick }) => (
+const IconButton = ({ ready, children, text, buttonColor, textColor, mode, onClick }) => (
   <Button
     ready={ready}
     buttonColor={buttonColor}
     textColor={textColor}
     mode={mode}
-    onClick={handleClick}
+    onClick={onClick}
   >
     {children}
     <Name textColor={textColor}>{text}</Name>
@@ -84,7 +84,7 @@ const IconButton = ({ ready, children, text, buttonColor, textColor, mode, handl
 );
 
 IconButton.propTypes = {
-  handleClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
   children: PropTypes.element.isRequired,
   ready: PropTypes.bool,

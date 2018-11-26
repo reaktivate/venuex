@@ -8,14 +8,14 @@ storiesOf('elements/buttons/FilterButton', module)
     <FilterButton
       text="Filter Button"
       event="Elizabeth's Birthday Bash"
-      handleClick={action('HadleClick Button')}
-      handleClose={action('handleClose')}
+      onClick={action('HadleClick Button')}
+      onClose={action('handleClose')}
     />
   ))
   .add('No Event', () => (
     <FilterButton
       text="Filter Button"
-      handleClick={action('HadleClick Button')}
-      handleClose={action('handleClose')}
+      onClick={action('HadleClick Button')}
+      onClose={action('handleClose')}
     />
   ));

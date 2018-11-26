@@ -114,8 +114,8 @@ const Alert = styled.i(
     }
   }
 );
-const NotificationButton = ({ children, text, mode, handleClick }) => (
-  <Button onClick={handleClick}>
+const NotificationButton = ({ children, text, mode, onClick }) => (
+  <Button onClick={onClick}>
     {children}
     <Name>{text}</Name>
     <Alert mode={mode} />
@@ -123,7 +123,7 @@ const NotificationButton = ({ children, text, mode, handleClick }) => (
 );
 
 NotificationButton.propTypes = {
-  handleClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
   children: PropTypes.element.isRequired,
   mode: PropTypes.oneOf(['ok', 'no', 'maybe']).isRequired

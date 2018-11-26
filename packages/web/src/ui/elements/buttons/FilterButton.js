@@ -73,13 +73,13 @@ const FilterText = styled.span`
   color: #c0b69b;
 `;
 
-const FilterButton = ({ text, event, handleClick, handleClose }) => (
+const FilterButton = ({ text, event, onClick, onClose }) => (
   <ButtonWrap>
-    <Button onClick={handleClick}>
+    <Button onClick={onClick}>
       <FilterIcon color="#c0b69b" />
       <FilterText>{event.length ? text + ' : ' + event : text}</FilterText>
     </Button>
-    {event.length ? <CloseButton onClick={handleClose} /> : ''}
+    {event.length ? <CloseButton onClick={onClose} /> : ''}
   </ButtonWrap>
 );
 
@@ -89,7 +89,8 @@ FilterButton.defaultProps = {
 FilterButton.propTypes = {
   event: PropTypes.string,
   text: PropTypes.string,
-  handleClick: PropTypes.func,
-  handleClose: PropTypes.func
+  onClick: PropTypes.func,
+  onClose: PropTypes.func
 };
+
 export default FilterButton;

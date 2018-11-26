@@ -4,5 +4,5 @@ import PrimaryRadioButton from '../../../ui/elements/buttons/PrimaryRadioButton.
 import { action } from '@storybook/addon-actions';
 
 storiesOf('elements/buttons/PrimaryRadioButton', module)
-  .add('Default', () => <PrimaryRadioButton handleClick={action('Click')} />)
-  .add('Active', () => <PrimaryRadioButton active={true} handleClick={action('Click')} />);
+  .add('Default', () => <PrimaryRadioButton onClick={action('Click')} />)
+  .add('Active', () => <PrimaryRadioButton active={true} onClick={action('Click')} />);

@@ -63,25 +63,25 @@ const Button = styled.div(
   }
 );
 
-export const NotificationButton = ({ children, handleClick, noti }) => (
-  <Button noti={noti} onClick={handleClick} type="white">
+export const NotificationButton = ({ children, onClick, noti }) => (
+  <Button noti={noti} onClick={onClick} type="white">
     {children}
   </Button>
 );
 NotificationButton.propTypes = {
-  handleClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
   children: PropTypes.element.isRequired,
   noti: PropTypes.bool.isRequired
 };
 
-const RoundButton = ({ children, handleClick, ...props }) => (
-  <Button onClick={handleClick} type="default" {...props}>
+const RoundButton = ({ children, onClick, ...props }) => (
+  <Button onClick={onClick} type="default" {...props}>
     {children}
   </Button>
 );
 
 RoundButton.propTypes = {
-  handleClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
   children: PropTypes.element.isRequired
 };
 

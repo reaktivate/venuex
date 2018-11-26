@@ -158,7 +158,7 @@ class NotificationsPopup extends Component {
 
     return (
       <Container>
-        <NotificationButton noti={count} handleClick={this.handleClick}>
+        <NotificationButton noti={count} onClick={this.handleClick}>
           {children}
         </NotificationButton>
         <ClickAway onClickAway={this.onClickAway}>

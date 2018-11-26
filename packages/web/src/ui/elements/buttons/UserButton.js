@@ -34,14 +34,14 @@ const UserPhoto = styled.img`
   width: 100%;
 `;
 
-const UserButton = ({ photo, handleClick, ...props }) => (
-  <Button onClick={handleClick} {...props}>
+const UserButton = ({ photo, onClick, ...props }) => (
+  <Button onClick={onClick} {...props}>
     <UserPhoto src={photo} />
   </Button>
 );
 
 UserButton.propTypes = {
-  handleClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
   photo: PropTypes.string.isRequired
 };
 

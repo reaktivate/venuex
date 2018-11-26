@@ -66,14 +66,14 @@ const RadioButton = styled.button((props) => {
   `;
 });
 
-const RadioButtonText = ({ active, handleClick, color, text }) => (
-  <RadioButton active={active} color={color} onClick={handleClick}>
+const RadioButtonText = ({ active, onClick, color, text }) => (
+  <RadioButton active={active} color={color} onClick={onClick}>
     {text}
   </RadioButton>
 );
 
 RadioButtonText.propTypes = {
-  handleClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
   active: PropTypes.bool,
   color: PropTypes.string

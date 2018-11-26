@@ -45,17 +45,12 @@ const RadioButtonRender = styled.button((props) => {
   `;
 });
 
-const RadioButton = ({ checked, handleClick, color, borderColor }) => (
-  <RadioButtonRender
-    checked={checked}
-    color={color}
-    onClick={handleClick}
-    borderColor={borderColor}
-  />
+const RadioButton = ({ checked, onClick, color, borderColor }) => (
+  <RadioButtonRender checked={checked} color={color} onClick={onClick} borderColor={borderColor} />
 );
 
 RadioButton.propTypes = {
-  handleClick: PropTypes.func,
+  onClick: PropTypes.func,
   checked: PropTypes.bool,
   color: PropTypes.string,
   borderColor: PropTypes.string

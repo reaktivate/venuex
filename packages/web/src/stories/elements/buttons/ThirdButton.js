@@ -6,12 +6,12 @@ import Icon from '../../../ui/icons/AddGroup.js';
 
 storiesOf('elements/buttons/ThirdButton', module)
   .add('Default', () => (
-    <ThirdButton handleClick={action('Click')} text="Button">
+    <ThirdButton onClick={action('Click')} text="Button">
       <Icon color="#c0b69b" />
     </ThirdButton>
   ))
   .add('Active', () => (
-    <ThirdButton handleClick={action('Click')} text="Button" active={true}>
+    <ThirdButton onClick={action('Click')} text="Button" active={true}>
       <Icon color="#c0b69b" />
     </ThirdButton>
   ));

@@ -4,7 +4,7 @@ import CaretDown from '@venuex/web/ui/icons/CaretDown';
 import BtnOwner from '@venuex/web/ui/icons/BtnOwner';
 import OwnerIcon from '@venuex/web/ui/icons/Owner';
 import Checkbox from '../../../elements/form/Checkbox';
-import BaseInput from '@venuex/web/ui/elements/form/BaseInput';
+import BaseInput from '@venuex/web/ui/elements/form/Input';
 import PropTypes from 'prop-types';
 
 const Arrow = styled.div`

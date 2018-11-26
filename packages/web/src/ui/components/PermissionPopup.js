@@ -65,8 +65,6 @@ const ItemWrap = styled.div`
   height: 228px;
 `;
 
-const items = [];
-
 class Popup extends PureComponent {
   constructor(props) {
     super(props);
@@ -117,7 +115,7 @@ class Popup extends PureComponent {
           textColor={this.state.isOpen ? 'gold' : 'gray'}
           buttonColor="white"
           mode="border"
-          handleClick={this.togglePopup}
+          onClick={this.togglePopup}
         >
           <Lock color={this.state.isOpen ? '#c0b69b' : '#B0B0B0'} />
         </Button>
@@ -162,7 +160,9 @@ class Popup extends PureComponent {
 }
 
 Popup.propTypes = {
-  checked: PropTypes.array
+  checked: PropTypes.array,
+  saveHandler: PropTypes.func,
+  count: PropTypes.number
 };
 
 Popup.defaultProps = {

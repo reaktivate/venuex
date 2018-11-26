@@ -10,7 +10,7 @@ storiesOf('elements/buttons/IconButton', module)
       ready={false}
       text="Button Text"
       buttonColor="gold"
-      handleClick={action('Click on event')}
+      onClick={action('Click on event')}
     >
       <Icon color="#ffffff" />
     </IconButton>
@@ -20,7 +20,7 @@ storiesOf('elements/buttons/IconButton', module)
       ready={true}
       text="Button Text"
       buttonColor="gold"
-      handleClick={action('Click on event')}
+      onClick={action('Click on event')}
     >
       <Icon color="#ffffff" />
     </IconButton>
@@ -32,7 +32,7 @@ storiesOf('elements/buttons/IconButton', module)
       textColor="gold"
       buttonColor="white"
       mode="border"
-      handleClick={action('Click on event')}
+      onClick={action('Click on event')}
     >
       <Icon color="#c0b69b" />
     </IconButton>
@@ -43,7 +43,7 @@ storiesOf('elements/buttons/IconButton', module)
       text="Button Text"
       textColor="red"
       mode="border"
-      handleClick={action('Click on event')}
+      onClick={action('Click on event')}
     >
       <Icon color="#c02026" />
     </IconButton>
