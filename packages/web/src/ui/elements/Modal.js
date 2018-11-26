@@ -26,9 +26,10 @@ const Container = styled('div')({
 const Dialog = styled('div')({
   position: 'relative',
   maxWidth: 620,
-  background: '#fff',
+  borderRadius: 2,
+  background: '#ffffff',
   color: '#000',
-  boxShadow: '0 5px 15px rgba(0,0,0,.5)',
+  boxShadow: '0 0 20px 0 rgba(0, 0, 0, 0.2)',
   opacity: 0,
   transition: '.2s'
 });
@@ -40,7 +41,7 @@ const BackDrop = styled('div')({
   bottom: 0,
   left: 0,
   zIndex: 1040,
-  backgroundColor: '#000',
+  backgroundColor: 'rgb(24 24 24)',
   opacity: 0,
   transition: '.2s',
   transform: 'translate3d(0,0,0)' // Safari flickering fix
@@ -48,7 +49,7 @@ const BackDrop = styled('div')({
 
 const backdropTransitionStyles = {
   entering: { opacity: 0 },
-  entered: { opacity: 0.5 },
+  entered: { opacity: 0.4 },
   exiting: { opacity: 0 }
 };
 
