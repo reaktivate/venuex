@@ -2,6 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import Checkbox from '@venuex/web/ui/elements/form/Checkbox';
 import PermissionPopup from '@venuex/web/ui/components/PermissionPopup';
+import ConfirmPopup from '@venuex/web/ui/components/ConfirmPopup';
 import IconButton from '@venuex/web/ui/elements/buttons/IconButton.js';
 import Delete from '@venuex/web/ui/icons/Delete.js';
 import PropTypes from 'prop-types';
@@ -71,7 +72,7 @@ const SortBtn = styled.div`
 `;
 
 const CheckedHeader = (props) => {
-  const { permissionList, selected, saveHandler } = props;
+  const { permissionList, selected, saveHandler, selectedDeleteHandler } = props;
   let count = selected.length;
 
   let lexForm = 'Member' + (count > 1 ? 's' : '');
@@ -79,15 +80,20 @@ const CheckedHeader = (props) => {
   return (
     <HeaderColumn className="buttons" style={{ maxWidth: 'calc(100% - 70px)' }}>
       <PermissionPopup checked={permissionList} saveHandler={saveHandler} count={count} />
-      <IconButton
-        ready={true}
-        text={`Delete ${count} Staff ${lexForm}`}
-        textColor="red"
-        buttonColor="white"
-        mode="border"
+      <ConfirmPopup
+        onConfirm={selectedDeleteHandler}
+        message={`Do you really want delete ${count} Staff ${lexForm}?`}
       >
-        <Delete color="#c02026" />
-      </IconButton>
+        <IconButton
+          ready
+          text={`Delete ${count} Staff ${lexForm}`}
+          textColor="red"
+          buttonColor="white"
+          mode="border"
+        >
+          <Delete color="#c02026" />
+        </IconButton>
+      </ConfirmPopup>
     </HeaderColumn>
   );
 };
@@ -171,7 +177,8 @@ GridHeader.propTypes = {
   checkAllHandler: PropTypes.func,
   uncheckAllHandler: PropTypes.func,
   checkAllChecked: PropTypes.func,
-  headerClickHandler: PropTypes.func
+  headerClickHandler: PropTypes.func,
+  onDeleteAll: PropTypes.func
 };
 
 export default GridHeader;

@@ -1,25 +1,42 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router';
 import { connect } from '@venuex/ddd/react';
 import VenueStaffStore from '@venuex/domain/stores/VenueStaffStore';
 import VenueStaffService from '@venuex/domain/services/VenueStaffService';
 import StaffList from '@venuex/web/ui/components/ManageStaff/StaffList/StaffList';
 import Header from '@venuex/web/ui/containers/Header';
+import AddStaffFormController from '@venuex/web/ui/containers/staff/StaffDialogController';
 import RoundButton from '@venuex/web/ui/elements/buttons/RoundButton';
 import Plus from '@venuex/web/ui/icons/Plus';
+import router from '@venuex/web/lib/router';
 
-@connect(({ domain }) => {
+function generateStaffAddPath() {
+  return router.path('venue.staff.add');
+}
+
+function generateStaffEditPath(id) {
+  return router.path('venue.staff.edit', { id });
+}
+
+@withRouter
+@connect(({ domain }, { history }) => {
   const staffStore = domain.get(VenueStaffStore);
   const staffService = domain.get(VenueStaffService);
 
-  const { fetchCurrentVenueStaff, updatePermissions } = staffService;
+  const { fetchCurrentVenueStaff, updatePermissions, deleteStaff } = staffService;
   const { loadRequest, list: staff } = staffStore;
+  const openEventAddDialog = () => history.push(generateStaffAddPath());
+  const openEventEditDialog = (id) => history.push(generateStaffEditPath(id));
 
   return {
     fetchCurrentVenueStaff,
     updatePermissions,
     loadRequest,
-    staff
+    staff,
+    openEventAddDialog,
+    openEventEditDialog,
+    deleteStaff
   };
 })
 class VenueStaffPage extends Component {
@@ -37,9 +54,9 @@ class VenueStaffPage extends Component {
     }
   }
 
-  handleAddUser(e) {
-    console.log('add', e);
-  }
+  handleAddUser = (e) => {
+    this.props.openEventAddDialog();
+  };
 
   handlePermissionChange = (permissionType, item) => {
     const { updatePermissions } = this.props;
@@ -50,11 +67,25 @@ class VenueStaffPage extends Component {
     updatePermissions(id, permissions);
   };
 
-  action() {
-    return function (e) {
-      console.log('edit', e);
-    };
-  }
+  actionEdit = ({ id }) => {
+    this.props.openEventEditDialog(id);
+  };
+
+  actionDelete = (elem) => {
+    const item = Array.isArray(elem) ? elem : [elem.id];
+
+    return this.props.deleteStaff(item);
+  };
+
+  actionDeleteAll = () => {
+    this.actionDelete([...this.state.selected]).then(() => {
+      this.uncheckAllHandler();
+    });
+  };
+
+  sort = (filter) => {
+    console.log(filter);
+  };
 
   checkAllHandler = () => {
     let selected = this.props.staff.map((user) => user.id);
@@ -99,42 +130,42 @@ class VenueStaffPage extends Component {
   };
 
   saveHandler = (selectedPermissions) => {
+    const { selected } = this.state;
     const { updatePermissions, staff } = this.props;
 
-    let permissionsList = [
+    const permissionsList = [
       'createAndEditEvents',
       'deleteEvents',
       'viewBilling',
       'manageStaffPermissions'
     ];
 
-    staff.map((user) => {
-      const { permissions } = user;
+    selected.forEach((id) => {
+      const { permissions } = staff.find((user) => user.id === id);
 
       permissionsList.map((permission) => {
-        permissions[permission] = selectedPermissions.indexOf(permission) === -1 ? false : true;
+        return (permissions[permission] = selectedPermissions.includes(permission));
       });
 
-      updatePermissions(user.id, permissions);
+      updatePermissions(id, permissions);
     });
   };
 
   render() {
     const { staff, loadRequest } = this.props;
     const { selected } = this.state;
-    const action = this.action;
 
     if (!staff.length) {
       return <div>Loading...</div>;
     }
 
-    let checkAllChecked = staff.length == selected.length;
+    let checkAllChecked = staff.length === selected.length;
 
     return (
       <React.Fragment>
         <Header>
           <div style={{ width: '100%' }}>Staff</div>
-          <RoundButton handleClick={() => this.handleAddUser()}>
+          <RoundButton onClick={this.handleAddUser}>
             <Plus color={'white'} size="16px" />
           </RoundButton>
         </Header>
@@ -142,17 +173,19 @@ class VenueStaffPage extends Component {
           data={staff}
           selected={selected}
           sort="name"
-          headerClickHandler={action('Sort')}
+          headerClickHandler={this.sort}
           checkAllHandler={this.checkAllHandler}
           uncheckAllHandler={this.uncheckAllHandler}
           rowCheckHandler={this.rowCheckHandler}
           rowUncheckHandler={this.rowUncheckHandler}
           checkAllChecked={checkAllChecked}
-          rowEditHandler={action('edit')}
-          rowDeleteHandler={action('delete')}
+          rowEditHandler={this.actionEdit}
+          rowDeleteHandler={this.actionDelete}
+          selectedDeleteHandler={this.actionDeleteAll}
           rowChangePermission={this.handlePermissionChange}
           saveHandler={this.saveHandler}
         />
+        <AddStaffFormController />
       </React.Fragment>
     );
   }
@@ -161,6 +194,7 @@ class VenueStaffPage extends Component {
 VenueStaffPage.propTypes = {
   fetchCurrentVenueStaff: PropTypes.func,
   updatePermissions: PropTypes.func,
+  deleteStaff: PropTypes.func,
   loadRequest: PropTypes.object,
   staff: PropTypes.array
 };

@@ -34,11 +34,14 @@ class Form extends PureComponent {
     return initialValues;
   }
 
-  handleSubmit = async (values, { setSubmitting, setErrors }) => {
+  handleSubmit = async (values, { setSubmitting, setErrors, resetForm }) => {
     const { entity, saveEntity, formToEntityMapper } = this.props;
 
     try {
-      await saveEntity(formToEntityMapper(values, entity));
+      const closeDialog = await saveEntity(formToEntityMapper(values, entity));
+
+      resetForm();
+      closeDialog && closeDialog();
     } catch (ex) {
       // TODO: Call onSaveError to customize errors object
       setErrors({

@@ -26,9 +26,7 @@ const VenueWebsite = () => (
   <VenueLayout>
     <Switch>
       <Route path={router.path('venue.events')}>{dynamic(VenueEventsPage)}</Route>
-      <Route path={router.path('venue.staff')} exact>
-        {dynamic(VenueStaffPage)}
-      </Route>
+      <Route path={router.path('venue.staff')}>{dynamic(VenueStaffPage)}</Route>
       <Route path={router.path('venue.billing')} exact>
         {dynamic(VenueBillingPage)}
       </Route>

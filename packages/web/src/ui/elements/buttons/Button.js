@@ -18,6 +18,7 @@ const Button = styled.button(
     text-transform: uppercase;
     cursor: pointer;
     white-space: nowrap;
+    outline: none;
   `,
   (props) => {
     const primaryColor = (props.theme.colors && props.theme.colors.primary) || 'white';

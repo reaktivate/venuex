@@ -4,6 +4,7 @@ import moment from 'moment';
 import { observer } from '@venuex/ddd/react';
 import Checkbox from '@venuex/web/ui/elements/form/Checkbox';
 import RoundIcon from '@venuex/web/ui/elements/RoundIcon';
+import ConfirmPopup from '@venuex/web/ui/components/ConfirmPopup';
 import Billing from '@venuex/web/ui/icons/Billing.js';
 import CalendarDelete from '@venuex/web/ui/icons/CalendarDelete.js';
 import CalendarEdit from '@venuex/web/ui/icons/CalendarEdit.js';
@@ -194,13 +195,14 @@ const RowRender = (props) => {
               rowEditHandler(props.data);
             }}
           />
-          <StyledDelete
-            color="#222222"
-            size="24px"
-            onClick={() => {
+          <ConfirmPopup
+            message="Do you really want delete user?"
+            onConfirm={() => {
               rowDeleteHandler(props.data);
             }}
-          />
+          >
+            <StyledDelete color="#222222" size="24px" />
+          </ConfirmPopup>
         </span>
       </Column>
     </Row>
