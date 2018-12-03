@@ -51,6 +51,64 @@ class VenueStaffService extends AbstractService {
       });
   }
 
+  @action.bound
+  saveStaff(entity) {
+    const { firebase } = this;
+    const {
+      phoneNumber,
+      fullName,
+      email,
+      avatar,
+      dateAdded,
+      emailVerified,
+      permissions,
+      userType
+    } = entity;
+
+    const query = firebaseQuery(firebase).collection(USERS_COLLECTION);
+
+    if (entity.id) {
+      return query.doc(entity.id).update({
+        permissions,
+        phoneNumber,
+        fullName,
+        email,
+        emailVerified
+      });
+    } else {
+      return query
+        .add({
+          phoneNumber,
+          fullName,
+          email,
+          avatar,
+          dateAdded,
+          emailVerified,
+          permissions,
+          userType
+        })
+        .then((docRef) => {
+          docRef.update({
+            authId: docRef.id,
+            venueId: this.venueId
+          });
+        });
+    }
+  }
+
+  @action.bound
+  deleteStaff(listId) {
+    const { firebase, staffStore } = this;
+    const { entities } = staffStore;
+    const queryCreator = (id) =>
+      firebaseQuery(firebase)
+        .collection(USERS_COLLECTION)
+        .doc(id)
+        .delete();
+
+    return Promise.all(listId.map((id) => queryCreator(id).then(() => entities.delete(id))));
+  }
+
   findOrCreate(id, attrs) {
     const {
       staffStore: { entities }

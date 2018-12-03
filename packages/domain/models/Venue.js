@@ -38,7 +38,7 @@ class Venue extends Entity {
     name: DataTypes.string.required,
     theme: DataTypes.object,
     logo: DataTypes.string,
-    rooms: DataTypes.arrayOf(Room),
+    room: DataTypes.arrayOf(Room),
     paymentTerms: DataTypes.int,
     balance: DataTypes.int
   };

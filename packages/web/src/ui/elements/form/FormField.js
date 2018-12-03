@@ -57,7 +57,7 @@ FormField.propTypes = {
   }).isRequired,
   field: PropTypes.shape({
     name: PropTypes.string.isRequired,
-    value: PropTypes.string,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
     onChange: PropTypes.func,
     onBlur: PropTypes.func
   }).isRequired,

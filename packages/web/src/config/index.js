@@ -23,6 +23,8 @@ const config = {
       'venue.events.view': '/venue/events/:id/view',
       'venue.events.edit': '/venue/events/:id/edit',
       'venue.staff': '/venue/staff',
+      'venue.staff.add': '/venue/staff/add',
+      'venue.staff.edit': '/venue/staff/:id/edit',
       'venue.billing': '/venue/billing',
       host: '/host'
     }
